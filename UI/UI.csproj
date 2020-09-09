@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\OlivesDB.accdb" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
