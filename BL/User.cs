@@ -8,6 +8,9 @@ using System.Data;
 
 namespace BL
 {
+    /// <summary>
+    /// A class representing a user.
+    /// </summary>
     public class User
     {
         private int userID;
@@ -94,6 +97,10 @@ namespace BL
                 certefiedUser = value;
             }
         }
+        /// <summary>
+        /// Constructor for the user class. Recives the users details from a datarow.
+        /// </summary>
+        /// <param name="dr">The users details in the form of a datarow</param>
         public User(DataRow dr)
         {
             this.UserID = int.Parse(dr["UserID"].ToString());
