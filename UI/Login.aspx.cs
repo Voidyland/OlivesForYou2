@@ -16,7 +16,14 @@ namespace UI
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
+            string email = txtEmail.Text;
+            string pass = txtPass.Text;
+            Session["User"] = BL.General.Login(email, pass);
+            if (Session["User"] != null)
+            {
+                Response.Redirect("");
+            }
+            lblError.Visible = true;
         }
     }
 }

@@ -15,4 +15,5 @@
     <asp:RequiredFieldValidator ID="RequiredPass" runat="server" ControlToValidate="txtPass" ErrorMessage="You must enter a password"></asp:RequiredFieldValidator>
     <br />
     <asp:Button ID="btnLogin" runat="server" Text="Submit" OnClick="btnLogin_Click" />
+    <asp:Label ID="lblError" runat="server" Text="Something went wrong! Are you sure you entered the right details?" Visible="false"></asp:Label>
 </asp:Content>
