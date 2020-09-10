@@ -9,16 +9,16 @@ using System.Data.OleDb;
 namespace BL
 {
     /// <summary>
-    /// A general class for the BL lair's static methods.
+    /// A general class for the BL lairs static methods.
     /// </summary>
     public class General
     {
         /// <summary>
         /// The method recives the email and password of a user trying to log in, and if he exists it creates an object of a user with all of his details. Otherwise it returns null.
         /// </summary>
-        /// <param name="Email"></param>
-        /// <param name="Pass"></param>
-        /// <returns></returns>
+        /// <param name="Email">The users email</param>
+        /// <param name="Pass">The users passwird</param>
+        /// <returns>Either the user as an object or null if an error occured in the DAL.</returns>
         public static User Login(string Email, string Pass)
         {
             DataRow dr = DAL.UserDAL.Login(Email, Pass);
