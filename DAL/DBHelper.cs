@@ -199,3 +199,4 @@ namespace DAL
     }
 }
 
+//Olive table: Olive type, Orders its in, Description, Image
