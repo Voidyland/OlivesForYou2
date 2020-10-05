@@ -31,5 +31,24 @@ namespace DAL
             }
             return dt.Rows[0];
         }
+        /// <summary>
+        /// A method which registers a new user and enters it's details to the database.  
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pass"></param>
+        /// <param name="email"></param>
+        /// <param name="userType"></param>
+        /// <param name="country"></param>
+        /// <param name="phoneNumber"></param>
+        /// <returns>False if the insert failed, true otherwise.</returns>
+        public static bool Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
+        {
+            string sql = $"INSERT INTO Users (UserName, Pass, Email, UserType, Country, PhoneNumber) " +
+                $"VALUES ({userName}, {pass}, {email}, {userType}, {country}, {phoneNumber});";
+            DBHelper db = new DBHelper(provider, source);
+            int fail = db.InsertWithAutoNumKey(sql);
+            if (fail == DBHelper.WRITEDATA_ERROR) return false;
+            return true;
+        }
     }
 }
