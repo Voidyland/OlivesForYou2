@@ -29,5 +29,6 @@ namespace BL
             User user = new User(dr);
             return user;
         }
+        public static User Register ()
     }
 }
