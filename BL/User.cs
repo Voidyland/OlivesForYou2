@@ -17,9 +17,11 @@ namespace BL
         private string userName;
         private string email;
         private string pass;
-        private bool isAdmin;
-        private bool isFarmer;
-        private bool certefiedUser;
+        private int userType;
+        private string country;
+        private int phoneNumber;
+        private string profileDescription;
+        private string profilePicture;
         public int UserID
         {
             get
@@ -64,37 +66,60 @@ namespace BL
                 pass = value;
             }
         }
-        public bool IsAdmin
+        public int UserType
         {
             get
             {
-                return isAdmin;
+                return userType;
             }
             set
             {
-                isAdmin = value;
+                userType = value;
             }
         }
-        public bool IsFarmer
+       
+        public string Country
         {
             get
             {
-                return isFarmer;
+                return country;
             }
             set
             {
-                isFarmer = value;
+                country = value;
             }
         }
-        public bool CertefiedUser
+        public int PhoneNumber
         {
             get
             {
-                return certefiedUser;
+                return phoneNumber;
             }
             set
             {
-                certefiedUser = value;
+                phoneNumber = value;
+            }
+        }
+        public string ProfileDescription
+        {
+            get
+            {
+                return profileDescription;
+            }
+            set
+            {
+                profileDescription = value;
+            }
+        }
+        public string ProfilePicture
+        {
+            get
+            {
+                return profilePicture;
+            }
+            set
+            {
+                profilePicture = value;
             }
         }
         /// <summary>
@@ -103,13 +128,26 @@ namespace BL
         /// <param name="dr">The users details in the form of a datarow</param>
         public User(DataRow dr)
         {
-            this.UserID = int.Parse(dr["UserID"].ToString());
-            this.UserName = dr["UserName"].ToString();
-            this.Email = dr["Email"].ToString();
-            this.Pass = dr["Pass"].ToString();
-            this.IsAdmin = (bool)dr["IsAdmin"];
-            this.IsFarmer = (bool)dr["IsFarmer"];
-            this.CertefiedUser = (bool)dr["CertefiedUser"];
+            this.userID = (int)dr["UserID"];
+            this.userName = dr["UserName"].ToString();
+            this.email = dr["Email"].ToString();
+            this.pass = dr["Pass"].ToString();
+            this.userType = (int)dr["UserType"];
+            this.country = dr["Country"].ToString();
+            this.phoneNumber = (int)dr["PhoneNumber"];
+            this.profileDescription = dr["ProfileDescription"].ToString();
+            this.profilePicture = dr["ProfilePicture"].ToString();
+        }
+
+        public User(int userID, string userName, string email, string pass, int userType, string country, int phoneNumber)
+        {
+            this.userID = userID;
+            this.userName = userName;
+            this.email = email;
+            this.pass = pass;
+            this.userType = userType;
+            this.country = country;
+            this.phoneNumber = phoneNumber;
         }
     }
 }

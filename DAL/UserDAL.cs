@@ -40,15 +40,15 @@ namespace DAL
         /// <param name="userType"></param>
         /// <param name="country"></param>
         /// <param name="phoneNumber"></param>
-        /// <returns>False if the insert failed, true otherwise.</returns>
-        public static bool Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
+        /// <returns>Returns the new ID if the user was created. If the method fails throws an exeption.</returns>
+        public static int Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
         {
             string sql = $"INSERT INTO Users (UserName, Pass, Email, UserType, Country, PhoneNumber) " +
                 $"VALUES ({userName}, {pass}, {email}, {userType}, {country}, {phoneNumber});";
             DBHelper db = new DBHelper(provider, source);
-            int fail = db.InsertWithAutoNumKey(sql);
-            if (fail == DBHelper.WRITEDATA_ERROR) return false;
-            return true;
+            int newID = db.InsertWithAutoNumKey(sql);
+            if (newID == DBHelper.WRITEDATA_ERROR) throw new Exception();
+            return newID;
         }
     }
 }

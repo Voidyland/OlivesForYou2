@@ -29,6 +29,10 @@ namespace BL
             User user = new User(dr);
             return user;
         }
-        public static User Register ()
+        public static User Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
+        {
+            int id = DAL.UserDAL.Register(userName, pass, email, userType, country, phoneNumber);
+            return new User(id, userName, pass, email, userType, country, phoneNumber);
+        }
     }
 }
