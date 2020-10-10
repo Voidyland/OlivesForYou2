@@ -33,6 +33,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox txtUserName;
 
         /// <summary>
+        /// requiredUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredUserName;
+
+        /// <summary>
         /// lblEmail control.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
 
         /// <summary>
+        /// requiredEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredEmail;
+
+        /// <summary>
         /// lblPass control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPass;
+
+        /// <summary>
+        /// requiredPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredPass;
 
         /// <summary>
         /// lblUserType control.
@@ -114,6 +141,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox txtCountry;
 
         /// <summary>
+        /// requiredCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredCountry;
+
+        /// <summary>
         /// lblPhoneNumber control.
         /// </summary>
         /// <remarks>
@@ -130,5 +166,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPhoneNumber;
+
+        /// <summary>
+        /// requiredPhoneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredPhoneNumber;
     }
 }
