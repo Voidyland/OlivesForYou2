@@ -44,6 +44,7 @@
     <Compile Include="Constantinopal.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="FarmerDal.cs" />
+    <Compile Include="GeneralDAL.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
