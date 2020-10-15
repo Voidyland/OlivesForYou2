@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
+    /// <summary>
+    /// A class for constant 
+    /// </summary>
     public class Constantinopal
     {
         public const int WRITEDATA_ERROR = -1;
+        public const string PROVIDER = @"Microsoft.ACE.OLEDB.12.0";
+        public const string SOURCE = "OlivesDB.accdb";
     }
 }

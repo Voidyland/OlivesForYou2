@@ -12,8 +12,9 @@ namespace DAL
         {
             string sql = $"INSERT INTO OrdersForSale (FarmerID, OliveID,  OrderWeight, OrderPrice, InStock)" +
                 $" VALUES {farmerID}, {oliveID}, {orderWeight}, {orderPrice}, {inStock};";
-            DBHelper db = new DBHelper(provider, source);
-
+            DBHelper db = new DBHelper(Constantinopal.PROVIDER, Constantinopal.SOURCE);
+            if (db.InsertWithAutoNumKey(sql) == Constantinopal.WRITEDATA_ERROR) return false;
+            return true;
         }  
     }
 }
