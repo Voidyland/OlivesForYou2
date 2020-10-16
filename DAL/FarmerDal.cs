@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
+using System.Data;
+
 namespace DAL
 {
     public class FarmerDal
@@ -16,6 +18,12 @@ namespace DAL
             if (db.InsertWithAutoNumKey(sql) == Constantinopal.WRITEDATA_ERROR) return false;
             return true;
         }  
+        public static DataTable AllOrdersForSale (int farmerID)
+        {
+            string sql = $"SELECT * FROM OrdersForSale WHERE FarmerID = {farmerID};";
+            DBHelper db = new DBHelper(Constantinopal.PROVIDER, Constantinopal.SOURCE);
+            return db.GetDataTable(sql);
+        }
         
     }
 }
