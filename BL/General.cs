@@ -34,5 +34,9 @@ namespace BL
             int id = DAL.UserDAL.Register(userName, pass, email, userType, country, phoneNumber);
             return new User(id, userName, pass, email, userType, country, phoneNumber);
         }
+        public static bool NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice, int inStock)
+        {
+
+        }
     }
 }
