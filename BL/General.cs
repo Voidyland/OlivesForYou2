@@ -36,7 +36,17 @@ namespace BL
         }
         public static bool NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice, int inStock)
         {
-
+            return DAL.FarmerDal.NewOrderForSale(farmerID, oliveID, orderWeight, orderPrice, inStock);
+        }
+        public static List<Olive> AllOlives ()
+        {
+            List<Olive> olives = new List<Olive>();
+            DataTable db = DAL.GeneralDAL.GetOliveTypes();
+            foreach (DataRow dr in db.Rows)
+            {
+                olives.Add(new Olive(dr));
+            }
+            return olives;
         }
     }
 }
