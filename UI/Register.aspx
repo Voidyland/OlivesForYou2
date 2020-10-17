@@ -11,7 +11,7 @@
     <br />
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="requiredEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="You must enter an email adress"></asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="regularEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="You must enter an email adress"></asp:RegularExpressionValidator>
+    <asp:RegularExpressionValidator ID="regularEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="You must enter a valid email adress"></asp:RegularExpressionValidator>
     <br />
     <asp:Label ID="lblPass" runat="server" Text="Password"></asp:Label>
     <br />
