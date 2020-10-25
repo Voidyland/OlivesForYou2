@@ -15,9 +15,14 @@
                 <asp:Table ID="Table1" runat="server">
                     <asp:TableRow>
                         <asp:TableCell>
-                            <asp:Button ID="login" runat="server" Text="Button" OnClick="" />
+                            <asp:Button ID="register" runat="server" Text="Register" OnClick="register_Click" />
                         </asp:TableCell>
-
+                        <asp:TableCell>
+                            <asp:Button ID="login" runat="server" Text="Login" OnClick="login_Click" />
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Button ID="logOut" runat="server" Text="Log Out" OnClick="logOut_Click" />
+                        </asp:TableCell>
                     </asp:TableRow>
                 </asp:Table>
             </asp:ContentPlaceHolder>

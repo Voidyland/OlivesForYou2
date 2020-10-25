@@ -11,8 +11,34 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session[""] == null)
+            {
+                register.Visible = true;
+                login.Visible = true;
+                logOut.Visible = false;
+            }
+            else
+            {
+                register.Visible = false;
+                login.Visible = false;
+                logOut.Visible = true;
+            }
         }
-       
+
+        protected void login_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void logOut_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
+
+        protected void register_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
     }
 }
