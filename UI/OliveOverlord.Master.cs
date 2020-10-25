@@ -11,7 +11,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session[""] == null)
+            if (Session["User"] == null)
             {
                 register.Visible = true;
                 login.Visible = true;
