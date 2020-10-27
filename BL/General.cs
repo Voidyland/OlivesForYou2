@@ -40,7 +40,7 @@ namespace BL
             User user = new User(dr);
             return user;
         }
-        public static User Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
+        public static User Register (string userName, string pass, string email, int userType, string country, string phoneNumber)
         {
             int countryNumber = ConvertCountryToInt(country);
             if (countryNumber == -1) throw new Exception("Invalid country name");

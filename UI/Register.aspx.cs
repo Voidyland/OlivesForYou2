@@ -22,7 +22,7 @@ namespace UI
             int userType = 2; //2=farmer
             if (radioCompany.Checked) userType = 3; //3=company
             string country = txtCountry.Text;
-            int phoneNumber = int.Parse(txtPhoneNumber.Text);
+            string phoneNumber = txtPhoneNumber.Text;
             
             try
             {

@@ -177,13 +177,13 @@ namespace UI
         protected global::System.Web.UI.WebControls.TextBox txtPhoneNumber;
 
         /// <summary>
-        /// requiredPhoneNumber control.
+        /// RegularNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredPhoneNumber;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularNumber;
 
         /// <summary>
         /// Submit control.

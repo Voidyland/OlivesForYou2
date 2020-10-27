@@ -19,7 +19,7 @@ namespace BL
         private string pass;
         private int userType;
         private string country;
-        private int phoneNumber;
+        private string phoneNumber;
         private string profileDescription;
         private string profilePicture;
         public int UserID
@@ -89,7 +89,7 @@ namespace BL
                 country = value;
             }
         }
-        public int PhoneNumber
+        public string PhoneNumber
         {
             get
             {
@@ -134,12 +134,12 @@ namespace BL
             this.pass = dr["Pass"].ToString();
             this.userType = (int)dr["UserType"];
             this.country = General.CountryToString((int)dr["CountryNumber"]);
-            this.phoneNumber = (int)dr["PhoneNumber"];
+            this.phoneNumber = dr["PhoneNumber"].ToString();
             this.profileDescription = dr["ProfileDescription"].ToString();
             this.profilePicture = dr["ProfilePicture"].ToString();
         }
 
-        public User(int userID, string userName, string email, string pass, int userType, string country, int phoneNumber)
+        public User(int userID, string userName, string email, string pass, int userType, string country, string phoneNumber)
         {
             this.userID = userID;
             this.userName = userName;

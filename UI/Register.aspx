@@ -11,7 +11,7 @@
     <br />
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="requiredEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="You must enter an email adress"></asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="regularEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ErrorMessage="You must enter a valid email adress"></asp:RegularExpressionValidator>
+    <asp:RegularExpressionValidator ID="regularEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="^[^@\s]+@+[^@\s]+\.+[^@\s]+$" ErrorMessage="You must enter a valid email adress"></asp:RegularExpressionValidator>
     <br />
     <asp:Label ID="lblPass" runat="server" Text="Password"></asp:Label>
     <br />
@@ -32,7 +32,7 @@
     <asp:Label ID="lblPhoneNumber" runat="server" Text="PhoneNumber"></asp:Label>
     <br />
     <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="You must enter your phone number"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="RegularNumber" runat="server" ControlToValidate="txtPhoneNumber" ValidationExpression="^[0-9]{1,15}$" ErrorMessage="You must only use numbers, and the phone number must be at best 15 characters long."></asp:RegularExpressionValidator>
     <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />
     <asp:Label ID="Error" runat="server" Visible="false" Text="An error has acoured.Please make sure all details are correct and that this is the first time you have signed up with this paricular email adress."></asp:Label>
 </asp:Content>
