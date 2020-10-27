@@ -70,6 +70,10 @@ namespace BL
             }
             return -1;
         }
-        
+        public static string CountryToString (int countryNumber)
+        {
+            DataTable dt = DAL.GeneralDAL.GetCountrys();
+            return dt.Rows[countryNumber - 1].ToString();
+        }
     }
 }

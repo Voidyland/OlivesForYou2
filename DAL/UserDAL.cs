@@ -22,9 +22,9 @@ namespace DAL
         /// <returns>Either the users details in the form of a datarow, or null if he does not exist/an error has accoured.</returns>
         public static DataRow Login(string email, string pass)
         {
-            string sql = $"SELECT * FROM Users WHERE Email = '{email}', Pass = '{pass}';";
+            string sql = $"SELECT * FROM Users WHERE Email = '{email}' AND Pass = '{pass}';";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
-            DataTable dt = new DataTable(sql);
+            DataTable dt = db.GetDataTable(sql);
             if (dt == null || dt.Rows.Count != 1)
             {
                 return null;

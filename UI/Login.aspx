@@ -6,8 +6,8 @@
     <br />
     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="You must enter an Email adress"></asp:RequiredFieldValidator>
-    <asp:RegularExpressionValidator ID="RegularExpressionEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*
-      @[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$" ErrorMessage="You must enter text in the form of an Email adress"></asp:RegularExpressionValidator>
+    <asp:RegularExpressionValidator ID="RegularExpressionEmail" runat="server" ControlToValidate="txtEmail"
+        ValidationExpression="^[^@\s]+@+[^@\s]+\.+[^@\s]+$" ErrorMessage="You must enter text in the form of an Email adress"></asp:RegularExpressionValidator>
     <br />
     <asp:Label ID="lblPass" runat="server" Text="Please enter your Password"></asp:Label>
     <br />

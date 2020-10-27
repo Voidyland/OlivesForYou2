@@ -133,7 +133,7 @@ namespace BL
             this.email = dr["Email"].ToString();
             this.pass = dr["Pass"].ToString();
             this.userType = (int)dr["UserType"];
-            this.country = dr["Country"].ToString();
+            this.country = General.CountryToString((int)dr["CountryNumber"]);
             this.phoneNumber = (int)dr["PhoneNumber"];
             this.profileDescription = dr["ProfileDescription"].ToString();
             this.profilePicture = dr["ProfilePicture"].ToString();
@@ -154,5 +154,6 @@ namespace BL
         //    List<Order> orders = new List<Order>();
             
         //}
+        
     }
 }
