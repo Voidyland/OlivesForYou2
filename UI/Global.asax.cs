@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using System.Configuration;
+using System.IO;
 namespace UI
 {
     public class Global : System.Web.HttpApplication
@@ -12,7 +13,7 @@ namespace UI
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            Directory.SetCurrentDirectory(Server.MapPath("~"));
         }
 
         protected void Session_Start(object sender, EventArgs e)

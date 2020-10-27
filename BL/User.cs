@@ -149,5 +149,10 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
+        public List<Order> AllOrders ()
+        {
+            List<Order> orders = new List<Order>();
+            
+        }
     }
 }
