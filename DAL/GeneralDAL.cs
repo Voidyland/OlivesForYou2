@@ -16,5 +16,11 @@ namespace DAL
             DBHelper db = new DBHelper(DALHelper.PROVIDER,DALHelper.SOURCE);
             return db.GetDataTable(sql);
         }
+        public static DataTable GetCountrys ()
+        {
+            string sql =  "SELECT * FROM Countrys;";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            return db.GetDataTable(sql);
+        }
     }
 }

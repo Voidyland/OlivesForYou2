@@ -27,11 +27,13 @@ namespace UI
             try
             {
                 Session["User"] = BL.General.Register(userName, pass, email, userType, country, phoneNumber);
+                Result.Text = "Success!";
             }
             catch
             {
-                Error.Visible = true;
+                Result.Text = "An error has acoured.Please make sure all details are correct and that this is the first time you have signed up with this paricular email adress.";           
             }
+            Result.Visible = true;
         }
     }
 }

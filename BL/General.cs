@@ -13,6 +13,11 @@ namespace BL
     /// </summary>
     public class General
     {
+        /// <summary>
+        /// Sets the source and provider of the data base
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="provider"></param>
         public static void SetSourceAndProvider(string source, string provider)
         {
             DALHelper.SetSource(source);
@@ -37,7 +42,9 @@ namespace BL
         }
         public static User Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
         {
-            int id = DAL.UserDAL.Register(userName, pass, email, userType, country, phoneNumber);
+            int countryNumber = ConvertCountryToInt(country);
+            if (countryNumber == -1) throw new Exception("Invalid country name");
+            int id = DAL.UserDAL.Register(userName, pass, email, userType, countryNumber, phoneNumber);
             return new User(id, userName, pass, email, userType, country, phoneNumber);
         }
         public static bool NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice, int inStock)
@@ -53,6 +60,15 @@ namespace BL
                 olives.Add(new Olive(dr));
             }
             return olives;
+        }
+        public static int ConvertCountryToInt (string country)
+        {
+            DataTable dt = DAL.GeneralDAL.GetCountrys();
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (dr["countryName"].ToString() == country) return (int)dr["countryNumber"];
+            }
+            return -1;
         }
         
     }

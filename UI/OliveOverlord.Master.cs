@@ -11,6 +11,10 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+        }
+        protected void Page_OnPreRender (object sender, EventArgs e)
+        {
             if (Session["User"] == null)
             {
                 register.Visible = true;
@@ -24,7 +28,6 @@ namespace UI
                 logOut.Visible = true;
             }
         }
-
         protected void login_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");

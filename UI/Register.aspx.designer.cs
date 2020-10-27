@@ -195,12 +195,12 @@ namespace UI
         protected global::System.Web.UI.WebControls.Button Submit;
 
         /// <summary>
-        /// Error control.
+        /// Result control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Error;
+        protected global::System.Web.UI.WebControls.Label Result;
     }
 }

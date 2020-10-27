@@ -41,14 +41,15 @@ namespace DAL
         /// <param name="country"></param>
         /// <param name="phoneNumber"></param>
         /// <returns>Returns the new ID if the user was created. If the method fails throws an exeption.</returns>
-        public static int Register (string userName, string pass, string email, int userType, string country, int phoneNumber)
+        public static int Register (string userName, string pass, string email, int userType, int countryNumber, int phoneNumber)
         {
-            string sql = $"INSERT INTO Users (UserName, Pass, Email, UserType, Country, PhoneNumber) " +
-                $"VALUES ({userName}, {pass}, {email}, {userType}, {country}, {phoneNumber});";
+            string sql = $"INSERT INTO Users (UserName, Pass, Email, UserType, CountryNumber, PhoneNumber) " +
+                $"VALUES ('{userName}', '{pass}', '{email}', {userType}, '{countryNumber}', '{phoneNumber}');";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             int newID = db.InsertWithAutoNumKey(sql);
             if (newID == DBHelper.WRITEDATA_ERROR) throw new Exception();
             return newID;
         }
+        
     }
 }
