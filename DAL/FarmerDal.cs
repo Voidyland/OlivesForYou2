@@ -14,14 +14,14 @@ namespace DAL
         {
             string sql = $"INSERT INTO OrdersForSale (FarmerID, OliveID,  OrderWeight, OrderPrice, InStock)" +
                 $" VALUES {farmerID}, {oliveID}, {orderWeight}, {orderPrice}, {inStock};";
-            DBHelper db = new DBHelper(Constantinopal.PROVIDER, Constantinopal.SOURCE);
-            if (db.InsertWithAutoNumKey(sql) == Constantinopal.WRITEDATA_ERROR) return false;
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            if (db.InsertWithAutoNumKey(sql) == DALHelper.WRITEDATA_ERROR) return false;
             return true;
         }  
         public static DataTable AllOrdersForSale (int farmerID)
         {
             string sql = $"SELECT * FROM OrdersForSale WHERE FarmerID = {farmerID};";
-            DBHelper db = new DBHelper(Constantinopal.PROVIDER, Constantinopal.SOURCE);
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             return db.GetDataTable(sql);
         }
         

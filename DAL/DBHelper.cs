@@ -78,7 +78,7 @@ namespace DAL
                 if (!connOpen)
                 {
                     if (!this.OpenConnection())
-                        return Constantinopal.WRITEDATA_ERROR;
+                        return DALHelper.WRITEDATA_ERROR;
                 }
                 OleDbCommand cmd = new OleDbCommand(sql, conn);
                 OleDbDataReader rd = cmd.ExecuteReader();
@@ -86,7 +86,7 @@ namespace DAL
             }
             catch (OleDbException e)
             {
-                return Constantinopal.WRITEDATA_ERROR;
+                return DALHelper.WRITEDATA_ERROR;
             }
         }
         //This function should be used for inserting a single record into a table in the database with an autonmuber key. the format of the sql must be 
@@ -96,7 +96,7 @@ namespace DAL
         {
             try
             {
-                int newID = Constantinopal.WRITEDATA_ERROR;
+                int newID = DALHelper.WRITEDATA_ERROR;
                 if (!connOpen)
                 {
                     if (!this.OpenConnection())
@@ -114,11 +114,11 @@ namespace DAL
                     }
                     return newID;
                 }
-                return Constantinopal.WRITEDATA_ERROR;
+                return DALHelper.WRITEDATA_ERROR;
             }
             catch (OleDbException e)
             {
-                return Constantinopal.WRITEDATA_ERROR;
+                return DALHelper.WRITEDATA_ERROR;
             }
         }
 

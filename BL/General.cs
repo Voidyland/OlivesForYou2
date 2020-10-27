@@ -15,14 +15,10 @@ namespace BL
     {
         public static void SetSourceAndProvider(string source, string provider)
         {
-            DalHelper.SetProvider(provider);
-            DalHelper.SetSource(source);
+            DALHelper.SetSource(source);
+            DALHelper.SetProvider(provider);
         }
-        public static void CreateDBHelperInDalHelper(string source, string provider)
-        {
-            SetSourceAndProvider(source, provider);
-            DalHelper.CreateDBHelper();
-        }
+        
         /// <summary>
         /// The method recives the email and password of a user trying to log in, and if he exists it creates an object of a user with all of his details. Otherwise it returns null.
         /// </summary>

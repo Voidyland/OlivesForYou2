@@ -13,7 +13,7 @@ namespace DAL
         public static DataTable  GetOliveTypes ()
         {
             string sql = "SELECT * FROM Olives;";
-            DBHelper db = new DBHelper(Constantinopal.PROVIDER,Constantinopal.SOURCE);
+            DBHelper db = new DBHelper(DALHelper.PROVIDER,DALHelper.SOURCE);
             return db.GetDataTable(sql);
         }
     }
