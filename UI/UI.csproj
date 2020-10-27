@@ -73,6 +73,7 @@
     <Content Include="Register.aspx" />
     <Content Include="WatchAndAddOrders.aspx" />
     <Content Include="Web.config" />
+    <Content Include="MainPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -106,6 +107,13 @@
     </Compile>
     <Compile Include="WatchAndAddOrders.aspx.designer.cs">
       <DependentUpon>WatchAndAddOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.aspx.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainPage.aspx.designer.cs">
+      <DependentUpon>MainPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -34,5 +34,5 @@
     <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="requiredPhoneNumber" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="You must enter your phone number"></asp:RequiredFieldValidator>
     <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />
-    <asp:Label ID="Result" runat="server" Visible="false" Text="txt"></asp:Label>
+    <asp:Label ID="Error" runat="server" Visible="false" Text="An error has acoured.Please make sure all details are correct and that this is the first time you have signed up with this paricular email adress."></asp:Label>
 </asp:Content>

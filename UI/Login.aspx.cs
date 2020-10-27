@@ -21,7 +21,7 @@ namespace UI
             Session["User"] = BL.General.Login(email, pass);
             if (Session["User"] != null)
             {
-                Response.Redirect("");
+                Response.Redirect("MainPage.aspx");
             }
             lblError.Visible = true;
         }
