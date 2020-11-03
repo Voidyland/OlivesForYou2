@@ -11,37 +11,35 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (Session["User"] == null)
+            {
+                AddButton("Main Page", "MainPage.aspx");
+                AddButton("Login", "Login.aspx");
+                AddButton("Register","Register.aspx");   
+            }
         }
         protected void Page_OnPreRender (object sender, EventArgs e)
         {
-            if (Session["User"] == null)
-            {
-                register.Visible = true;
-                login.Visible = true;
-                logOut.Visible = false;
-            }
-            else
-            {
-                register.Visible = false;
-                login.Visible = false;
-                logOut.Visible = true;
-            }
+            
         }
-        protected void login_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Login.aspx");
-        }
-
         protected void logOut_Click(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("Login.aspx");
         }
-
-        protected void register_Click(object sender, EventArgs e)
+        protected void RedirectAnywhere(object sender, EventArgs e)
         {
-            Response.Redirect("Register.aspx");
+            Button s = (Button)sender;
+            Response.Redirect(s.CommandArgument);
+        }
+        protected void AddButton(string ButtonText, string ButtonCommandArgument)
+        {
+            Button b = new Button();
+            b.Text = ButtonText;
+            b.CommandArgument = ButtonCommandArgument;
+            b.Click += RedirectAnywhere;
+            b.CausesValidation = false;
+            pnlTopBar.Controls.Add(b);
         }
     }
 }

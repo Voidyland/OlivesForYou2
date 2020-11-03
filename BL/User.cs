@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
+using DAL;
 
 namespace BL
 {
@@ -149,11 +150,11 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
-        //public List<Order> AllOrders ()
+        //public List<Order> AllOrdersForSale()
         //{
         //    List<Order> orders = new List<Order>();
-            
+        //    DataTable dt = FarmerDal.AllOrdersForSale(this.userID);
         //}
-        
+
     }
 }

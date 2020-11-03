@@ -12,19 +12,9 @@
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">               
-                <asp:Table ID="Table1" runat="server">
-                    <asp:TableRow>
-                        <asp:TableCell>
-                            <asp:Button ID="register" runat="server" Text="Register" OnClick="register_Click" />
-                        </asp:TableCell>
-                        <asp:TableCell>
-                            <asp:Button ID="login" runat="server" Text="Login" OnClick="login_Click" />
-                        </asp:TableCell>
-                        <asp:TableCell>
-                            <asp:Button ID="logOut" runat="server" Text="Log Out" OnClick="logOut_Click" />
-                        </asp:TableCell>
-                    </asp:TableRow>
-                </asp:Table>
+                <asp:Panel ID="pnlTopBar" runat="server" Visible="false" EnableViewState="false">
+                    <asp:Button ID="btnLogout" runat="server" Text="Logout" />
+                </asp:Panel>
             </asp:ContentPlaceHolder>
         </div>
     </form>
