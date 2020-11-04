@@ -11,10 +11,12 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">               
-                <asp:Panel ID="pnlTopBar" runat="server" Visible="false" EnableViewState="false">
-                    <asp:Button ID="btnLogout" runat="server" Text="Logout" />
+            <asp:Panel ID="pnlTopBar" runat="server" >
+                    <asp:Button ID="btnMainPage" runat="server" Text="Main Page" CommandArgument="MainPage.aspx" OnClick="RedirectAnywhere" CausesValidation="false" />
+                    <asp:Button ID="btnLogout" runat="server" Text="Logout" Visible="false" OnClick="logOut_Click" CausesValidation="false" />
                 </asp:Panel>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">               
+                
             </asp:ContentPlaceHolder>
         </div>
     </form>

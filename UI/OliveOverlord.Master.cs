@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,14 +14,31 @@ namespace UI
         {
             if (Session["User"] == null)
             {
-                AddButton("Main Page", "MainPage.aspx");
+                //AddButton("Main Page", "MainPage.aspx");
                 AddButton("Login", "Login.aspx");
-                AddButton("Register","Register.aspx");   
+                AddButton("Register", "Register.aspx");
+                btnLogout.Visible = false;
+            }
+            else
+            {
+                btnLogout.Visible = true;
+                switch (((User)Session["User"]).UserType)
+                {
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+                }
             }
         }
         protected void Page_OnPreRender (object sender, EventArgs e)
         {
-            
+           
         }
         protected void logOut_Click(object sender, EventArgs e)
         {

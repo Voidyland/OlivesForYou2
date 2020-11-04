@@ -18,7 +18,7 @@ namespace BL
         private string userName;
         private string email;
         private string pass;
-        private int userType;
+        private int userType; //Manager = 1, Farmer = 2, Company = 3.
         private string country;
         private string phoneNumber;
         private string profileDescription;
