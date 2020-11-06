@@ -150,11 +150,15 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
-        //public List<Order> AllOrdersForSale()
-        //{
-        //    List<Order> orders = new List<Order>();
-        //    DataTable dt = FarmerDal.AllOrdersForSale(this.userID);
-        //}
+        public List<Order> AllOrdersForSale()
+        {
+            List<Order> orders = new List<Order>();
+            DataTable dt = FarmerDal.AllOrdersForSale(this.userID);
+            foreach (DataRow dr in dt.Rows)
+            {
 
+            }
+            return orders;
+        }
     }
 }
