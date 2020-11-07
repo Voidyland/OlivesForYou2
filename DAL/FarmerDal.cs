@@ -10,13 +10,13 @@ namespace DAL
 {
     public class FarmerDal
     {
-        public static bool NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice , int inStock)
+        public static int NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice , int inStock)
         {
             string sql = $"INSERT INTO OrdersForSale (FarmerID, OliveID,  OrderWeight, OrderPrice, InStock)" +
                 $" VALUES {farmerID}, {oliveID}, {orderWeight}, {orderPrice}, {inStock};";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
-            if (db.InsertWithAutoNumKey(sql) == DALHelper.WRITEDATA_ERROR) return false;
-            return true;
+            int id = db.InsertWithAutoNumKey(sql);            
+            return id;
         }  
         public static DataTable AllOrdersForSale (int farmerID)
         {

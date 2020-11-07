@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace UI
 {
-    public partial class WatchAndAddOrders : System.Web.UI.Page
+    public partial class FarmerOrders : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

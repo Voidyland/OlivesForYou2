@@ -71,7 +71,7 @@
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="WatchAndAddOrders.aspx" />
+    <Content Include="FarmerOrders.aspx" />
     <Content Include="Web.config" />
     <Content Include="MainPage.aspx" />
   </ItemGroup>
@@ -101,12 +101,12 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WatchAndAddOrders.aspx.cs">
-      <DependentUpon>WatchAndAddOrders.aspx</DependentUpon>
+    <Compile Include="FarmerOrders.aspx.cs">
+      <DependentUpon>FarmerOrders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WatchAndAddOrders.aspx.designer.cs">
-      <DependentUpon>WatchAndAddOrders.aspx</DependentUpon>
+    <Compile Include="FarmerOrders.aspx.designer.cs">
+      <DependentUpon>FarmerOrders.aspx</DependentUpon>
     </Compile>
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
