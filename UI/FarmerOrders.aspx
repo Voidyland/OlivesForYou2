@@ -33,6 +33,7 @@
     <asp:RangeValidator ID="rangeStock" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
     <br />
     <asp:Button ID="btnNewOrder" runat="server" Text="Submit the new order" OnClick="btnNewOrder_Click"/>
+    <br />
     <asp:Label ID="lblError" runat="server" Text="text" ></asp:Label>
 </asp:Content>
  
