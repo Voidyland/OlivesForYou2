@@ -28,7 +28,7 @@ namespace UI
 
                         break;
                     case 2:
-
+                        AddButton("View and create orders", "FarmerOrders.aspx");
                         break;
                     case 3:
 

@@ -160,7 +160,7 @@ namespace BL
             }
             return orders;
         }
-        public Order NewOrderForSale (int oliveID, string oliveName, int orderWeight, double orderPrice, int inStock)
+        public Order NewOrderForSale (int oliveID, string oliveName, double orderWeight, double orderPrice, int inStock)
         {
             int orderID = DAL.FarmerDal.NewOrderForSale(this.userID ,oliveID, orderWeight, orderPrice, inStock);
             if (orderID == DAL.DALHelper.WRITEDATA_ERROR) return null;

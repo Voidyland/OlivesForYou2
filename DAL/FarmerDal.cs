@@ -10,7 +10,7 @@ namespace DAL
 {
     public class FarmerDal
     {
-        public static int NewOrderForSale (int farmerID, int oliveID, int orderWeight, double orderPrice , int inStock)
+        public static int NewOrderForSale (int farmerID, int oliveID, double orderWeight, double orderPrice , int inStock)
         {
             string sql = $"INSERT INTO OrdersForSale (FarmerID, OliveID,  OrderWeight, OrderPrice, InStock)" +
                 $" VALUES {farmerID}, {oliveID}, {orderWeight}, {orderPrice}, {inStock};";

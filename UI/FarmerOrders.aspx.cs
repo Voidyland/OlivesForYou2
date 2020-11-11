@@ -18,13 +18,15 @@ namespace UI
             if (((User)Session["User"]).UserType != 2)
             {
                 Response.Redirect("MainPage.aspx");
-            }            
+            }
+            List<Order> allFarmerOrders = ((User)Session["User"]).AllOrdersForSale();
+            ordersForSale.DataSource = allFarmerOrders;
+            ordersForSale.AutoGenerateColumns = false;
+            ordersForSale.DataBind();
         }
         protected void Page_OnPreRender(object sender, EventArgs e)
         {
-            List<Order> allFarmerOrders = ((User)Session["User"]).AllOrdersForSale();
-            ordersForSale.DataSource = allFarmerOrders;
-            ordersForSale.DataBind();
+            
         }
 
     }

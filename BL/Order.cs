@@ -87,7 +87,7 @@ namespace BL
                 oliveName = value;
             }
         }
-        public double OrderWieght
+        public double OrderWeight
         {
             get
             {
@@ -113,7 +113,7 @@ namespace BL
         {
             get
             {
-                return InStock;
+                return inStock;
             }
             set
             {
