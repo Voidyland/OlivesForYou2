@@ -150,7 +150,7 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
-        public List<Order> AllOrdersForSale(int oliveID, int OliveName, int orderWeight, double orderPrice, int inStoc)
+        public List<Order> AllOrdersForSale()
         {
             List<Order> orders = new List<Order>();
             DataTable dt = FarmerDal.AllOrdersForSale(this.userID);

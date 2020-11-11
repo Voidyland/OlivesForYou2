@@ -36,10 +36,7 @@ namespace UI
                 }
             }
         }
-        protected void Page_OnPreRender (object sender, EventArgs e)
-        {
-           
-        }
+        
         protected void logOut_Click(object sender, EventArgs e)
         {
             Session.Abandon();
