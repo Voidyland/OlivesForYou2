@@ -42,15 +42,6 @@ namespace UI
         protected global::System.Web.UI.WebControls.DropDownList ddlOliveTypes;
 
         /// <summary>
-        /// requiredOliveType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredOliveType;
-
-        /// <summary>
         /// lblWeight control.
         /// </summary>
         /// <remarks>
@@ -166,5 +157,14 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNewOrder;
+
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

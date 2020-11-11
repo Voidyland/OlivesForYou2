@@ -12,8 +12,7 @@
     </asp:GridView>
     <asp:Label ID="lblOliveName" runat="server" Text="choose the olives type"></asp:Label>
     <br />
-    <asp:DropDownList ID="ddlOliveTypes" runat="server"></asp:DropDownList>
-    <asp:RequiredFieldValidator ID="requiredOliveType" runat="server" ControlToValidate="ddlOliveType" ErrorMessage="You must choose an olive type"></asp:RequiredFieldValidator>
+    <asp:DropDownList ID="ddlOliveTypes" runat="server"></asp:DropDownList>   
     <br />
     <asp:Label ID="lblWeight" runat="server" Text="Enter the weight of the order (the weight of one item from the stock, not the combined total)"></asp:Label>
     <br />
@@ -33,7 +32,8 @@
     <asp:RequiredFieldValidator ID="requiredStock" runat="server" ControlToValidate="txtStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
     <asp:RangeValidator ID="rangeStock" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
     <br />
-    <asp:Button ID="btnNewOrder" runat="server" Text="Submit the new order" />
+    <asp:Button ID="btnNewOrder" runat="server" Text="Submit the new order" OnClick="btnNewOrder_Click"/>
+    <asp:Label ID="lblError" runat="server" Text="text" ></asp:Label>
 </asp:Content>
  
 
