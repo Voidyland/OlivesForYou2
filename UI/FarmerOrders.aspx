@@ -10,6 +10,9 @@
             <asp:BoundField DataField="InStock" HeaderText="stock" />
         </Columns>
     </asp:GridView>
+    <br />
+    <br />
+    <br />
     <asp:Label ID="lblOliveName" runat="server" Text="choose the olives type"></asp:Label>
     <br />
     <asp:DropDownList ID="ddlOliveTypes" runat="server"></asp:DropDownList>   
@@ -39,4 +42,6 @@
  
 
 <%--Make sure gridview has diffrent pages.
-    Also maybe add option to delete orders and increse InStock--%>
+    Also maybe add option to delete orders and increse InStock
+    Maybe also dont allow to make diffrent orders of the same olive type?
+    Also allow to change most details of the order.--%>
