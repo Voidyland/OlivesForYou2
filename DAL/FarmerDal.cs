@@ -24,6 +24,11 @@ namespace DAL
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             return db.GetDataTable(sql);
         }
-        
+        public static int RemoveOrder (int orderID)
+        {
+            string sql = $"DELETE * FROM OrdersForSale WHERE OrderID = {orderID}";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            return db.WriteData(sql);
+        }
     }
 }
