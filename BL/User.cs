@@ -150,21 +150,21 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
-        public List<Order> AllOrdersForSale()
+        public List<Sale> AllSales()
         {
-            List<Order> orders = new List<Order>();
-            DataTable dt = FarmerDal.AllOrdersForSale(this.userID);
+            List<Sale> sales = new List<Sale>();
+            DataTable dt = FarmerDal.AllSales(this.userID);
             foreach (DataRow dr in dt.Rows)
             {
-                orders.Add(new Order(dr));
+                sales.Add(new Sale(dr));
             }
-            return orders;
+            return sales;
         }
-        public Order NewOrderForSale (int oliveID, string oliveName, double orderWeight, double orderPrice, int inStock)
+        public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock)
         {
-            int orderID = DAL.FarmerDal.NewOrderForSale(this.userID ,oliveID, orderWeight, orderPrice, inStock);
+            int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock);
             if (orderID == DAL.DALHelper.WRITEDATA_ERROR) return null;
-            return new Order(this.UserID, orderID, oliveID, oliveName, orderWeight, orderPrice, inStock);
+            return new Sale(this.UserID, orderID, saleID, oliveName, saleWeight, salePrice, inStock);
         }
     }
 }

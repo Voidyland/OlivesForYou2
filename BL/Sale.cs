@@ -7,34 +7,34 @@ using System.Threading.Tasks;
 using DAL;
 namespace BL
 {
-    public class Order
+    public class Sale
     {
         private int saleID;
         private int farmerID;
         private int oliveID;
         private string oliveName;
-        private double orderWeight;
-        private double orderPrice;
+        private double saleWeight;
+        private double salePrice;
         private int inStock;
 
-        public Order(int saleID, int farmerID, int oliveID, string oliveName, double orderWeight, double orderPrice, int inStock)
+        public Sale(int saleID, int farmerID, int oliveID, string oliveName, double saleWeight, double salePrice, int inStock)
         {
             this.saleID = saleID;
             this.farmerID = farmerID;
             this.oliveID = oliveID;
             this.oliveName = oliveName;
-            this.orderWeight = orderWeight;
-            this.orderPrice = orderPrice;
+            this.saleWeight = saleWeight;
+            this.salePrice = salePrice;
             this.inStock = inStock;
         }
-        public Order (DataRow dr)
+        public Sale (DataRow dr)
         {
             this.saleID = (int)dr["SaleID"];
             this.farmerID = (int)dr["FarmerID"];
             this.oliveID = (int)dr["OliveID"];
             this.oliveName = "";
-            this.orderWeight = (double)dr["OrderWeight"];
-            this.orderPrice = (double)dr["OrderPrice"];
+            this.saleWeight = (double)dr["SaleWeight"];
+            this.salePrice = (double)dr["SalePrice"];
             this.inStock = (int)dr["InStock"];
         }
         public int SaleID
@@ -87,26 +87,26 @@ namespace BL
                 oliveName = value;
             }
         }
-        public double OrderWeight
+        public double SaleWeight
         {
             get
             {
-                return orderWeight;
+                return saleWeight;
             }
             set
             {
-                orderWeight = value;
+                saleWeight = value;
             }
         }
-        public double OrderPrice
+        public double SalePrice
         {
             get
             {
-                return orderPrice;
+                return salePrice;
             }
             set
             {
-                orderPrice = value;
+                salePrice = value;
             }
         }
         public int InStock
@@ -119,6 +119,11 @@ namespace BL
             {
                 inStock = value;
             }
+        }
+        public int RemoveThis ()
+        {
+            DAL.FarmerDal.RemoveSale(this.saleID);
+            return saleID;
         }
     }
 }

@@ -19,10 +19,10 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-            List<Order> allFarmerOrders = ((User)Session["User"]).AllOrdersForSale();
-            ordersForSale.DataSource = allFarmerOrders;
-            ordersForSale.AutoGenerateColumns = false;
-            ordersForSale.DataBind();
+            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+            Sales.DataSource = allFarmerSales;
+            Sales.AutoGenerateColumns = false;
+            Sales.DataBind();
             List<Olive> allOliveTypes = BL.General.AllOlives();
             List<ListItem> allListItems = new List<ListItem>();
             foreach (Olive olive in allOliveTypes)
@@ -35,12 +35,17 @@ namespace UI
             ddlOliveTypes.DataBind();
         }
         
-        protected void btnNewOrder_Click(object sender, EventArgs e)
+        protected void btnNewSale_Click(object sender, EventArgs e)
         {
-            Order newOrder =  ((User)Session["User"]).NewOrderForSale(int.Parse(ddlOliveTypes.SelectedValue), ddlOliveTypes.Text, 
+            Sale newSale =  ((User)Session["User"]).NewSale(int.Parse(ddlOliveTypes.SelectedValue), ddlOliveTypes.Text, 
                 double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text));
-            if (newOrder == null) lblError.Text = "Something went wrong...";            
+            if (newSale == null) lblError.Text = "Something went wrong...";            
             else lblError.Text = "Great! Everything worked!";
+        }
+
+        protected void ordersForSale_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }

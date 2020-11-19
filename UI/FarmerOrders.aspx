@@ -2,12 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="ordersForSale" runat="server">
+    <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand">
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
-            <asp:BoundField DataField="OrderWeight" HeaderText="weight" />
-            <asp:BoundField DataField="OrderPrice" HeaderText="price" />
-            <asp:BoundField DataField="InStock" HeaderText="stock" />
+            <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
+            <asp:BoundField DataField="SalePrice" HeaderText="price" />
+            <asp:BoundField DataField="InStock" HeaderText="stock" />    
+            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="increase"/>
+            <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="delete" />
         </Columns>
     </asp:GridView>
     <br />
@@ -35,9 +37,9 @@
     <asp:RequiredFieldValidator ID="requiredStock" runat="server" ControlToValidate="txtStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
     <asp:RangeValidator ID="rangeStock" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
     <br />
-    <asp:Button ID="btnNewOrder" runat="server" Text="Submit the new order" OnClick="btnNewOrder_Click"/>
+    <asp:Button ID="btnNewSale" runat="server" Text="Submit the new sale" OnClick="btnNewSale_Click"/>
     <br />
-    <asp:Label ID="lblError" runat="server" Text="text" ></asp:Label>
+    <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
 </asp:Content>
  
 

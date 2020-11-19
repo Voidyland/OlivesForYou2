@@ -15,13 +15,13 @@ namespace UI
     {
 
         /// <summary>
-        /// ordersForSale control.
+        /// Sales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ordersForSale;
+        protected global::System.Web.UI.WebControls.GridView Sales;
 
         /// <summary>
         /// lblOliveName control.
@@ -150,13 +150,13 @@ namespace UI
         protected global::System.Web.UI.WebControls.RangeValidator rangeStock;
 
         /// <summary>
-        /// btnNewOrder control.
+        /// btnNewSale control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewOrder;
+        protected global::System.Web.UI.WebControls.Button btnNewSale;
 
         /// <summary>
         /// lblError control.
