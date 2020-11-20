@@ -45,7 +45,25 @@ namespace UI
 
         protected void ordersForSale_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            try
+            {
+                Sale chosenSale = (Sale)Sales.SelectedRow.DataItem;
+                if (e.CommandName == "increase")
+                {
+                    // Maybe change increase to just edit sale? 
+                }
+                else
+                {
+                    chosenSale.DeleteThis();
+                    increaseOrDelete.Text = $"The following order has been deleted: Olive name = " +
+                        $"{chosenSale.OliveName}, sale weight = {chosenSale.SaleWeight}, sale price = " +
+                        $"{chosenSale.SalePrice}, stock at the time of deletion: {chosenSale.InStock}";
+                }
+            }
+            catch
+            {
 
+            }
         }
     }
 }

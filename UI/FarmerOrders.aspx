@@ -8,12 +8,15 @@
             <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
             <asp:BoundField DataField="SalePrice" HeaderText="price" />
             <asp:BoundField DataField="InStock" HeaderText="stock" />    
+            
             <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="increase"/>
             <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="delete" />
         </Columns>
     </asp:GridView>
     <br />
     <br />
+    <br />
+    <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
     <br />
     <asp:Label ID="lblOliveName" runat="server" Text="choose the olives type"></asp:Label>
     <br />

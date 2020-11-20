@@ -120,9 +120,9 @@ namespace BL
                 inStock = value;
             }
         }
-        public int RemoveThis ()
+        public int DeleteThis ()
         {
-            DAL.FarmerDal.RemoveSale(this.saleID);
+            DAL.FarmerDal.DeleteSale(this.saleID);
             return saleID;
         }
     }

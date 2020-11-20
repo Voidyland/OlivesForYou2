@@ -24,7 +24,7 @@ namespace DAL
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             return db.GetDataTable(sql);
         }
-        public static int RemoveSale (int saleID)
+        public static int DeleteSale (int saleID)
         {
             string sql = $"DELETE * FROM Sales WHERE SaleID = {saleID}";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
