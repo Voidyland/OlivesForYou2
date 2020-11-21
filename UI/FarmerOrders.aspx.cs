@@ -47,7 +47,9 @@ namespace UI
         {
             try
             {
-                Sale chosenSale = (Sale)Sales.SelectedRow.DataItem;
+                int index = int.Parse(e.CommandArgument.ToString());
+                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+                Sale chosenSale = allFarmerSales[index];
                 if (e.CommandName == "increase")
                 {
                     // Maybe change increase to just edit sale? 
@@ -55,6 +57,10 @@ namespace UI
                 else
                 {
                     chosenSale.DeleteThis();
+                    Sales.DeleteRow(index);
+                    Sales.DataSource = allFarmerSales;
+                    Sales.AutoGenerateColumns = false;
+                    Sales.DataBind();
                     increaseOrDelete.Text = $"The following order has been deleted: Olive name = " +
                         $"{chosenSale.OliveName}, sale weight = {chosenSale.SaleWeight}, sale price = " +
                         $"{chosenSale.SalePrice}, stock at the time of deletion: {chosenSale.InStock}";
@@ -63,6 +69,20 @@ namespace UI
             catch
             {
 
+            }
+        }
+
+        protected void Sales_RowDeleted(object sender, GridViewDeletedEventArgs e)
+        {
+            //need fixing
+            if (e.Exception == null)
+            {
+                increaseOrDelete.Text = "Sale deleted";
+            }
+            else
+            {
+                increaseOrDelete.Text = "An error occurred while attempting to delete the sale.";
+                e.ExceptionHandled = true;
             }
         }
     }

@@ -2,15 +2,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand">
+    <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand" OnRowDeleted="Sales_RowDeleted">
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
             <asp:BoundField DataField="SalePrice" HeaderText="price" />
             <asp:BoundField DataField="InStock" HeaderText="stock" />    
-            
-            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="increase"/>
-            <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="delete" />
+            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="increase" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="delete" ButtonType="Button" />
         </Columns>
     </asp:GridView>
     <br />
