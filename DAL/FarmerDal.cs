@@ -22,7 +22,10 @@ namespace DAL
         {
             string sql = $"SELECT * FROM Sales WHERE FarmerID = {farmerID};";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
-            return db.GetDataTable(sql);
+            DataTable allSales = db.GetDataTable(sql);
+            if (allSales.Rows.Count != 0)
+                return db.GetDataTable(sql);
+            return null;
         }
         public static int DeleteSale (int saleID)
         {

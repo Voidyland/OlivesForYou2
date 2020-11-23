@@ -154,6 +154,7 @@ namespace BL
         {
             List<Sale> sales = new List<Sale>();
             DataTable dt = FarmerDal.AllSales(this.userID);
+            if (dt == null) return null;
             foreach (DataRow dr in dt.Rows)
             {
                 sales.Add(new Sale(dr));

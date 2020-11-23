@@ -20,9 +20,15 @@ namespace UI
                 Response.Redirect("MainPage.aspx");
             }
             List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
-            Sales.DataSource = allFarmerSales;
-            Sales.AutoGenerateColumns = false;
-            Sales.DataBind();
+            if (allFarmerSales != null)
+            {
+                BindSales(allFarmerSales);
+            }
+            else
+            {
+                Sales.Visible = false;
+                noSale.Visible = true;
+            }
             List<Olive> allOliveTypes = BL.General.AllOlives();
             List<ListItem> allListItems = new List<ListItem>();
             foreach (Olive olive in allOliveTypes)
@@ -41,6 +47,11 @@ namespace UI
                 double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text));
             if (newSale == null) lblError.Text = "Something went wrong...";            
             else lblError.Text = "Great! Everything worked!";
+            if (noSale.Visible == true)
+            {
+                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+                BindSales(allFarmerSales);
+            }
         }
 
         protected void ordersForSale_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -56,34 +67,38 @@ namespace UI
                 }
                 else
                 {
-                    chosenSale.DeleteThis();
                     Sales.DeleteRow(index);
-                    Sales.DataSource = allFarmerSales;
-                    Sales.AutoGenerateColumns = false;
-                    Sales.DataBind();
+                    allFarmerSales.Remove(chosenSale);
+                    chosenSale.DeleteThis();
+                    BindSales(allFarmerSales);
                     increaseOrDelete.Text = $"The following order has been deleted: Olive name = " +
                         $"{chosenSale.OliveName}, sale weight = {chosenSale.SaleWeight}, sale price = " +
                         $"{chosenSale.SalePrice}, stock at the time of deletion: {chosenSale.InStock}";
+                    
                 }
             }
-            catch
+            catch (Exception exeption)
             {
-
+                increaseOrDelete.Text = "An error occurred.";
             }
         }
 
         protected void Sales_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
-            //need fixing
-            if (e.Exception == null)
-            {
-                increaseOrDelete.Text = "Sale deleted";
-            }
-            else
-            {
-                increaseOrDelete.Text = "An error occurred while attempting to delete the sale.";
-                e.ExceptionHandled = true;
-            }
+
+        }
+
+        protected void Sales_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+        public void BindSales(List<Sale> allFarmerSales)
+        {
+            Sales.DataSource = allFarmerSales;
+            Sales.AutoGenerateColumns = false;
+            Sales.DataBind();
+            Sales.Visible = true;
+            noSale.Visible = false;
         }
     }
 }
