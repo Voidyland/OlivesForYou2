@@ -33,6 +33,8 @@
     <br />
     <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
     <asp:RegularExpressionValidator ID="RegularNumber" runat="server" ControlToValidate="txtPhoneNumber" ValidationExpression="^[0-9]{1,15}$" ErrorMessage="You must only use numbers, and the phone number must be at best 15 characters long."></asp:RegularExpressionValidator>
+    <br />
     <asp:Button ID="Submit" runat="server" Text="Submit" OnClick="Submit_Click" />
+    <br />
     <asp:Label ID="Error" runat="server" Visible="false" Text="An error has acoured.Please make sure all details are correct and that this is the first time you have signed up with this paricular email adress."></asp:Label>
 </asp:Content>

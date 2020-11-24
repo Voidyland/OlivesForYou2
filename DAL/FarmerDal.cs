@@ -33,6 +33,22 @@ namespace DAL
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             return db.WriteData(sql);
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="farmerID"></param>
+        /// <param name="newOliveID"></param>
+        /// <param name="newWeight"></param>
+        /// <param name="newPrice"></param>
+        /// <param name="newInStock"></param>
+        /// <returns>WRITEDATAERROR (aka 1) if fails</returns>
+        public static int UpdateSale (int farmerID,int newOliveID, double newWeight, double newPrice, int newInStock)
+        {
+            string sql = $"UPDATE Sales SET OliveID ={newOliveID}, SaleWeight = {newWeight}, SalePrice = {newPrice}," +
+                $" InStock = {newInStock}";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            return db.WriteData(sql);
+
+        }
     }
 }

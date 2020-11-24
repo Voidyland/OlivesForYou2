@@ -32,7 +32,7 @@ namespace UI
             List<Olive> allOliveTypes = BL.General.AllOlives();
             List<ListItem> allListItems = new List<ListItem>();
             foreach (Olive olive in allOliveTypes)
-            {
+            {                
                 allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
             }
             ddlOliveTypes.DataSource = allListItems;
@@ -58,10 +58,11 @@ namespace UI
         {
             try
             {
+                
                 int index = int.Parse(e.CommandArgument.ToString());
                 List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
                 Sale chosenSale = allFarmerSales[index];
-                if (e.CommandName == "increase")
+                if (e.CommandName == "change")
                 {
                     // Maybe change increase to just edit sale? 
                 }

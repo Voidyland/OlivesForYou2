@@ -3,13 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="noSale" runat="server" Text="It seems you dont have any orders. You can add one just below!"></asp:Label>
-    <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand" OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted">
+    <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand"
+        OnPageIndexChanging="Sales_PageIndexChanging" OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" >
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
             <asp:BoundField DataField="SalePrice" HeaderText="price" />
             <asp:BoundField DataField="InStock" HeaderText="stock" />    
-            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="increase" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="change" ButtonType="Button"/>
             <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
@@ -47,6 +48,5 @@
  
 
 <%--Make sure gridview has diffrent pages.
-    Also maybe add option to delete orders and increse InStock
     Maybe also dont allow to make diffrent orders of the same olive type?
     Also allow to change most details of the order.--%>
