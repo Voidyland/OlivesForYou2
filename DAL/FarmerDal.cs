@@ -41,14 +41,14 @@ namespace DAL
         /// <param name="newWeight"></param>
         /// <param name="newPrice"></param>
         /// <param name="newInStock"></param>
-        /// <returns>WRITEDATAERROR (aka 1) if fails</returns>
-        public static int UpdateSale (int farmerID,int newOliveID, double newWeight, double newPrice, int newInStock)
+        /// <returns>WRITEDATAERROR (aka 1) if fails, returns the sales ID otherwise otherwise.</returns>
+        public static int UpdateSale (int saleID,int newOliveID, double newWeight, double newPrice, int newInStock)
         {
             string sql = $"UPDATE Sales SET OliveID ={newOliveID}, SaleWeight = {newWeight}, SalePrice = {newPrice}," +
-                $" InStock = {newInStock}";
+                $" InStock = {newInStock} WHERE SaleID = {saleID}";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
-            return db.WriteData(sql);
-
+            if (db.WriteData(sql) == -1) return -1;
+            return saleID;
         }
     }
 }

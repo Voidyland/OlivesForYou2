@@ -125,5 +125,15 @@ namespace BL
             DAL.FarmerDal.DeleteSale(this.saleID);
             return saleID;
         }
+        public int UpdateThis (int oliveID, string oliveName, double saleWeight, double salePrice, int inStock)
+        {
+            if (DAL.FarmerDal.UpdateSale(this.saleID, oliveID, saleWeight, salePrice, inStock) == -1) return -1;
+            this.oliveID = oliveID;
+            this.oliveName = oliveName;
+            this.saleWeight = saleWeight;
+            this.salePrice = salePrice;
+            this.inStock = inStock;
+            return this.saleID;
+        }
     }
 }
