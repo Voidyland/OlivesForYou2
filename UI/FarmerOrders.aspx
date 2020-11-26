@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="noSale" runat="server" Text="It seems you dont have any orders. You can add one just below!"></asp:Label>
     <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand"
-        OnPageIndexChanging="Sales_PageIndexChanging" OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" >
+         OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" >
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
