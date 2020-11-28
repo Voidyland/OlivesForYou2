@@ -19,26 +19,33 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
-            if (allFarmerSales != null)
+            if (string.IsNullOrEmpty(Request.QueryString["SI"])) 
             {
-                BindSales(allFarmerSales);
+                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+                if (allFarmerSales != null)
+                {
+                    BindSales(allFarmerSales);
+                }
+                else
+                {
+                    Sales.Visible = false;
+                    noSale.Visible = true;
+                }
+                List<Olive> allOliveTypes = BL.General.AllOlives();
+                List<ListItem> allListItems = new List<ListItem>();
+                foreach (Olive olive in allOliveTypes) 
+                {
+                    allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
+                }
+                ddlOliveTypes.DataSource = allListItems;
+                ddlOliveTypes.DataValueField = "Value";
+                ddlOliveTypes.DataTextField = "Text";
+                ddlOliveTypes.DataBind();
             }
             else
             {
-                Sales.Visible = false;
-                noSale.Visible = true;
+
             }
-            List<Olive> allOliveTypes = BL.General.AllOlives();
-            List<ListItem> allListItems = new List<ListItem>();
-            foreach (Olive olive in allOliveTypes)
-            {                
-                allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
-            }
-            ddlOliveTypes.DataSource = allListItems;
-            ddlOliveTypes.DataValueField = "Value";
-            ddlOliveTypes.DataTextField = "Text";
-            ddlOliveTypes.DataBind();
         }
         
         protected void btnNewSale_Click(object sender, EventArgs e)
@@ -64,7 +71,7 @@ namespace UI
                 Sale chosenSale = allFarmerSales[index];
                 if (e.CommandName == "change")
                 {
-                    // Maybe change increase to just edit sale? 
+                    Response.Redirect($"FarmerOrders.aspx ? SI={index}"); //SI = SaleIndex
                 }
                 else
                 {
@@ -100,6 +107,11 @@ namespace UI
             Sales.DataBind();
             Sales.Visible = true;
             noSale.Visible = false;
+        }
+
+        protected void btnUpdateSale_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
