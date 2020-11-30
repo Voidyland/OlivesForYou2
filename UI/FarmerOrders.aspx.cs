@@ -19,32 +19,71 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-            if (string.IsNullOrEmpty(Request.QueryString["SI"])) 
+            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+            if (allFarmerSales != null)
             {
-                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
-                if (allFarmerSales != null)
+                BindSales(allFarmerSales);
+            }
+            else
+            {
+                Sales.Visible = false;
+                noSale.Visible = true;
+            }
+            List<Olive> allOliveTypes = BL.General.AllOlives();
+            List<ListItem> allListItems = new List<ListItem>();
+            bool inSale = false;
+            foreach (Olive olive in allOliveTypes)
+            {
+                foreach (Sale sale in allFarmerSales)
                 {
-                    BindSales(allFarmerSales);
+                    if (sale.OliveID == olive.OliveID)
+                    {
+                        inSale = true;
+                        break;
+                    }
+                    inSale = false;
                 }
-                else
-                {
-                    Sales.Visible = false;
-                    noSale.Visible = true;
-                }
-                List<Olive> allOliveTypes = BL.General.AllOlives();
-                List<ListItem> allListItems = new List<ListItem>();
-                foreach (Olive olive in allOliveTypes) 
+                if (!inSale)
                 {
                     allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
                 }
+            }
+            int saleID = -1;
+            if (int.TryParse(Request.QueryString["SI"], out saleID)) 
+            {
+                //Find the order that needs to be updated.
+                Sale saleToUpdate = null;
+                foreach (Sale sale in allFarmerSales)
+                {
+                    if (sale.SaleID == saleID)
+                    {
+                        saleToUpdate = sale;
+                        break;
+                    }
+                }
+                //Make the update panle visible and the order panel invisible.
+                pnlAddOrder.Visible = false;
+                pnlUpdateOrder.Visible = true;
+                //Bind the olive type dropdown list.
+                ddlUpdateOliveTypes.DataSource = allListItems;
+                ddlUpdateOliveTypes.DataValueField = "Value";
+                ddlUpdateOliveTypes.DataTextField = "Text";
+                ddlUpdateOliveTypes.DataBind();
+                //Make the defult values the previus values.
+                txtUpdateWeight.Text = saleToUpdate.SalePrice.ToString();
+                txtUpdatePrice.Text = saleToUpdate.SalePrice.ToString();                
+                txtUpdateStock.Text = saleToUpdate.InStock.ToString();
+
+
+            }
+            else
+            {
+                pnlAddOrder.Visible = true;
+                pnlUpdateOrder.Visible = false;
                 ddlOliveTypes.DataSource = allListItems;
                 ddlOliveTypes.DataValueField = "Value";
                 ddlOliveTypes.DataTextField = "Text";
                 ddlOliveTypes.DataBind();
-            }
-            else
-            {
-
             }
         }
         
@@ -71,7 +110,8 @@ namespace UI
                 Sale chosenSale = allFarmerSales[index];
                 if (e.CommandName == "change")
                 {
-                    Response.Redirect($"FarmerOrders.aspx ? SI={index}"); //SI = SaleIndex
+                    Response.Redirect("FarmerOrders.aspx?SI=" + chosenSale.SaleID.ToString()); //SI = SaleIndex
+                    return;
                 }
                 else
                 {

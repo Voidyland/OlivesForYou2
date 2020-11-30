@@ -213,13 +213,13 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblUpdateOliveName;
 
         /// <summary>
-        /// ddlUpdateOliveName control.
+        /// ddlUpdateOliveTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUpdateOliveName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUpdateOliveTypes;
 
         /// <summary>
         /// lblUpdateWeight control.

@@ -10,7 +10,7 @@
             <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
             <asp:BoundField DataField="SalePrice" HeaderText="price" />
             <asp:BoundField DataField="InStock" HeaderText="stock" />    
-            <asp:ButtonField HeaderText="Increase stock" CausesValidation="false" CommandName="change" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Update Order" CausesValidation="false" CommandName="change" ButtonType="Button"/>
             <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
@@ -51,7 +51,7 @@
         <br />
         <asp:Label ID="lblUpdateOliveName" runat="server" Text="Choose new the olives type"></asp:Label>
     <br />
-    <asp:DropDownList ID="ddlUpdateOliveName" runat="server"></asp:DropDownList>   
+    <asp:DropDownList ID="ddlUpdateOliveTypes" runat="server"></asp:DropDownList>   
     <br />
     <asp:Label ID="lblUpdateWeight" runat="server" Text="Enter the new weight of the order (the weight of one item from the stock, not the combined total)"></asp:Label>
     <br />
