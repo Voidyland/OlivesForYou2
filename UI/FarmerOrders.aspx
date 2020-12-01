@@ -73,7 +73,6 @@
     <br />
     <asp:Button ID="btnUpdateSale" runat="server" Text="Update the sale" OnClick="btnUpdateSale_Click"/>
     <br />
-    
     </asp:Panel>
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
 </asp:Content>

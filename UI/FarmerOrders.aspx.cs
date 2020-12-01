@@ -9,6 +9,7 @@ namespace UI
 {
     public partial class FarmerOrders : System.Web.UI.Page
     {
+        public Sale saleToUpdate = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] == null)
@@ -52,7 +53,7 @@ namespace UI
             if (int.TryParse(Request.QueryString["SI"], out saleID)) 
             {
                 //Find the order that needs to be updated.
-                Sale saleToUpdate = null;
+                //Sale saleToUpdate = null;
                 foreach (Sale sale in allFarmerSales)
                 {
                     if (sale.SaleID == saleID)
@@ -64,14 +65,24 @@ namespace UI
                 //Make the update panle visible and the order panel invisible.
                 pnlAddOrder.Visible = false;
                 pnlUpdateOrder.Visible = true;
+                //Add the olive type of the sale that needs updating to the olive types.
+                //Places the olive at the start of the dropdown to make it the defult value.
+                allListItems.Insert(0,new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
                 //Bind the olive type dropdown list.
-                ddlUpdateOliveTypes.DataSource = allListItems;
-                ddlUpdateOliveTypes.DataValueField = "Value";
-                ddlUpdateOliveTypes.DataTextField = "Text";
-                ddlUpdateOliveTypes.DataBind();
-                //Make the defult values the previus values.
-                txtUpdateWeight.Text = saleToUpdate.SalePrice.ToString();
+                if (ddlUpdateOliveTypes.DataSource == null) //Problem - This is null even in the case of trying 
+                                                                                      //to update, making it imposible to update the olive type.                
+                { 
+                    ddlUpdateOliveTypes.DataSource = allListItems;
+                    ddlUpdateOliveTypes.DataValueField = "Value";
+                    ddlUpdateOliveTypes.DataTextField = "Text";
+                    ddlUpdateOliveTypes.DataBind();
+                }
+                //Make the defult values the previus values, unless an update has accured.
+                if (txtUpdateWeight.Text == "")
+                txtUpdateWeight.Text = saleToUpdate.SaleWeight.ToString();
+                if (txtUpdatePrice.Text == "")
                 txtUpdatePrice.Text = saleToUpdate.SalePrice.ToString();                
+                if (txtUpdateStock.Text == "")
                 txtUpdateStock.Text = saleToUpdate.InStock.ToString();
 
 
@@ -91,13 +102,8 @@ namespace UI
         {
             Sale newSale =  ((User)Session["User"]).NewSale(int.Parse(ddlOliveTypes.SelectedValue), ddlOliveTypes.Text, 
                 double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text));
-            if (newSale == null) lblError.Text = "Something went wrong...";            
-            else lblError.Text = "Great! Everything worked!";
-            if (noSale.Visible == true)
-            {
-                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
-                BindSales(allFarmerSales);
-            }
+            if (newSale == null) lblError.Text = "Something went wrong...";
+            Response.Redirect("FarmerOrders.aspx");
         }
 
         protected void ordersForSale_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -122,8 +128,7 @@ namespace UI
                     increaseOrDelete.Text = $"The following order has been deleted: Olive name = " +
                         $"{chosenSale.OliveName}, sale weight = {chosenSale.SaleWeight}, sale price = " +
                         $"{chosenSale.SalePrice}, stock at the time of deletion: {chosenSale.InStock}";
-                    
-                }
+                } //Note to self: add pop-up that asks the user if he REALY wants to delete the sale.
             }
             catch (Exception exeption)
             {
@@ -151,7 +156,21 @@ namespace UI
 
         protected void btnUpdateSale_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int oliveID = int.Parse(ddlUpdateOliveTypes.SelectedValue);
+                string oliveName = ddlUpdateOliveTypes.Text;
+                double oliveWeight = double.Parse(txtUpdateWeight.Text);
+                double olivePrice = double.Parse(txtUpdatePrice.Text);
+                int inStock = int.Parse(txtUpdateStock.Text);
+                saleToUpdate.UpdateThis(oliveID, oliveName, oliveWeight, olivePrice, inStock);
+                lblError.Text = "Update successfull!";
+                Response.Redirect("FarmerOrders.aspx");
+            }
+            catch (Exception exeption)
+            {
+                lblError.Text = "something went wrong! in particulate: " + exeption.Message;
+            }
         }
     }
 }
