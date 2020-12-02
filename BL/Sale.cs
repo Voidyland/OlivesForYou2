@@ -16,8 +16,8 @@ namespace BL
         private double saleWeight;
         private double salePrice;
         private int inStock;
-
-        public Sale(int saleID, int farmerID, int oliveID, string oliveName, double saleWeight, double salePrice, int inStock)
+        private DateTime dateSaleAdded;
+        public Sale(int saleID, int farmerID, int oliveID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
             this.saleID = saleID;
             this.farmerID = farmerID;
@@ -26,6 +26,7 @@ namespace BL
             this.saleWeight = saleWeight;
             this.salePrice = salePrice;
             this.inStock = inStock;
+            this.dateSaleAdded = dateSaleAdded;
         }
         public Sale (DataRow dr)
         {
@@ -36,6 +37,7 @@ namespace BL
             this.saleWeight = (double)dr["SaleWeight"];
             this.salePrice = (double)dr["SalePrice"];
             this.inStock = (int)dr["InStock"];
+            this.dateSaleAdded = (DateTime)dr["DateSaleAdded"];
         }
         public int SaleID
         {
@@ -118,6 +120,17 @@ namespace BL
             set
             {
                 inStock = value;
+            }
+        }
+        public DateTime DateSaleAdded
+        {
+            get
+            {
+                return dateSaleAdded; 
+            }
+            set
+            {
+                dateSaleAdded = value;
             }
         }
         public int DeleteThis ()

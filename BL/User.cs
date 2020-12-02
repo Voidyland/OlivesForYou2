@@ -161,11 +161,11 @@ namespace BL
             }
             return sales;
         }
-        public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock)
+        public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
-            int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock);
+            int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock, dateSaleAdded);
             if (orderID == DAL.DALHelper.WRITEDATA_ERROR) return null;
-            return new Sale(this.UserID, orderID, saleID, oliveName, saleWeight, salePrice, inStock);
+            return new Sale(this.UserID, orderID, saleID, oliveName, saleWeight, salePrice, inStock, dateSaleAdded);
         }
     }
 }

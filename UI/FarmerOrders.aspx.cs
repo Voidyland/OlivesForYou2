@@ -95,15 +95,16 @@ namespace UI
                 ddlOliveTypes.DataValueField = "Value";
                 ddlOliveTypes.DataTextField = "Text";
                 ddlOliveTypes.DataBind();
+                lblError.Text = Request.QueryString["error"];
             }
         }
         
         protected void btnNewSale_Click(object sender, EventArgs e)
         {
             Sale newSale =  ((User)Session["User"]).NewSale(int.Parse(ddlOliveTypes.SelectedValue), ddlOliveTypes.Text, 
-                double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text));
-            if (newSale == null) lblError.Text = "Something went wrong...";
-            Response.Redirect("FarmerOrders.aspx");
+                double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text), DateTime.UtcNow);
+            if (newSale == null) Response.Redirect("FarmerOrders.aspx?error=Something went wrong...");
+            else Response.Redirect("FarmerOrders.aspx?error=Success!");
         }
 
         protected void ordersForSale_RowCommand(object sender, GridViewCommandEventArgs e)
