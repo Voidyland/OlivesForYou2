@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\OlivesDB.accdb" />
+    <Content Include="App_Data\OlivesDBNew.accdb" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
