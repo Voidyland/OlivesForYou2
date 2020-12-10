@@ -4,19 +4,33 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="noSale" runat="server" Text="It seems you dont have any orders. You can add one just below!"></asp:Label>
     <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand"
-         OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" >
+         OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" Visible="true" >
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
-            <asp:BoundField DataField="SaleWeight" HeaderText="weight" />
-            <asp:BoundField DataField="SalePrice" HeaderText="price" />
-            <asp:BoundField DataField="InStock" HeaderText="stock" />    
-            <asp:ButtonField HeaderText="Update Order" CausesValidation="false" CommandName="change" ButtonType="Button"/>
-            <asp:ButtonField HeaderText="Delete order" CausesValidation="false" CommandName="remove" ButtonType="Button" />
+            <asp:BoundField DataField="SaleWeight" HeaderText="weight per 1 in stock" />
+            <asp:BoundField DataField="SalePrice" HeaderText="price per 1 in stock" />
+            <asp:BoundField DataField="InStock" HeaderText="in stock" />    
+            <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
+            <asp:ButtonField HeaderText="Update Sale" CausesValidation="false" CommandName="change" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
     <br />
+   <%-- <asp:GridView ID="SoldOut" runat="server" Visible="false">
+        <Columns>
+            <asp:BoundField DataField="OliveName" HeaderText="olive type" />
+            <asp:BoundField DataField="SaleWeight" HeaderText="weight per 1 in stock" />
+            <asp:BoundField DataField="SalePrice" HeaderText="price per 1 in stock" />
+            <asp:BoundField FooterText="0" HeaderText="in stock" />    
+            <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
+            <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
+        </Columns>
+    </asp:GridView>--%>
     <br />
+    <%--<asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all sales that sold out?"></asp:Label>
     <br />
+    <asp:Button ID="btnPastOrPresent" runat="server" Text="Change to sales that sold out" OnClick="btnPastOrPresent_Click" />
+    <br />--%>
     <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
     <asp:Panel ID="pnlAddOrder" runat="server" Visible="true">   
     <br />

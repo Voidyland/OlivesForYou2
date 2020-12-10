@@ -150,17 +150,51 @@ namespace BL
             this.country = country;
             this.phoneNumber = phoneNumber;
         }
-        public List<Sale> AllSales()
+        /// <summary>
+        /// A method that returns all sales of the chosen farmer
+        /// </summary>
+        /// <param name="soldOut">True if you want to view all sales that sold out, false otherwise</param>
+        /// <returns></returns>
+        public List<Sale> AllSales(bool soldOut)
         {
             List<Sale> sales = new List<Sale>();
             DataTable dt = FarmerDal.AllSales(this.userID);
             if (dt == null) return null;
-            foreach (DataRow dr in dt.Rows)
+            if (soldOut)
             {
-                sales.Add(new Sale(dr));
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (int.Parse(dr["InStock"].ToString()) == 0)
+                    {
+                        sales.Add(new Sale(dr));
+                    }
+                }
+            }
+            else
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    if (int.Parse(dr["InStock"].ToString()) != 0)
+                    {
+                        sales.Add(new Sale(dr));
+                    }
+                }
             }
             return sales;
         }
+        //public List<Sale> AllSoldOutSales()
+        //{
+        //    List<Sale> sales = new List<Sale>();
+        //    DataTable dt = FarmerDal.AllSales(this.userID);
+        //    if (dt == null) return null;
+        //    foreach (DataRow dr in dt.Rows)
+        //    {                
+        //        if (int.Parse(dr["InStock"].ToString()) == 0)
+        //        {
+        //            sales.Add(new Sale(dr));
+        //        }
+        //    }
+        //}
         public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
             int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock, dateSaleAdded);

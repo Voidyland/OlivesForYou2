@@ -20,7 +20,7 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
             if (allFarmerSales != null)
             {
                 BindSales(allFarmerSales);
@@ -113,7 +113,7 @@ namespace UI
             {
                 
                 int index = int.Parse(e.CommandArgument.ToString());
-                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales();
+                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
                 Sale chosenSale = allFarmerSales[index];
                 if (e.CommandName == "change")
                 {
@@ -173,5 +173,10 @@ namespace UI
                 lblError.Text = "something went wrong! in particulate: " + exeption.Message;
             }
         }
+
+        //protected void btnPastOrPresent_Click(object sender, EventArgs e)
+        //{
+
+        //}
     }
 }
