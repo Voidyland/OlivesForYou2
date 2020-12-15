@@ -30,25 +30,28 @@ namespace UI
                 Sales.Visible = false;
                 noSale.Visible = true;
             }
-            List<Olive> allOliveTypes = BL.General.AllOlives();
-            List<ListItem> allListItems = new List<ListItem>();
-            bool inSale = false;
-            foreach (Olive olive in allOliveTypes)
-            {
-                foreach (Sale sale in allFarmerSales)
-                {
-                    if (sale.OliveID == olive.OliveID)
+            //if (Page.IsPostBack) 
+            //{
+                List<Olive> allOliveTypes = BL.General.AllOlives();
+                List<ListItem> allListItems = new List<ListItem>();
+                bool inSale = false;
+                foreach (Olive olive in allOliveTypes) 
+                {                  
+                    foreach (Sale sale in allFarmerSales) 
                     {
-                        inSale = true;
-                        break;
+                        if (sale.OliveID == olive.OliveID) 
+                        {
+                            inSale = true;
+                            break;
+                        }
+                        inSale = false;
                     }
-                    inSale = false;
+                    if (!inSale) 
+                    {
+                        allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
+                    }
                 }
-                if (!inSale)
-                {
-                    allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
-                }
-            }
+            //}
             int saleID = -1;
             if (int.TryParse(Request.QueryString["SI"], out saleID)) 
             {

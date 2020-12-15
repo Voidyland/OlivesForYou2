@@ -201,5 +201,6 @@ namespace BL
             if (orderID == DAL.DALHelper.WRITEDATA_ERROR) return null;
             return new Sale(this.UserID, orderID, saleID, oliveName, saleWeight, salePrice, inStock, dateSaleAdded);
         }
+        //public List<Sale> 
     }
 }

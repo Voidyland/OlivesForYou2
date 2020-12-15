@@ -57,5 +57,12 @@ namespace DAL
             if (db.WriteData(sql) == -1) return -1;
             return saleID;
         }
+        public static DataTable OrderedFromFarmer (int farmerID)
+        {
+            string sql = $"SELECT * FROM OrdersOrdered WHERE FarmerID = {farmerID}";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DataTable dt = db.GetDataTable(sql);
+            return dt;
+        }
     }
 }
