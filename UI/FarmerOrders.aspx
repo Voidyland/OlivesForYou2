@@ -16,20 +16,20 @@
         </Columns>
     </asp:GridView>
     <br />
-   <%-- <asp:GridView ID="SoldOut" runat="server" Visible="false">
+<%--    <asp:GridView ID="gvOrdersOrdered" runat="server" Visible="false">
         <Columns>
+            <asp:BoundField HeaderText="buyer" />
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="SaleWeight" HeaderText="weight per 1 in stock" />
             <asp:BoundField DataField="SalePrice" HeaderText="price per 1 in stock" />
-            <asp:BoundField FooterText="0" HeaderText="in stock" />    
             <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
             <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
-    </asp:GridView>--%>
+    </asp:GridView>
     <br />
-    <%--<asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all sales that sold out?"></asp:Label>
+    <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />
-    <asp:Button ID="btnPastOrPresent" runat="server" Text="Change to sales that sold out" OnClick="btnPastOrPresent_Click" />
+    <asp:Button ID="btnPastOrPresent" runat="server" Text="Watch sales bought" OnClick="btnPastOrPresent_Click" />
     <br />--%>
     <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
     <asp:Panel ID="pnlAddOrder" runat="server" Visible="true">   
