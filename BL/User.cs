@@ -182,19 +182,23 @@ namespace BL
             }
             return sales;
         }
-        //public List<Sale> AllSoldOutSales()
-        //{
-        //    List<Sale> sales = new List<Sale>();
-        //    DataTable dt = FarmerDal.AllSales(this.userID);
-        //    if (dt == null) return null;
-        //    foreach (DataRow dr in dt.Rows)
-        //    {                
-        //        if (int.Parse(dr["InStock"].ToString()) == 0)
-        //        {
-        //            sales.Add(new Sale(dr));
-        //        }
-        //    }
-        //}
+        /// <summary>
+        /// Gets all orders ordered from the farmer and sorts them by whether or not they were handeled yet.
+        /// </summary>
+        /// <returns>The orders ordered</returns>
+        public List<OrderOrdered> AllOrdersOrdered ()
+        {
+            List<OrderOrdered> ordersOrdered = new List<OrderOrdered>();
+            DataTable dt = DAL.FarmerDal.OrderedFromFarmer(userID);
+            foreach (DataRow dr in dt.Rows)
+            {
+                ordersOrdered.Add(new OrderOrdered(dr));
+            }
+            List<OrderOrdered> sortedByNotSent = ordersOrdered.OrderByDescending
+                (o => o.DateOrderSent).ToList(); //Places the orders that were not handled first. Orders that were 
+                                                                    //not sent yet have their DateOrderSent set to DateTime.MinValue.
+            return sortedByNotSent;
+        }
         public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
             int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock, dateSaleAdded);
