@@ -16,8 +16,9 @@
         </Columns>
     </asp:GridView>
     <br />
-    <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound" AutoGenerateColumns="false"
-         AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging">
+    <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound"
+         AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging"
+        OnRowCommand="gvOrdersOrdered_RowCommand" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField DataField="CompanyName" HeaderText="buyer" /> 
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
@@ -26,9 +27,12 @@
             <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
             <asp:BoundField DataField="DateOrderSent" HeaderText="date you sent the shipment" />
             <asp:BoundField DataField="DateOrderArrived" HeaderText="date shipment was recived by company" />
-            
+            <asp:ButtonField ButtonType="Button" Text="Press me to confirm the order was sent" 
+                HeaderText="confrim or unconfirm the sending of an order" />
         </Columns>
     </asp:GridView>
+    <br />
+    
     <br />
     <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />

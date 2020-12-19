@@ -222,6 +222,11 @@ namespace UI
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
                     e.Row.Cells[6].Text = "The order has not arrived yet";
+                    e.Row.Cells[7].Text = "Click me if the order was not acctualy sent because of a mistake";
+                }
+                else
+                {
+                    e.Row.Cells[7].Text = "";
                 }
             }
         }
@@ -230,6 +235,11 @@ namespace UI
             gvOrdersOrdered.PageIndex = e.NewPageIndex;
             gvOrdersOrdered.DataSource = allOrdersOrdered;
             gvOrdersOrdered.DataBind();
+        }
+
+        protected void gvOrdersOrdered_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }
