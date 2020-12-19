@@ -10,6 +10,8 @@ namespace UI
     public partial class FarmerOrders : System.Web.UI.Page
     {
         public Sale saleToUpdate = null;
+
+        private List<OrderOrdered> allOrdersOrdered = null;
         /// <summary>
         /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
         /// aka olives available for new sales.
@@ -202,10 +204,32 @@ namespace UI
         {
             gvOrdersOrdered.Visible = true;
             Sales.Visible = false;
-            List<OrderOrdered> allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+            allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
             gvOrdersOrdered.DataSource = allOrdersOrdered;
             gvOrdersOrdered.DataBind();
+        }
 
+        protected void gvOrdersOrdered_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex > -1)
+            {
+                OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
+                if (orderOrdered.DateOrderSent == DateTime.MinValue)
+                {
+                    e.Row.Cells[5].Text = "The order was not handled yet.";
+                    e.Row.Cells[6].Text = "The order has not arrived either, seeing how it was not sent yet.";
+                }
+                else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
+                {
+                    e.Row.Cells[6].Text = "The order has not arrived yet";
+                }
+            }
+        }
+        protected void gvOrdersOrdered_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvOrdersOrdered.PageIndex = e.NewPageIndex;
+            gvOrdersOrdered.DataSource = allOrdersOrdered;
+            gvOrdersOrdered.DataBind();
         }
     }
 }

@@ -16,7 +16,8 @@
         </Columns>
     </asp:GridView>
     <br />
-    <asp:GridView ID="gvOrdersOrdered" runat="server" Visible="false">
+    <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound" AutoGenerateColumns="false"
+         AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging">
         <Columns>
             <asp:BoundField DataField="CompanyName" HeaderText="buyer" /> 
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
@@ -25,7 +26,7 @@
             <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
             <asp:BoundField DataField="DateOrderSent" HeaderText="date you sent the shipment" />
             <asp:BoundField DataField="DateOrderArrived" HeaderText="date shipment was recived by company" />
-            <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
+            
         </Columns>
     </asp:GridView>
     <br />
@@ -94,6 +95,3 @@
 </asp:Content>
  
 
-<%--Make sure gridview has diffrent pages.
-    Maybe also dont allow to make diffrent orders of the same olive type?
-    Also allow to change most details of the order.--%>
