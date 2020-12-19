@@ -32,14 +32,23 @@
         </Columns>
     </asp:GridView>
     <br />
-    <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to order by a company's name, 
-        enter it then press the button bellow"></asp:Label>
-    <br />
-    <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
-    <br />
-    <asp:Button ID="btnOrderByName" runat="server" Text="Button" ValidationGroup="vldOrderByName" OnClick="btnOrderByName_Click" />
-    <br />
+    <asp:Panel ID="pnlOrderMethod" runat="server" Visible="false">
+       <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to order by a company's name, 
+          enter it then press the button bellow."></asp:Label>
+       <br />
+       <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>
+       <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
+       <br />
+       <asp:Button ID="btnOrderByName" runat="server" Text="Button" ValidationGroup="vldOrderByName" 
+           OnClick="btnReorder_Click" CommandArgument="name" />
+       <br />
+        <asp:Label ID="lblNameNotFound" runat="server" Visible="false" Text="I'm afraid no such company exist's. Are you sure you entered the right username? remember, capital letters and spaces matter."></asp:Label>
+        <br />
+        <asp:Label ID="lblOrderByUnhandled" runat="server" Text="Would you like to order by orders that were not sent yet?"></asp:Label>
+        <br />
+        <asp:Button ID="btnOrderByUnhandled" runat="server" Text="Order by not sent." OnClick="btnReorder_Click"
+            CommandArgument="handled" />
+    </asp:Panel>
     <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />
     <asp:Button ID="btnPastOrPresent" runat="server" Text="Watch sales bought" OnClick="btnPastOrPresent_Click" CausesValidation="false" />

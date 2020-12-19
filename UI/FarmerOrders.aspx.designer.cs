@@ -42,6 +42,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.GridView gvOrdersOrdered;
 
         /// <summary>
+        /// pnlOrderMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlOrderMethod;
+
+        /// <summary>
         /// lblOrderByName control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,33 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOrderByName;
+
+        /// <summary>
+        /// lblNameNotFound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNameNotFound;
+
+        /// <summary>
+        /// lblOrderByUnhandled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderByUnhandled;
+
+        /// <summary>
+        /// btnOrderByUnhandled control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOrderByUnhandled;
 
         /// <summary>
         /// lblPastOrPresent control.

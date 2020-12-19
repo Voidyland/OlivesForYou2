@@ -202,11 +202,22 @@ namespace UI
         /// <param name="e"></param>
         protected void btnPastOrPresent_Click(object sender, EventArgs e)
         {
-            gvOrdersOrdered.Visible = true;
-            Sales.Visible = false;
-            allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
-            gvOrdersOrdered.DataSource = allOrdersOrdered;
-            gvOrdersOrdered.DataBind();
+            if (Sales.Visible == true)
+            {
+                gvOrdersOrdered.Visible = true;
+                Sales.Visible = false;
+                pnlOrderMethod.Visible = true;
+                allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                gvOrdersOrdered.DataSource = allOrdersOrdered;
+                gvOrdersOrdered.DataBind();
+            }
+            else
+            {
+                gvOrdersOrdered.Visible = false;
+                Sales.Visible = true;
+                pnlOrderMethod.Visible = false;
+                BindSales(((User)Session["User"]).AllSales(false));
+            }
         }
 
         protected void gvOrdersOrdered_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -242,9 +253,39 @@ namespace UI
 
         }
 
-        protected void btnOrderByName_Click(object sender, EventArgs e)
+        protected void btnReorder_Click(object sender, EventArgs e)
         {
-
+            if (((Button)sender).CommandArgument == btnOrderByName.CommandArgument)
+            {
+                List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
+                List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
+                foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+                {
+                    if (orderOrdered.CompanyName == txtOrderByName.Text) orderedByCompanyX.Add(orderOrdered);
+                    else notOrderedByCompanyX.Add(orderOrdered);
+                }
+                if (orderedByCompanyX.Count == 0)
+                    lblNameNotFound.Visible = true;
+                else
+                {
+                    orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+                    notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+                    foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
+                    {
+                        orderedByCompanyX.Add(orderOrdered);
+                    }
+                    allOrdersOrdered = orderedByCompanyX;
+                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    gvOrdersOrdered.DataBind();
+                    lblNameNotFound.Visible = false;
+                }
+            }
+            else
+            {
+                allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderSent).ToList();
+                gvOrdersOrdered.DataSource = allOrdersOrdered;
+                gvOrdersOrdered.DataBind();
+            }
         }
     }
 }
