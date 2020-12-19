@@ -42,6 +42,42 @@ namespace UI
         protected global::System.Web.UI.WebControls.GridView gvOrdersOrdered;
 
         /// <summary>
+        /// lblOrderByName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderByName;
+
+        /// <summary>
+        /// txtOrderByName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrderByName;
+
+        /// <summary>
+        /// requiredOrderByName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredOrderByName;
+
+        /// <summary>
+        /// btnOrderByName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOrderByName;
+
+        /// <summary>
         /// lblPastOrPresent control.
         /// </summary>
         /// <remarks>

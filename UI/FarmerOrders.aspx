@@ -32,7 +32,13 @@
         </Columns>
     </asp:GridView>
     <br />
-    
+    <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to order by a company's name, 
+        enter it then press the button bellow"></asp:Label>
+    <br />
+    <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
+    <br />
+    <asp:Button ID="btnOrderByName" runat="server" Text="Button" ValidationGroup="vldOrderByName" OnClick="btnOrderByName_Click" />
     <br />
     <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />
@@ -48,24 +54,23 @@
     <asp:Label ID="lblWeight" runat="server" Text="Enter the weight of the order (the weight of one item from the stock, not the combined total)"></asp:Label>
     <br />
     <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredWeight" runat="server" ControlToValidate="txtWeight" ErrorMessage="You must enter the weight"></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="rangeWeight" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000" ControlToValidate="txtWeight" ErrorMessage="You must enter a weight between 1 and 1,000"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredWeight" ValidationGroup="vldNewSale" runat="server" ControlToValidate="txtWeight" ErrorMessage="You must enter the weight"></asp:RequiredFieldValidator>
+    <asp:RangeValidator ID="rangeWeight" runat="server" ValidationGroup="vldNewSale" Type="Double" MinimumValue="1" MaximumValue="1000" ControlToValidate="txtWeight" ErrorMessage="You must enter a weight between 1 and 1,000"></asp:RangeValidator>
     <br />
     <asp:Label ID="lblPrice" runat="server" Text="Enter the price of the order (the price of one item from the stock)"></asp:Label>
     <br />
     <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredPrice" runat="server" ControlToValidate="txtPrice" ErrorMessage="You must enter the price"></asp:RequiredFieldValidator>    
-    <asp:RangeValidator ID="rangePrice" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000000" ControlToValidate="txtPrice" ErrorMessage="You must enter a price between 1 and 1,000,000"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredPrice" ValidationGroup="vldNewSale" runat="server" ControlToValidate="txtPrice" ErrorMessage="You must enter the price"></asp:RequiredFieldValidator>    
+    <asp:RangeValidator ID="rangePrice" runat="server" ValidationGroup="vldNewSale" Type="Double" MinimumValue="1" MaximumValue="1000000" ControlToValidate="txtPrice" ErrorMessage="You must enter a price between 1 and 1,000,000"></asp:RangeValidator>
     <br />
     <asp:Label ID="lblStock" runat="server" Text="Enter the amout of items in stock"></asp:Label>
     <br />
     <asp:TextBox ID="txtStock" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredStock" runat="server" ControlToValidate="txtStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="rangeStock" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredStock" ValidationGroup="vldNewSale" runat="server" ControlToValidate="txtStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
+    <asp:RangeValidator ID="rangeStock" ValidationGroup="vldNewSale" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
     <br />
-    <asp:Button ID="btnNewSale" runat="server" Text="Submit the new sale" OnClick="btnNewSale_Click"/>
+    <asp:Button ID="btnNewSale" ValidationGroup="vldNewSale" runat="server" Text="Submit the new sale" OnClick="btnNewSale_Click"/>
     <br />
-    
     </asp:Panel>
     <asp:Panel ID="pnlUpdateOrder" runat="server" Visible="false">
         <asp:Label ID="lblOrderToUpdate" runat="server" Text=""></asp:Label>
@@ -77,22 +82,22 @@
     <asp:Label ID="lblUpdateWeight" runat="server" Text="Enter the new weight of the order (the weight of one item from the stock, not the combined total)"></asp:Label>
     <br />
     <asp:TextBox ID="txtUpdateWeight" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredUpdateWeight" runat="server" ControlToValidate="txtUpdateWeight" ErrorMessage="You must enter the weight"></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="rangeUpdateWeight" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000" ControlToValidate="txtUpdateWeight" ErrorMessage="You must enter a weight between 1 and 1,000"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredUpdateWeight" ValidationGroup="vldUpdateSale" runat="server" ControlToValidate="txtUpdateWeight" ErrorMessage="You must enter the weight"></asp:RequiredFieldValidator>
+    <asp:RangeValidator ID="rangeUpdateWeight" ValidationGroup="vldUpdateSale" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000" ControlToValidate="txtUpdateWeight" ErrorMessage="You must enter a weight between 1 and 1,000"></asp:RangeValidator>
     <br />
     <asp:Label ID="lblUpdatePrice" runat="server" Text="Enter the new price of the order (the price of one item from the stock)"></asp:Label>
     <br />
     <asp:TextBox ID="txtUpdatePrice" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredUpdatePrice" runat="server" ControlToValidate="txtUpdatePrice" ErrorMessage="You must enter the price"></asp:RequiredFieldValidator>    
-    <asp:RangeValidator ID="rangeUpdatePrice" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000000" ControlToValidate="txtUpdatePrice" ErrorMessage="You must enter a price between 1 and 1,000,000"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredUpdatePrice" ValidationGroup="vldUpdateSale" runat="server" ControlToValidate="txtUpdatePrice" ErrorMessage="You must enter the price"></asp:RequiredFieldValidator>    
+    <asp:RangeValidator ID="rangeUpdatePrice" ValidationGroup="vldUpdateSale" runat="server" Type="Double" MinimumValue="1" MaximumValue="1000000" ControlToValidate="txtUpdatePrice" ErrorMessage="You must enter a price between 1 and 1,000,000"></asp:RangeValidator>
     <br />
     <asp:Label ID="lblUpdateStock" runat="server" Text="Enter the new amout of items in stock"></asp:Label>
     <br />
     <asp:TextBox ID="txtUpdateStock" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="requiredUpdateStock" runat="server" ControlToValidate="txtUpdateStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="rangeUpdateStock" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtUpdateStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
+    <asp:RequiredFieldValidator ID="requiredUpdateStock" ValidationGroup="vldUpdateSale" runat="server" ControlToValidate="txtUpdateStock" ErrorMessage="You must enter the stock number"></asp:RequiredFieldValidator>
+    <asp:RangeValidator ID="rangeUpdateStock" ValidationGroup="vldUpdateSale" runat="server" Type="Integer" MinimumValue="1" MaximumValue="50" ControlToValidate="txtUpdateStock" ErrorMessage="You must enter a number between 1 and 50"></asp:RangeValidator>
     <br />
-    <asp:Button ID="btnUpdateSale" runat="server" Text="Update the sale" OnClick="btnUpdateSale_Click"/>
+    <asp:Button ID="btnUpdateSale" runat="server" ValidationGroup="vldUpdateSale" Text="Update the sale" OnClick="btnUpdateSale_Click"/>
     <br />
     </asp:Panel>
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
