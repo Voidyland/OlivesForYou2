@@ -12,7 +12,9 @@ namespace BL
     {
         private int orderID;
         private int companyID;
-        private int farmerID;    
+        private string companyName;
+        private int farmerID;
+        private string farmerName;
         private int oliveID;
         private string oliveName;
         private double orderWeight;
@@ -24,7 +26,9 @@ namespace BL
         {
             orderID = int.Parse(orderOrdered["OrderID"].ToString());
             companyID = int.Parse(orderOrdered["CompanyID"].ToString());
+            companyName = "";
             farmerID = int.Parse(orderOrdered["FarmerID"].ToString());
+            farmerName = "";
             oliveID = int.Parse(orderOrdered["OliveID"].ToString());
             oliveName = "";
             orderWeight = double.Parse(orderOrdered["Weight"].ToString());
@@ -53,11 +57,29 @@ namespace BL
                 return companyID;
             }
         }
+        public string CompanyName
+        {
+            get
+            {
+                if (companyName == "")
+                    companyName = DAL.UserDAL.FindUserByID(companyID)["UserName"].ToString();
+                return companyName;
+            }
+        }
         public int FarmerID
         {
             get
             {
                 return farmerID;
+            }
+        }
+        public string FarmerName
+        {
+            get
+            {
+                if (farmerName == "") 
+                    farmerName =  DAL.UserDAL.FindUserByID(farmerID)["UserName"].ToString();
+                return farmerName;
             }
         }
         public int OliveID

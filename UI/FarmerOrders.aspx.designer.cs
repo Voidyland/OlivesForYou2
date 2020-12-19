@@ -33,6 +33,33 @@ namespace UI
         protected global::System.Web.UI.WebControls.GridView Sales;
 
         /// <summary>
+        /// gvOrdersOrdered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvOrdersOrdered;
+
+        /// <summary>
+        /// lblPastOrPresent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPastOrPresent;
+
+        /// <summary>
+        /// btnPastOrPresent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPastOrPresent;
+
+        /// <summary>
         /// increaseOrDelete control.
         /// </summary>
         /// <remarks>

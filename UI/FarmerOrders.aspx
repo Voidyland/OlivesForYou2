@@ -16,21 +16,23 @@
         </Columns>
     </asp:GridView>
     <br />
-<%--    <asp:GridView ID="gvOrdersOrdered" runat="server" Visible="false">
+    <asp:GridView ID="gvOrdersOrdered" runat="server" Visible="false">
         <Columns>
-            <asp:BoundField HeaderText="buyer" />
+            <asp:BoundField DataField="CompanyName" HeaderText="buyer" /> 
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
-            <asp:BoundField DataField="SaleWeight" HeaderText="weight per 1 in stock" />
-            <asp:BoundField DataField="SalePrice" HeaderText="price per 1 in stock" />
-            <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
+            <asp:BoundField DataField="OrderWeight" HeaderText="total weight" />
+            <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
+            <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
+            <asp:BoundField DataField="DateOrderSent" HeaderText="date you sent the shipment" />
+            <asp:BoundField DataField="DateOrderArrived" HeaderText="date shipment was recived by company" />
             <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
     <br />
     <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />
-    <asp:Button ID="btnPastOrPresent" runat="server" Text="Watch sales bought" OnClick="btnPastOrPresent_Click" />
-    <br />--%>
+    <asp:Button ID="btnPastOrPresent" runat="server" Text="Watch sales bought" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
+    <br />
     <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
     <asp:Panel ID="pnlAddOrder" runat="server" Visible="true">   
     <br />

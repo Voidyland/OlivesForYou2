@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyDAL.cs" />
     <Compile Include="DALHelper.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="FarmerDal.cs" />

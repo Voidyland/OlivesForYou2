@@ -10,6 +10,35 @@ namespace UI
     public partial class FarmerOrders : System.Web.UI.Page
     {
         public Sale saleToUpdate = null;
+        /// <summary>
+        /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
+        /// aka olives available for new sales.
+        /// </summary>
+        /// <param name="allFarmerSales"></param>
+        /// <returns></returns>
+        public List<ListItem> allAvailableOliveTypes (List<Sale> allFarmerSales)
+        {
+            List<Olive> allOliveTypes = BL.General.AllOlives();
+            List<ListItem> allListItems = new List<ListItem>();
+            bool inSale = false;
+            foreach (Olive olive in allOliveTypes)
+            {
+                foreach (Sale sale in allFarmerSales)
+                {
+                    if (sale.OliveID == olive.OliveID)
+                    {
+                        inSale = true;
+                        break;
+                    }
+                    inSale = false;
+                }
+                if (!inSale)
+                {
+                    allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
+                }  
+            }
+            return allListItems;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] == null)
@@ -30,33 +59,13 @@ namespace UI
                 Sales.Visible = false;
                 noSale.Visible = true;
             }
-            //if (Page.IsPostBack) 
-            //{
-                List<Olive> allOliveTypes = BL.General.AllOlives();
-                List<ListItem> allListItems = new List<ListItem>();
-                bool inSale = false;
-                foreach (Olive olive in allOliveTypes) 
-                {                  
-                    foreach (Sale sale in allFarmerSales) 
-                    {
-                        if (sale.OliveID == olive.OliveID) 
-                        {
-                            inSale = true;
-                            break;
-                        }
-                        inSale = false;
-                    }
-                    if (!inSale) 
-                    {
-                        allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
-                    }
-                }
-            //}
+            
             int saleID = -1;
             if (int.TryParse(Request.QueryString["SI"], out saleID)) 
             {
+                List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales); //Gets all available olives
                 //Find the order that needs to be updated.
-                //Sale saleToUpdate = null;
+                //saleToUpdate is null as a base.
                 foreach (Sale sale in allFarmerSales)
                 {
                     if (sale.SaleID == saleID)
@@ -72,9 +81,8 @@ namespace UI
                 //Places the olive at the start of the dropdown to make it the defult value.
                 allListItems.Insert(0,new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
                 //Bind the olive type dropdown list.
-                if (ddlUpdateOliveTypes.DataSource == null) //Problem - This is null even in the case of trying 
-                                                                                      //to update, making it imposible to update the olive type.                
-                { 
+                if (ddlUpdateOliveTypes.DataSource == null) //Problem - This is null even in the case of trying                                                                 //to update, making it imposible to update the olive type.                
+                {
                     ddlUpdateOliveTypes.DataSource = allListItems;
                     ddlUpdateOliveTypes.DataValueField = "Value";
                     ddlUpdateOliveTypes.DataTextField = "Text";
@@ -90,15 +98,23 @@ namespace UI
 
 
             }
-            else
+            else 
             {
+                if (!Page.IsPostBack)
+                {
+                    List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales);
+                    ddlOliveTypes.DataSource = allListItems;
+                    ddlOliveTypes.DataValueField = "Value";
+                    ddlOliveTypes.DataTextField = "Text";
+                    ddlOliveTypes.DataBind();
+                    lblError.Text = Request.QueryString["error"];
+                }
+                //else 
+                //{
+
+                //}
                 pnlAddOrder.Visible = true;
                 pnlUpdateOrder.Visible = false;
-                ddlOliveTypes.DataSource = allListItems;
-                ddlOliveTypes.DataValueField = "Value";
-                ddlOliveTypes.DataTextField = "Text";
-                ddlOliveTypes.DataBind();
-                lblError.Text = Request.QueryString["error"];
             }
         }
         
@@ -176,10 +192,20 @@ namespace UI
                 lblError.Text = "something went wrong! in particulate: " + exeption.Message;
             }
         }
+        /// <summary>
+        /// Shows the orders ordered. Not tested, so probably doesnt work. If I had to guss it has something to
+        /// do with the fact that the datasource is summoned after pageload but who knows if thats okey.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnPastOrPresent_Click(object sender, EventArgs e)
+        {
+            gvOrdersOrdered.Visible = true;
+            Sales.Visible = false;
+            List<OrderOrdered> allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+            gvOrdersOrdered.DataSource = allOrdersOrdered;
+            gvOrdersOrdered.DataBind();
 
-        //protected void btnPastOrPresent_Click(object sender, EventArgs e)
-        //{
-
-        //}
+        }
     }
 }

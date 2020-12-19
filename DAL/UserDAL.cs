@@ -50,6 +50,16 @@ namespace DAL
             if (newID == DBHelper.WRITEDATA_ERROR) throw new Exception();
             return newID;
         }
-        
+        public static DataRow FindUserByID(int userID)
+        {
+            string sql = $"SELECT * FROM Users WHERE UserID = {userID}";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null || dt.Rows.Count != 1)
+            {
+                return null;
+            }
+            return dt.Rows[0];
+        }
     }
 }
