@@ -12,6 +12,8 @@ namespace UI
         public Sale saleToUpdate = null;
 
         private List<OrderOrdered> allOrdersOrdered = null;
+
+        private int ddlOliveID = 0;
         /// <summary>
         /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
         /// aka olives available for new sales.
@@ -82,14 +84,17 @@ namespace UI
                 //Add the olive type of the sale that needs updating to the olive types.
                 //Places the olive at the start of the dropdown to make it the defult value.
                 allListItems.Insert(0,new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
-                //Bind the olive type dropdown list.
-                if (ddlUpdateOliveTypes.DataSource == null) //Problem - This is null even in the case of trying                                                                 //to update, making it imposible to update the olive type.                
+                if (txtUpdatePrice.Text != "" && txtUpdateWeight.Text != "" && txtUpdateStock.Text != "")
                 {
-                    ddlUpdateOliveTypes.DataSource = allListItems;
-                    ddlUpdateOliveTypes.DataValueField = "Value";
-                    ddlUpdateOliveTypes.DataTextField = "Text";
-                    ddlUpdateOliveTypes.DataBind();
+                    ddlOliveID = int.Parse(ddlUpdateOliveTypes.SelectedValue);
+                    int indexToRemove = ddlUpdateOliveTypes.SelectedIndex;
+                    allListItems.RemoveAt(indexToRemove);
                 }
+                ddlUpdateOliveTypes.DataSource = allListItems;
+                ddlUpdateOliveTypes.DataValueField = "Value";
+                ddlUpdateOliveTypes.DataTextField = "Text";
+                ddlUpdateOliveTypes.DataBind();
+                
                 //Make the defult values the previus values, unless an update has accured.
                 if (txtUpdateWeight.Text == "")
                 txtUpdateWeight.Text = saleToUpdate.SaleWeight.ToString();
@@ -102,27 +107,27 @@ namespace UI
             }
             else 
             {
-                if (!Page.IsPostBack)
-                {
                     List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales);
+                    if (txtPrice.Text != "" && txtWeight.Text != "" && txtStock.Text != "")
+                    {
+                        ddlOliveID = int.Parse(ddlOliveTypes.SelectedValue);
+                        int indexToRemove = ddlOliveTypes.SelectedIndex;
+                        allListItems.RemoveAt(indexToRemove);
+                    }
                     ddlOliveTypes.DataSource = allListItems;
                     ddlOliveTypes.DataValueField = "Value";
                     ddlOliveTypes.DataTextField = "Text";
                     ddlOliveTypes.DataBind();
                     lblError.Text = Request.QueryString["error"];
-                }
-                //else 
-                //{
-
-                //}
                 pnlAddOrder.Visible = true;
                 pnlUpdateOrder.Visible = false;
+               
             }
         }
         
         protected void btnNewSale_Click(object sender, EventArgs e)
         {
-            Sale newSale =  ((User)Session["User"]).NewSale(int.Parse(ddlOliveTypes.SelectedValue), ddlOliveTypes.Text, 
+            Sale newSale =  ((User)Session["User"]).NewSale(ddlOliveID, ddlOliveTypes.Text, 
                 double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text), DateTime.UtcNow);
             if (newSale == null) Response.Redirect("FarmerOrders.aspx?error=Something went wrong...");
             else Response.Redirect("FarmerOrders.aspx?error=Success!");
@@ -132,7 +137,6 @@ namespace UI
         {
             try
             {
-                
                 int index = int.Parse(e.CommandArgument.ToString());
                 List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
                 Sale chosenSale = allFarmerSales[index];
