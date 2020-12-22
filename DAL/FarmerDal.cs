@@ -64,5 +64,11 @@ namespace DAL
             DataTable dt = db.GetDataTable(sql);
             return dt;
         }
+        public static int ConfirmOrderSent (int orderID)
+        {
+            string sql = $"UPDATE OrdersOrdered SET DateOrderSent = {DateTime.Now} WHERE OrderID = {orderID}";
+            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            return db.WriteData(sql);
+        }
     }
 }

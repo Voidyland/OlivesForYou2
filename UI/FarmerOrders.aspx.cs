@@ -53,16 +53,17 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
-            if (allFarmerSales != null)
-            {
-                BindSales(allFarmerSales);
-            }
-            else
-            {
-                Sales.Visible = false;
-                noSale.Visible = true;
-            }
+          
+                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
+                if (allFarmerSales != null)
+                {
+                    BindSales(allFarmerSales);
+                }
+                else
+                {
+                    Sales.Visible = false;
+                    noSale.Visible = true;
+                }
             
             int saleID = -1;
             if (int.TryParse(Request.QueryString["SI"], out saleID)) 
@@ -107,22 +108,31 @@ namespace UI
             }
             else 
             {
-                    List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales);
-                    if (txtPrice.Text != "" && txtWeight.Text != "" && txtStock.Text != "")
-                    {
-                        ddlOliveID = int.Parse(ddlOliveTypes.SelectedValue);
-                        int indexToRemove = ddlOliveTypes.SelectedIndex;
-                        allListItems.RemoveAt(indexToRemove);
-                    }
-                    ddlOliveTypes.DataSource = allListItems;
-                    ddlOliveTypes.DataValueField = "Value";
-                    ddlOliveTypes.DataTextField = "Text";
-                    ddlOliveTypes.DataBind();
-                    lblError.Text = Request.QueryString["error"];
+                List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales);
+                if (txtPrice.Text != "" && txtWeight.Text != "" && txtStock.Text != "") 
+                {
+                    ddlOliveID = int.Parse(ddlOliveTypes.SelectedValue);
+                    int indexToRemove = ddlOliveTypes.SelectedIndex;
+                    allListItems.RemoveAt(indexToRemove);
+                }
+                ddlOliveTypes.DataSource = allListItems;
+                ddlOliveTypes.DataValueField = "Value";
+                ddlOliveTypes.DataTextField = "Text";
+                ddlOliveTypes.DataBind();
+                lblError.Text = Request.QueryString["error"];
                 pnlAddOrder.Visible = true;
                 pnlUpdateOrder.Visible = false;
-               
+                if (gvOrdersOrdered.Visible) 
+                {
+                    Sales.Visible = false;
+                    noSale.Visible = false; //Error messege only relevent when trying to present the sales gridview.
+                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    gvOrdersOrdered.DataBind();
+                }
+                
             }
+            
         }
         
         protected void btnNewSale_Click(object sender, EventArgs e)
@@ -206,7 +216,7 @@ namespace UI
         /// <param name="e"></param>
         protected void btnPastOrPresent_Click(object sender, EventArgs e)
         {
-            if (Sales.Visible == true)
+            if (Sales.Visible)
             {
                 gvOrdersOrdered.Visible = true;
                 Sales.Visible = false;
@@ -251,10 +261,15 @@ namespace UI
             gvOrdersOrdered.DataSource = allOrdersOrdered;
             gvOrdersOrdered.DataBind();
         }
-
+        /// <summary>
+        /// Unfinished
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvOrdersOrdered_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-
+            OrderOrdered orderOrdered= (OrderOrdered)gvOrdersOrdered.SelectedRow.DataItem;
+            
         }
 
         protected void btnReorder_Click(object sender, EventArgs e)
