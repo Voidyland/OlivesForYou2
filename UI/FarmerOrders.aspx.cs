@@ -262,14 +262,18 @@ namespace UI
             gvOrdersOrdered.DataBind();
         }
         /// <summary>
-        /// Unfinished
+        /// Not working
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void gvOrdersOrdered_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            OrderOrdered orderOrdered= (OrderOrdered)gvOrdersOrdered.SelectedRow.DataItem;
-            
+            //int rowNum = gvOrdersOrdered.SelectedRow.RowIndex;
+            //int index = rowNum + gvOrdersOrdered.PageSize * gvOrdersOrdered.PageIndex;
+            //List<OrderOrdered> dataSource = (List<OrderOrdered>)gvOrdersOrdered.DataSource;
+            //OrderOrdered orderOrdered= dataSource[index];
+            //if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
+            //else ConfirmSentError.Visible = false;
         }
 
         protected void btnReorder_Click(object sender, EventArgs e)

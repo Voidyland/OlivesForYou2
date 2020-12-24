@@ -32,6 +32,8 @@
         </Columns>
     </asp:GridView>
     <br />
+    <asp:Label ID="ConfirmSentError" runat="server" Text="An error has accoured" Visible = "false"></asp:Label>
+    <br />
     <asp:Panel ID="pnlOrderMethod" runat="server" Visible="false">
        <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to order by a company's name, 
           enter it then press the button bellow."></asp:Label>

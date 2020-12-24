@@ -165,6 +165,10 @@ namespace BL
                 dateOrderArrived = value;
             }
         }
-        
+        public bool ConfirmOrder ()
+        {
+            if (DAL.FarmerDal.ConfirmOrderSent(this.orderID) != DAL.DALHelper.WRITEDATA_ERROR) return true;
+            return false;
+        } 
     }
 }
