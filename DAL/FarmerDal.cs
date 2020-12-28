@@ -54,7 +54,7 @@ namespace DAL
             string sql = $"UPDATE Sales SET OliveID ={newOliveID}, SaleWeight = {newWeight}, SalePrice = {newPrice}," +
                 $" InStock = {newInStock} WHERE SaleID = {saleID}";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
-            if (db.WriteData(sql) == -1) return -1;
+            if (db.WriteData(sql) == DALHelper.WRITEDATA_ERROR) return DALHelper.WRITEDATA_ERROR;
             return saleID;
         }
         public static DataTable OrderedFromFarmer (int farmerID)
@@ -66,7 +66,7 @@ namespace DAL
         }
         public static int ConfirmOrderSent (int orderID)
         {
-            string sql = $"UPDATE OrdersOrdered SET DateOrderSent = {DateTime.Now} WHERE OrderID = {orderID}";
+            string sql = $"UPDATE OrdersOrdered SET DateOrderSent = #{DateTime.Now}# WHERE OrderID = {orderID}";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             return db.WriteData(sql);
         }

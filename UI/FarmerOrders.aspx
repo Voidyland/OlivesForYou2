@@ -18,7 +18,7 @@
     <br />
     <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound"
          AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging"
-        OnRowCommand="gvOrdersOrdered_RowCommand" AutoGenerateColumns="false">
+        OnRowCommand="gvOrdersOrdered_RowCommand" AutoGenerateColumns="false" EnableViewState="true">
         <Columns>
             <asp:BoundField DataField="CompanyName" HeaderText="buyer" /> 
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
@@ -46,10 +46,26 @@
        <br />
         <asp:Label ID="lblNameNotFound" runat="server" Visible="false" Text="I'm afraid no such company exist's. Are you sure you entered the right username? remember, capital letters and spaces matter."></asp:Label>
         <br />
+        <asp:Label ID="lblOrderByDateOrdered" runat="server" Text="Would you like to order by when the order was ordered?"></asp:Label>
+        <br />
+        <asp:Button ID="btnOrderByDateOrdered" runat="server" Text="Order by when ordered" CommandArgument="whenOrdered" />
+        <br />
         <asp:Label ID="lblOrderByUnhandled" runat="server" Text="Would you like to order by orders that were not sent yet?"></asp:Label>
         <br />
         <asp:Button ID="btnOrderByUnhandled" runat="server" Text="Order by not sent." OnClick="btnReorder_Click"
             CommandArgument="handled" />
+        <br />
+        <asp:Label ID="lblOrderByDateRecived" runat="server" Text="Would you like to order by when the order was recived?"></asp:Label>
+        <br />
+        <asp:Button ID="btnOrderByDateRecived" runat="server" Text="Order by when recived" CommandArgument="whenRecived" />
+        <br />
+        <asp:Label ID="lblOrderOfOrdering" runat="server" Text="Choose if you want to order by the oldest or the closest 
+            (only relevent to the previous three storting methods"></asp:Label>
+        <br />
+        <asp:RadioButtonList ID="rblOrderOfOrdering" runat="server">
+            <asp:ListItem>Oldest to closest</asp:ListItem>
+            <asp:ListItem>Closest to oldest</asp:ListItem>
+        </asp:RadioButtonList>
     </asp:Panel>
     <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
     <br />

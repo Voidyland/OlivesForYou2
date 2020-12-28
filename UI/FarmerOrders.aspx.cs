@@ -14,6 +14,8 @@ namespace UI
         private List<OrderOrdered> allOrdersOrdered = null;
 
         private int ddlOliveID = 0;
+
+        
         /// <summary>
         /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
         /// aka olives available for new sales.
@@ -247,11 +249,11 @@ namespace UI
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
                     e.Row.Cells[6].Text = "The order has not arrived yet";
-                    e.Row.Cells[7].Text = "Click me if the order was not acctualy sent because of a mistake";
+                    e.Row.Cells[7].Text = "Order sent succesfully!";
                 }
                 else
                 {
-                    e.Row.Cells[7].Text = "";
+                    e.Row.Cells[7].Text = "Order sent succesfully!";
                 }
             }
         }
@@ -268,17 +270,24 @@ namespace UI
         /// <param name="e"></param>
         protected void gvOrdersOrdered_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //int rowNum = gvOrdersOrdered.SelectedRow.RowIndex;
-            //int index = rowNum + gvOrdersOrdered.PageSize * gvOrdersOrdered.PageIndex;
-            //List<OrderOrdered> dataSource = (List<OrderOrdered>)gvOrdersOrdered.DataSource;
-            //OrderOrdered orderOrdered= dataSource[index];
-            //if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
-            //else ConfirmSentError.Visible = false;
+            int rowNum = int.Parse(e.CommandArgument.ToString());
+            int index = rowNum + gvOrdersOrdered.PageSize * gvOrdersOrdered.PageIndex;
+            List<OrderOrdered> dataSource = allOrdersOrdered;
+            OrderOrdered orderOrdered = dataSource[index];
+            if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
+            else 
+            {
+                ConfirmSentError.Visible = false;
+                allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                gvOrdersOrdered.DataSource = allOrdersOrdered;
+                gvOrdersOrdered.DataBind();
+            }
         }
 
         protected void btnReorder_Click(object sender, EventArgs e)
         {
-            if (((Button)sender).CommandArgument == btnOrderByName.CommandArgument)
+            string commandArgument = ((Button)sender).CommandArgument;
+            if (commandArgument == btnOrderByName.CommandArgument)
             {
                 List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
                 List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
@@ -305,10 +314,42 @@ namespace UI
             }
             else
             {
-                allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderSent).ToList();
+                if (commandArgument == btnOrderByUnhandled.CommandArgument)
+                {
+                    if (rblOrderOfOrdering.SelectedIndex == 0)
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderSent).ToList();
+                    }
+                    else
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderSent).ToList();
+                    }
+                }
+                else if (commandArgument == btnOrderByDateOrdered.CommandArgument)
+                {
+                    if (rblOrderOfOrdering.SelectedIndex == 0)
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderOrdered).ToList();
+                    }
+                    else
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderOrdered).ToList();
+                    }
+                }
+                else if (commandArgument == btnOrderByDateRecived.CommandArgument)
+                {
+                    if (rblOrderOfOrdering.SelectedIndex == 0)
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderArrived).ToList();
+                    }
+                    else
+                    {
+                        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderArrived).ToList();
+                    }
+                }
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
-            }
+            }            
         }
     }
 }
