@@ -34,12 +34,12 @@ namespace DAL
         /// <summary>
         /// A method which registers a new user and enters it's details to the database.  
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="pass"></param>
-        /// <param name="email"></param>
-        /// <param name="userType"></param>
-        /// <param name="country"></param>
-        /// <param name="phoneNumber"></param>
+        /// <param name="userName">The user's alliasis aka user name</param>
+        /// <param name="pass">The user's password</param>
+        /// <param name="email">The user's email adress</param>
+        /// <param name="userType">The users type: 1 - manager, 2 - farmer, 3 - company</param>
+        /// <param name="countryNumber">The ID of the country the user is from</param>
+        /// <param name="phoneNumber">The user's phone number</param>
         /// <returns>Returns the new ID if the user was created. If the method fails throws an exeption.</returns>
         public static int Register (string userName, string pass, string email, int userType, int countryNumber, string phoneNumber)
         {
@@ -50,6 +50,11 @@ namespace DAL
             if (newID == DBHelper.WRITEDATA_ERROR) throw new Exception();
             return newID;
         }
+        /// <summary>
+        /// Finds and returns a user, using his userID to search.
+        /// </summary>
+        /// <param name="userID">The ID of the user being seached</param>
+        /// <returns>The user if he exists, null if there was an error\he does not exist</returns>
         public static DataRow FindUserByID(int userID)
         {
             string sql = $"SELECT * FROM Users WHERE UserID = {userID}";
