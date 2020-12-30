@@ -86,6 +86,8 @@ namespace UI
                 }
                 //Make the update panle visible and the order panel invisible.
                 pnlAddOrder.Visible = false;
+                lblAddSale.Visible = true;
+                btnAddSalePanel.Visible = true;
                 pnlUpdateOrder.Visible = true;
                 //Add the olive type of the sale that needs updating to the olive types.
                 //Places the olive at the start of the dropdown to make it the defult value.
@@ -124,12 +126,16 @@ namespace UI
                 ddlOliveTypes.DataValueField = "Value";
                 ddlOliveTypes.DataTextField = "Text";
                 ddlOliveTypes.DataBind();
-                lblError.Text = Request.QueryString["error"];
-                pnlAddOrder.Visible = true;
+                lblError.Text = Request.QueryString["error"];                
                 pnlUpdateOrder.Visible = false;
                 if (gvOrdersOrdered.Visible) 
                 {
+                    lblViewOrdersOrdered.Visible = false;
+                    btnViewOrdersOrdered.Visible = false;                    
                     lblOrdersOrdered.Visible = true;
+                    pnlAddOrder.Visible = false;
+                    lblAddSale.Visible = true;
+                    btnAddSalePanel.Visible = true;
                     lblSales.Visible = false;
                     Sales.Visible = false;
                     noSale.Visible = false; //Error messege only relevent when trying to present the sales gridview.
@@ -231,13 +237,37 @@ namespace UI
         /// <param name="e"></param>
         protected void btnPastOrPresent_Click(object sender, EventArgs e)
         {
-            if (Sales.Visible)
+            string commandArgument = ((Button)sender).CommandArgument;
+            if (commandArgument == btnAddSalePanel.CommandArgument)
+            {
+                lblOrdersOrdered.Visible = false;
+                gvOrdersOrdered.Visible = false;
+                allOrdersByBuyer = null;
+                lblSales.Visible = false;
+                Sales.Visible = false;
+                pnlOrderMethod.Visible = false;
+                pnlAddOrder.Visible = true;
+                lblAddSale.Visible = false;
+                btnAddSalePanel.Visible = false;
+                lblViewSales.Visible = true;
+                btnViewSales.Visible = true;
+                lblViewOrdersOrdered.Visible = true;
+                btnViewOrdersOrdered.Visible = true;
+            }
+            else if (commandArgument == btnViewOrdersOrdered.CommandArgument)
             {
                 lblOrdersOrdered.Visible = true;
                 gvOrdersOrdered.Visible = true;
                 lblSales.Visible = false;
                 Sales.Visible = false;
-                pnlOrderMethod.Visible = true;                
+                pnlOrderMethod.Visible = true;
+                pnlAddOrder.Visible = false;
+                lblAddSale.Visible = true;
+                btnAddSalePanel.Visible = true;
+                lblViewSales.Visible = true;
+                btnViewSales.Visible = true;
+                lblViewOrdersOrdered.Visible = false;
+                btnViewOrdersOrdered.Visible = false;
                 allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
@@ -250,6 +280,13 @@ namespace UI
                 lblSales.Visible = true;
                 Sales.Visible = true;
                 pnlOrderMethod.Visible = false;
+                pnlAddOrder.Visible = false;
+                lblAddSale.Visible = true;
+                btnAddSalePanel.Visible = true;
+                lblViewSales.Visible = false;
+                btnViewSales.Visible = false;
+                lblViewOrdersOrdered.Visible = true;
+                btnViewOrdersOrdered.Visible = true;
                 BindSales(((User)Session["User"]).AllSales(false));
             }
         }

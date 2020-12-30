@@ -25,7 +25,7 @@ namespace DAL
             try
             {
                 string sql = $"INSERT INTO Sales (FarmerID, OliveID,  SaleWeight, SalePrice, InStock, DateSaleAdded)" +
-                    $" VALUES ({farmerID}, {oliveID}, {saleWeight}, {salePrice}, {inStock}, {DateSaleAdded.ToOADate()});";
+                    $" VALUES ({farmerID}, {oliveID}, {saleWeight}, {salePrice}, {inStock}, {DateSaleAdded});";
                 DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
                 int id = db.InsertWithAutoNumKey(sql);
                 return id;
@@ -97,7 +97,7 @@ namespace DAL
         /// <returns>-1 if it failed, the orders ID otherwise</returns>
         public static int ConfirmOrderSent (int orderID)
         {
-            string sql = $"UPDATE OrdersOrdered SET DateOrderSent = #{DateTime.Now.ToOADate()}# WHERE OrderID = {orderID}";
+            string sql = $"UPDATE OrdersOrdered SET DateOrderSent = #{DateTime.Now}# WHERE OrderID = {orderID}";
             DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
             if (db.WriteData(sql) == DALHelper.WRITEDATA_ERROR) return DALHelper.WRITEDATA_ERROR;
             return orderID;

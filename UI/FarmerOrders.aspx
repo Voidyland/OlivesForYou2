@@ -41,9 +41,11 @@
        <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to view a buyer, 
           enter their name then press the button bellow."></asp:Label>
        <br />
-       <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>
+       <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>      
        <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
        <br />
+        <asp:Label ID="lblOrderByNameSuccess" runat="server" Text="To view all orders once again, simply choose one of the other ordering methods"></asp:Label>
+        <br />
        <asp:Button ID="btnOrderByName" runat="server" Text="Button" ValidationGroup="vldOrderByName" 
            OnClick="btnReorder_Click" CommandArgument="name" />
        <br />
@@ -58,24 +60,20 @@
         <asp:Button ID="btnOrderByUnhandled" runat="server" Text="Order by not sent." OnClick="btnReorder_Click"
             CommandArgument="handled" />
         <br />
-        <asp:Label ID="lblOrderByDateRecived" runat="server" Text="Would you like to order by when the order was recived?"></asp:Label>
+        <asp:Label ID="lblOrderByDateRecived" runat="server" Text="Would you like to order by orders that were not recived yet?"></asp:Label>
         <br />
-        <asp:Button ID="btnOrderByDateRecived" runat="server" Text="Order by when recived" CommandArgument="whenRecived" />
+        <asp:Button ID="btnOrderByDateRecived" runat="server" Text="Order by not recived" CommandArgument="whenRecived" />
         <br />
-        <asp:Label ID="lblOrderOfOrdering" runat="server" Text="Choose if you want to order by the oldest or the closest 
-            (only relevent to the previous three storting methods"></asp:Label>
+        <asp:Label ID="lblOrderOfOrdering" runat="server" Text="Choose the ordering of first to last 
+            (only relevent to the previous three storting methods)"></asp:Label>
         <br />
         <asp:RadioButtonList ID="rblOrderOfOrdering" runat="server">
-            <asp:ListItem>Oldest to closest</asp:ListItem>
-            <asp:ListItem>Closest to oldest</asp:ListItem>
+            <asp:ListItem Selected="True">Unhandled first, then oldest to youngest</asp:ListItem>
+            <asp:ListItem>Youngest to oldest first, then unhandled</asp:ListItem>
         </asp:RadioButtonList>
     </asp:Panel>
-    <asp:Label ID="lblPastOrPresent" runat="server" Text="Would you like to view all orders being ordered/completed?"></asp:Label>
-    <br />
-    <asp:Button ID="btnPastOrPresent" runat="server" Text="Watch sales bought" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
-    <br />
     <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
-    <asp:Panel ID="pnlAddOrder" runat="server" Visible="true">   
+    <asp:Panel ID="pnlAddOrder" runat="server" Visible="false" EnableViewState="true">   
     <br />
     <asp:Label ID="lblOliveName" runat="server" Text="Choose the olives type"></asp:Label>
     <br />
@@ -130,6 +128,18 @@
     <asp:Button ID="btnUpdateSale" runat="server" ValidationGroup="vldUpdateSale" Text="Update the sale" OnClick="btnUpdateSale_Click"/>
     <br />
     </asp:Panel>
+     <br />
+    <asp:Label ID="lblViewSales" runat="server" Text="Would you like to view your sales?" Visible="false"></asp:Label>
+    <br />
+    <asp:Button ID="btnViewSales" runat="server" Text="Watch sales" OnClick="btnPastOrPresent_Click" CommandArgument="viewSales" Visible="false"/>
+    <br />
+    <asp:Label ID="lblViewOrdersOrdered" runat="server" Text="Would you like to view all orders ordered?"></asp:Label>
+    <br />
+    <asp:Button ID="btnViewOrdersOrdered" runat="server" Text="Watch orders ordered" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
+    <br />    
+    <asp:Label ID="lblAddSale" runat="server" Text="Would you like to add a new sale?"></asp:Label>
+    <br />
+    <asp:Button ID="btnAddSalePanel" runat="server" Text="Create a new sale" OnClick="btnPastOrPresent_Click" CommandArgument="newSale" />
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
 </asp:Content>
  

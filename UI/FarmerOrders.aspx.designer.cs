@@ -105,6 +105,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredOrderByName;
 
         /// <summary>
+        /// lblOrderByNameSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderByNameSuccess;
+
+        /// <summary>
         /// btnOrderByName control.
         /// </summary>
         /// <remarks>
@@ -193,24 +202,6 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblOrderOfOrdering;
-
-        /// <summary>
-        /// lblPastOrPresent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPastOrPresent;
-
-        /// <summary>
-        /// btnPastOrPresent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPastOrPresent;
 
         /// <summary>
         /// increaseOrDelete control.
@@ -517,6 +508,60 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateSale;
+
+        /// <summary>
+        /// lblViewSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblViewSales;
+
+        /// <summary>
+        /// btnViewSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewSales;
+
+        /// <summary>
+        /// lblViewOrdersOrdered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblViewOrdersOrdered;
+
+        /// <summary>
+        /// btnViewOrdersOrdered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnViewOrdersOrdered;
+
+        /// <summary>
+        /// lblAddSale control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddSale;
+
+        /// <summary>
+        /// btnAddSalePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddSalePanel;
 
         /// <summary>
         /// lblError control.
