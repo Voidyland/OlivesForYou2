@@ -13,6 +13,8 @@ namespace UI
 
         private List<OrderOrdered> allOrdersOrdered = null;
 
+        private List<OrderOrdered> allOrdersByBuyer = null;
+        
         private int ddlOliveID = 0;
 
         
@@ -63,6 +65,7 @@ namespace UI
                 }
                 else
                 {
+                    lblSales.Visible = false;
                     Sales.Visible = false;
                     noSale.Visible = true;
                 }
@@ -126,10 +129,19 @@ namespace UI
                 pnlUpdateOrder.Visible = false;
                 if (gvOrdersOrdered.Visible) 
                 {
+                    lblOrdersOrdered.Visible = true;
+                    lblSales.Visible = false;
                     Sales.Visible = false;
                     noSale.Visible = false; //Error messege only relevent when trying to present the sales gridview.
-                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
-                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    if (allOrdersByBuyer == null)
+                    {
+                        allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                        gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    }
+                    else
+                    {
+                        gvOrdersOrdered.DataSource = allOrdersByBuyer;
+                    }
                     gvOrdersOrdered.DataBind();
                 }
                 
@@ -188,6 +200,7 @@ namespace UI
             Sales.DataSource = allFarmerSales;
             Sales.AutoGenerateColumns = false;
             Sales.DataBind();
+            lblSales.Visible = true;
             Sales.Visible = true;
             noSale.Visible = false;
         }
@@ -220,16 +233,21 @@ namespace UI
         {
             if (Sales.Visible)
             {
+                lblOrdersOrdered.Visible = true;
                 gvOrdersOrdered.Visible = true;
+                lblSales.Visible = false;
                 Sales.Visible = false;
-                pnlOrderMethod.Visible = true;
+                pnlOrderMethod.Visible = true;                
                 allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
             }
             else
             {
+                lblOrdersOrdered.Visible = false;
                 gvOrdersOrdered.Visible = false;
+                allOrdersByBuyer = null;
+                lblSales.Visible = true;
                 Sales.Visible = true;
                 pnlOrderMethod.Visible = false;
                 BindSales(((User)Session["User"]).AllSales(false));
@@ -243,12 +261,12 @@ namespace UI
                 OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
                 if (orderOrdered.DateOrderSent == DateTime.MinValue)
                 {
-                    e.Row.Cells[5].Text = "The order was not handled yet.";
-                    e.Row.Cells[6].Text = "The order has not arrived either, seeing how it was not sent yet.";
+                    e.Row.Cells[5].Text = "Not sent.";
+                    e.Row.Cells[6].Text = "Not sent or arrived.";
                 }
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
-                    e.Row.Cells[6].Text = "The order has not arrived yet";
+                    e.Row.Cells[6].Text = "Not arrived.";
                     e.Row.Cells[7].Text = "Order sent succesfully!";
                 }
                 else
@@ -260,7 +278,10 @@ namespace UI
         protected void gvOrdersOrdered_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvOrdersOrdered.PageIndex = e.NewPageIndex;
-            gvOrdersOrdered.DataSource = allOrdersOrdered;
+            if (allOrdersByBuyer == null)
+                gvOrdersOrdered.DataSource = allOrdersOrdered;
+            else
+                gvOrdersOrdered.DataSource = allOrdersByBuyer;
             gvOrdersOrdered.DataBind();
         }
         /// <summary>
@@ -272,14 +293,25 @@ namespace UI
         {
             int rowNum = int.Parse(e.CommandArgument.ToString());
             int index = rowNum + gvOrdersOrdered.PageSize * gvOrdersOrdered.PageIndex;
-            List<OrderOrdered> dataSource = allOrdersOrdered;
+            List<OrderOrdered> dataSource = null;
+            if (allOrdersByBuyer == null)
+                dataSource = allOrdersOrdered;
+            else
+                dataSource = allOrdersByBuyer;
             OrderOrdered orderOrdered = dataSource[index];
             if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
             else 
             {
                 ConfirmSentError.Visible = false;
-                allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
-                gvOrdersOrdered.DataSource = allOrdersOrdered;
+                if (allOrdersByBuyer == null)
+                {
+                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                }
+                else
+                {
+                    gvOrdersOrdered.DataSource = allOrdersByBuyer;
+                }
                 gvOrdersOrdered.DataBind();
             }
         }
@@ -290,24 +322,24 @@ namespace UI
             if (commandArgument == btnOrderByName.CommandArgument)
             {
                 List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
-                List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
+                //List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
                 foreach (OrderOrdered orderOrdered in allOrdersOrdered)
                 {
                     if (orderOrdered.CompanyName == txtOrderByName.Text) orderedByCompanyX.Add(orderOrdered);
-                    else notOrderedByCompanyX.Add(orderOrdered);
+                    //else notOrderedByCompanyX.Add(orderOrdered);
                 }
                 if (orderedByCompanyX.Count == 0)
                     lblNameNotFound.Visible = true;
                 else
                 {
                     orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                    notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                    foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
-                    {
-                        orderedByCompanyX.Add(orderOrdered);
-                    }
-                    allOrdersOrdered = orderedByCompanyX;
-                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    //notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+                    //foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
+                    //{
+                    //    orderedByCompanyX.Add(orderOrdered);
+                    //}
+                    allOrdersByBuyer = orderedByCompanyX;
+                    gvOrdersOrdered.DataSource = allOrdersByBuyer;
                     gvOrdersOrdered.DataBind();
                     lblNameNotFound.Visible = false;
                 }
@@ -347,6 +379,7 @@ namespace UI
                         allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderArrived).ToList();
                     }
                 }
+                allOrdersByBuyer = null;
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
             }            

@@ -40,6 +40,16 @@ namespace BL
             User user = new User(dr);
             return user;
         }
+        /// <summary>
+        /// A method that registers a new user and returns the new user.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pass"></param>
+        /// <param name="email"></param>
+        /// <param name="userType"></param>
+        /// <param name="country"></param>
+        /// <param name="phoneNumber"></param>
+        /// <returns></returns>
         public static User Register (string userName, string pass, string email, int userType, string country, string phoneNumber)
         {
             int countryNumber = ConvertCountryToInt(country);

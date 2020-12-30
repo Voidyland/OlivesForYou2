@@ -3,6 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="noSale" runat="server" Text="It seems you dont have any orders. You can add one just below!"></asp:Label>
+    <asp:Label ID="lblSales" runat="server" Text="Here is a table of all the sales you are offering!"></asp:Label>
+    <br />
     <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand"
          OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" Visible="true" >
         <Columns>
@@ -15,6 +17,7 @@
             <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
+    <asp:Label ID="lblOrdersOrdered" runat="server" Text="Here is a table of all orders ordered from you!" Visible="false"></asp:Label>
     <br />
     <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound"
          AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging"
@@ -25,8 +28,8 @@
             <asp:BoundField DataField="OrderWeight" HeaderText="total weight" />
             <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
             <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
-            <asp:BoundField DataField="DateOrderSent" HeaderText="date you sent the shipment" />
-            <asp:BoundField DataField="DateOrderArrived" HeaderText="date shipment was recived by company" />
+            <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
+            <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />
             <asp:ButtonField ButtonType="Button" Text="Press me to confirm the order was sent" 
                 HeaderText="confrim or unconfirm the sending of an order" />
         </Columns>
@@ -35,8 +38,8 @@
     <asp:Label ID="ConfirmSentError" runat="server" Text="An error has accoured" Visible = "false"></asp:Label>
     <br />
     <asp:Panel ID="pnlOrderMethod" runat="server" Visible="false">
-       <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to order by a company's name, 
-          enter it then press the button bellow."></asp:Label>
+       <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to view a buyer, 
+          enter their name then press the button bellow."></asp:Label>
        <br />
        <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>
        <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>

@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label noSale;
 
         /// <summary>
+        /// lblSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSales;
+
+        /// <summary>
         /// Sales control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView Sales;
+
+        /// <summary>
+        /// lblOrdersOrdered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrdersOrdered;
 
         /// <summary>
         /// gvOrdersOrdered control.
