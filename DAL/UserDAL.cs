@@ -23,7 +23,7 @@ namespace DAL
         public static DataRow Login(string email, string pass)
         {
             string sql = $"SELECT * FROM Users WHERE Email = '{email}' AND Pass = '{pass}';";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             if (dt == null || dt.Rows.Count != 1)
             {
@@ -45,7 +45,7 @@ namespace DAL
         {
             string sql = $"INSERT INTO Users (UserName, Pass, Email, UserType, CountryNumber, PhoneNumber) " +
                 $"VALUES ('{userName}', '{pass}', '{email}', {userType}, '{countryNumber}', '{phoneNumber}');";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             int newID = db.InsertWithAutoNumKey(sql);
             if (newID == DBHelper.WRITEDATA_ERROR) throw new Exception();
             return newID;
@@ -58,7 +58,7 @@ namespace DAL
         public static DataRow FindUserByID(int userID)
         {
             string sql = $"SELECT * FROM Users WHERE UserID = {userID}";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             if (dt == null || dt.Rows.Count != 1)
             {

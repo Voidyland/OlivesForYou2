@@ -20,7 +20,7 @@ namespace DAL
         public static DataTable  GetOliveTypes ()
         {
             string sql = "SELECT * FROM Olives;";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER,DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             return db.GetDataTable(sql);
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace DAL
         public static DataTable GetCountrys ()
         {
             string sql =  "SELECT * FROM Countrys;";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             return db.GetDataTable(sql);
         }
     }

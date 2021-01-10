@@ -25,7 +25,14 @@ namespace DAL
             this.provider = provider;
             this.source = source;
         }
-
+        /// <summary>
+        /// Construct the object with the base provider and source.
+        /// </summary>
+        public DBHelper()
+        {
+            this.provider = DALHelper.PROVIDER;
+            this.source = DALHelper.SOURCE;
+        }
         //Open connection to the database. return true if succeed.
         //if not succeed writes to the devug window information from the exception
         public bool OpenConnection()

@@ -26,7 +26,7 @@ namespace DAL
             {
                 string sql = $"INSERT INTO Sales (FarmerID, OliveID,  SaleWeight, SalePrice, InStock, DateSaleAdded)" +
                     $" VALUES ({farmerID}, {oliveID}, {saleWeight}, {salePrice}, {inStock}, {DateSaleAdded});";
-                DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+                DBHelper db = new DBHelper();
                 int id = db.InsertWithAutoNumKey(sql);
                 return id;
             }
@@ -43,7 +43,7 @@ namespace DAL
         public static DataTable AllSales (int farmerID)
         {
             string sql = $"SELECT * FROM Sales WHERE FarmerID = {farmerID};";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             DataTable allSales = db.GetDataTable(sql);
             if (allSales.Rows.Count != 0)
                 return allSales;
@@ -57,7 +57,7 @@ namespace DAL
         public static int DeleteSale (int saleID)
         {
             string sql = $"DELETE * FROM Sales WHERE SaleID = {saleID}";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             if (db.WriteData(sql) == DALHelper.WRITEDATA_ERROR) return DALHelper.WRITEDATA_ERROR;
             return saleID;
         }
@@ -74,7 +74,7 @@ namespace DAL
         {
             string sql = $"UPDATE Sales SET OliveID ={newOliveID}, SaleWeight = {newWeight}, SalePrice = {newPrice}," +
                 $" InStock = {newInStock} WHERE SaleID = {saleID}";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             if (db.WriteData(sql) == DALHelper.WRITEDATA_ERROR) return DALHelper.WRITEDATA_ERROR;
             return saleID;
         }
@@ -86,7 +86,7 @@ namespace DAL
         public static DataTable OrderedFromFarmer (int farmerID)
         {
             string sql = $"SELECT * FROM OrdersOrdered WHERE FarmerID = {farmerID}";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             return dt;
         }
@@ -98,7 +98,7 @@ namespace DAL
         public static int ConfirmOrderSent (int orderID)
         {
             string sql = $"UPDATE OrdersOrdered SET DateOrderSent = #{DateTime.Now}# WHERE OrderID = {orderID}";
-            DBHelper db = new DBHelper(DALHelper.PROVIDER, DALHelper.SOURCE);
+            DBHelper db = new DBHelper();
             if (db.WriteData(sql) == DALHelper.WRITEDATA_ERROR) return DALHelper.WRITEDATA_ERROR;
             return orderID;
         }

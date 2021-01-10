@@ -199,12 +199,37 @@ namespace BL
                                                                     //not sent yet have their DateOrderSent set to DateTime.MinValue.
             return sortedByNotSent;
         }
+        /// <summary>
+        /// Adds a new sale to the database.
+        /// </summary>
+        /// <param name="saleID"></param>
+        /// <param name="oliveName"></param>
+        /// <param name="saleWeight"></param>
+        /// <param name="salePrice"></param>
+        /// <param name="inStock"></param>
+        /// <param name="dateSaleAdded"></param>
+        /// <returns></returns>
         public Sale NewSale (int saleID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
             int orderID = DAL.FarmerDal.NewSale(this.userID ,saleID, saleWeight, salePrice, inStock, dateSaleAdded);
             if (orderID == DAL.DALHelper.WRITEDATA_ERROR) return null;
             return new Sale(this.UserID, orderID, saleID, oliveName, saleWeight, salePrice, inStock, dateSaleAdded);
         }
-        
+        /// <summary>
+        /// Finds and returns all available Sales (a sale is available if it has any items in stock).
+        /// </summary>
+        /// <returns></returns>
+        public List<Sale> allAvailableSales ()
+        {
+            DataTable dt = DAL.CompanyDAL.FindAllSales();
+            if (dt == null) return null;
+            List<Sale> sales = new List<Sale>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                if (int.Parse(dr["InStock"].ToString()) > 0) sales.Add(new Sale(dr)); 
+            }
+            if (sales.Count < 1) return null;
+            return sales;
+        }
     }
 }
