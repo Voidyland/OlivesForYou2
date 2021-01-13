@@ -28,10 +28,10 @@ namespace UI
 
                         break;
                     case 2:
-                        AddButton("View and create orders", "FarmerOrders.aspx");
+                        AddButton("View and create sales, view orders", "FarmerOrders.aspx");
                         break;
                     case 3:
-
+                        AddButton("View and order sales", "CompanyPage.aspx");
                         break;
                 }
             }

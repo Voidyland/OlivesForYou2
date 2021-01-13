@@ -11,6 +11,7 @@ namespace BL
     {
         private int saleID;
         private int farmerID;
+        private string farmerName;
         private int oliveID;
         private string oliveName;
         private double saleWeight;
@@ -21,6 +22,7 @@ namespace BL
         {
             this.saleID = saleID;
             this.farmerID = farmerID;
+            farmerName = "";
             this.oliveID = oliveID;
             this.oliveName = oliveName;
             this.saleWeight = saleWeight;
@@ -32,6 +34,7 @@ namespace BL
         {
             this.saleID = (int)dr["SaleID"];
             this.farmerID = (int)dr["FarmerID"];
+            farmerName = "";
             this.oliveID = (int)dr["OliveID"];
             this.oliveName = "";
             this.saleWeight = (double)dr["SaleWeight"];
@@ -59,6 +62,15 @@ namespace BL
             set
             {
                 farmerID = value;
+            }
+        }
+        public string FarmerName
+        {
+            get
+            {
+                if (farmerName != "") return farmerName;
+                farmerName = DAL.UserDAL.FindUserByID(this.farmerID)["UserName"].ToString();
+                return farmerName;
             }
         }
         public int OliveID
@@ -148,5 +160,14 @@ namespace BL
             this.inStock = inStock;
             return this.saleID;
         }
+        public override string ToString()
+        {
+            return $"Olive type: {this.OliveName}, sale weight: {this.saleWeight}kg, sale price: {this.salePrice}$, items in stock: {this.inStock}, date the sale was added: {this.dateSaleAdded}.";
+        }
     }
 }
+//private string oliveName;
+//private double saleWeight;
+//private double salePrice;
+//private int inStock;
+//private DateTime dateSaleAdded;

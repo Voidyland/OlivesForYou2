@@ -366,13 +366,13 @@ namespace UI
         protected global::System.Web.UI.WebControls.Panel pnlUpdateOrder;
 
         /// <summary>
-        /// lblOrderToUpdate control.
+        /// lblSaleToUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderToUpdate;
+        protected global::System.Web.UI.WebControls.Label lblSaleToUpdate;
 
         /// <summary>
         /// lblUpdateOliveName control.
@@ -508,6 +508,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateSale;
+
+        /// <summary>
+        /// lblReturnToSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReturnToSales;
 
         /// <summary>
         /// lblViewSales control.

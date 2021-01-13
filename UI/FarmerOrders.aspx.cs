@@ -73,6 +73,8 @@ namespace UI
             int saleID = -1;
             if (int.TryParse(Request.QueryString["SI"], out saleID)) 
             {
+                lblSales.Visible = false;
+                Sales.Visible = false;
                 List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales); //Gets all available olives
                 //Find the order that needs to be updated.
                 //saleToUpdate is null as a base.
@@ -91,6 +93,7 @@ namespace UI
                 pnlUpdateOrder.Visible = true;
                 //Add the olive type of the sale that needs updating to the olive types.
                 //Places the olive at the start of the dropdown to make it the defult value.
+                lblSaleToUpdate.Text = saleToUpdate.ToString();
                 allListItems.Insert(0,new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
                 if (txtUpdatePrice.Text != "" && txtUpdateWeight.Text != "" && txtUpdateStock.Text != "")
                 {
@@ -181,9 +184,7 @@ namespace UI
                     allFarmerSales.Remove(chosenSale);
                     chosenSale.DeleteThis();
                     BindSales(allFarmerSales);
-                    increaseOrDelete.Text = $"The following order has been deleted: Olive name = " +
-                        $"{chosenSale.OliveName}, sale weight = {chosenSale.SaleWeight}, sale price = " +
-                        $"{chosenSale.SalePrice}, stock at the time of deletion: {chosenSale.InStock}";
+                    increaseOrDelete.Text = $"The following order has been deleted: " + chosenSale.ToString();
                 } //Note to self: add pop-up that asks the user if he REALY wants to delete the sale.
             }
             catch (Exception exeption)

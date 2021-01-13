@@ -219,7 +219,7 @@ namespace BL
         /// Finds and returns all available Sales (a sale is available if it has any items in stock).
         /// </summary>
         /// <returns></returns>
-        public List<Sale> allAvailableSales ()
+        private List<Sale> AllAvailableSalesUnorginized ()
         {
             DataTable dt = DAL.CompanyDAL.FindAllSales();
             if (dt == null) return null;
@@ -230,6 +230,35 @@ namespace BL
             }
             if (sales.Count < 1) return null;
             return sales;
+        }
+        public List<Sale> AllAvailableSales ()
+        {
+            List<Sale> allAvailableSales = AllAvailableSalesUnorginized();
+            if (allAvailableSales == null) return null;
+            DataTable favorites = DAL.CompanyDAL.AllFavoriteFarmers(this.userID);
+            if (favorites == null) return allAvailableSales;
+            List<Sale> salesFromFavorites = new List<Sale>();
+            List<Sale> regularSales = new List<Sale>();
+            bool isFavSale = false;
+            allAvailableSales = allAvailableSales.OrderBy(o => o.FarmerID).ToList();
+            foreach (Sale sale in allAvailableSales)
+            {
+                foreach (DataRow dr in favorites.Rows)
+                {
+                    if (sale.FarmerID == int.Parse(dr["FarmerID"].ToString()))
+                    {
+                        salesFromFavorites.Add(sale);
+                        isFavSale = true;
+                        break;
+                    }
+                }
+                if (!isFavSale) 
+                {
+                    regularSales.Add(sale);
+                }
+                isFavSale = false;
+            }
+            return allAvailableSales;
         }
     }
 }
