@@ -18,6 +18,19 @@
             </Columns>
         </asp:GridView>
     </asp:Panel>
+    <asp:Panel ID="pnlPreviousOrders" runat="server">
+        <asp:GridView ID="gvPreviousOrders" runat="server" AutoGenerateColumns="false">
+            <Columns>
+                <asp:BoundField DataField="FarmerName" HeaderText="sellers name" />
+                <asp:BoundField DataField="OliveName" HeaderText="olive type" />
+                <asp:BoundField DataField="OrderWeight" HeaderText="total weight" />
+                <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
+                <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
+                <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
+                <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />                
+            </Columns>
+        </asp:GridView>
+    </asp:Panel>
     <asp:Panel ID="pnlOrderSale" runat="server" Visible="false">
         <asp:Label ID="lblSaleDetails" runat="server" Text=""></asp:Label>
         <br />

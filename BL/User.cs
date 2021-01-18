@@ -260,5 +260,16 @@ namespace BL
             }
             return allAvailableSales;
         }
+        public List<OrderOrdered> AllPreviousOrders ()
+        {
+            DataTable dt = DAL.CompanyDAL.AllPreviousOrders(this.userID);
+            if (dt == null) return null;
+            List<OrderOrdered> allPreviousOrders = new List<OrderOrdered>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                allPreviousOrders.Add(new OrderOrdered(dr));
+            }
+            return allPreviousOrders;
+        }
     }
 }

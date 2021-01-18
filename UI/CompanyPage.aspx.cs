@@ -88,7 +88,10 @@ namespace UI
             ddlStockBought.DataSource = stocks;
             ddlStockBought.DataBind();
         }
-
+        private void CreatePreviousOrders ()
+        {
+            List<OrderOrdered> previousOrders = new List<OrderOrdered>();
+        }
         protected void btnOrder_Click(object sender, EventArgs e)
         {
             if (true) //placeholder for thec credit card check

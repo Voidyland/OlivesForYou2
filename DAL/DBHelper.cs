@@ -166,7 +166,6 @@ namespace DAL
                 if (null == reader)
                     return null;
                 dataTable.Load(reader);
-
                 return dataTable;
             }
             catch (OleDbException e)

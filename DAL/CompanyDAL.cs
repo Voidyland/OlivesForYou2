@@ -47,5 +47,14 @@ namespace DAL
             if (newOrderID == DBHelper.WRITEDATA_ERROR || didStockChange != 1) return DBHelper.WRITEDATA_ERROR;
             return newOrderID;
         }
+        public static DataTable AllPreviousOrders (int companyID)
+        {
+            string sql = $"SELECT * FROM OrdersOrdered WHERE CompanyID = {companyID};";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null)  return null;
+            if (dt.Rows.Count < 1) return null;
+            return dt;
+        }
     }
 }
