@@ -36,5 +36,16 @@ namespace DAL
             if (dt.Rows.Count < 1) return null;
             return dt;
         }
+        public static int OrderSale (int saleID, int companyID,int farmerID, int oliveID, double weight, double price, int newStock)
+        {
+            string insertSQL = $"INSERT INTO OrdersOrdered (CompanyID, FarmerID, OliveID, Weight, Price, DateOrderOrdered)" +
+                $" VALUES {companyID}, {farmerID}, {oliveID}, {weight}, {price}, {DateTime.UtcNow};";
+            string changeStockSQL = $"UPDATE Sales SET InStock = {newStock} WHERE SaleID = {saleID};";
+            DBHelper db = new DBHelper();
+            int newOrderID = db.InsertWithAutoNumKey(insertSQL);
+            int didStockChange = db.WriteData(changeStockSQL);
+            if (newOrderID == DBHelper.WRITEDATA_ERROR || didStockChange != 1) return DBHelper.WRITEDATA_ERROR;
+            return newOrderID;
+        }
     }
 }

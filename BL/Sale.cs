@@ -164,10 +164,13 @@ namespace BL
         {
             return $"Olive type: {this.OliveName}, sale weight: {this.saleWeight}kg, sale price: {this.salePrice}$, items in stock: {this.inStock}, date the sale was added: {this.dateSaleAdded}.";
         }
+        public bool CreateNewOrder (int companyID, int stocksBought)
+        {
+            int succsessOrFail = DAL.CompanyDAL.OrderSale(this.saleID, companyID, this.farmerID, this.oliveID, this.saleWeight, this.SalePrice, this.inStock - stocksBought);
+            if (succsessOrFail == -1) return false;
+            this.inStock -= stocksBought;
+            return true;
+        }
     }
 }
-//private string oliveName;
-//private double saleWeight;
-//private double salePrice;
-//private int inStock;
-//private DateTime dateSaleAdded;
+
