@@ -7,10 +7,11 @@
         <asp:Button ID="btnPreviousOrders" runat="server" Text="View all previous orders" OnClick="btnChangePNL_Click" CommandArgument="prevOrd" />
     </asp:Panel>
     <asp:Panel ID="pnlAvailableSales" runat="server">
-        <asp:Label ID="lblAvailableSales" runat="server" Text="View all available sales"></asp:Label>
-        <br />
+        <asp:Label ID="lblAvailableSales" runat="server" Text="View all available sales"></asp:Label>       
         <asp:Label ID="lblNoAvailaleSales" runat="server" Text="It seems there are no available sales for you right now" Visible="false"></asp:Label>
-        <asp:GridView ID="gvAvailableSales" runat="server" AutoGenerateColumns="false" OnRowCommand="gvAvailableSales_RowCommand">
+        <br />
+        <asp:Label ID="lblSaleBought" runat="server" Text="" Visible="false"></asp:Label>
+        <asp:GridView ID="gvAvailableSales" runat="server" AutoGenerateColumns="false" OnRowCommand="gvAvailableSales_RowCommand" EnableViewState="true">
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="farmers user name" />
                 <asp:BoundField DataField="OliveName" HeaderText="olive type" />
@@ -26,6 +27,7 @@
         <asp:Label ID="lblPreviousOrders" runat="server" Text="Here are all the orders you have ordered untill now."></asp:Label>
         <br />
         <asp:Label ID="lblNoPrevOrders" runat="server" Text="Either an error has accoured or you simply never ordered anything." Visible="false"></asp:Label>
+        
         <asp:GridView ID="gvPreviousOrders" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="sellers name" />

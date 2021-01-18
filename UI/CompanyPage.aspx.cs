@@ -9,23 +9,28 @@ namespace UI
 {
     public partial class CompanyPage : System.Web.UI.Page
     {
-        private List<Sale> allAvailableSales;
-        private Sale saleBeingBought;
+        private List<Sale> allAvailableSales = null;
+        private Sale saleBeingBought = null;
+        private int salesBought = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["User"] == null)
+            if (!Page.IsPostBack)
             {
-                Response.Redirect("MainPage.aspx");
+                if (Session["User"] == null)
+                {
+                    Response.Redirect("MainPage.aspx");
+                }
+                if (((User)Session["User"]).UserType != 3)
+                {
+                    Response.Redirect("MainPage.aspx");
+                }
+                LoadAvailableSales();
             }
-            if (((User)Session["User"]).UserType != 3)
-            {
-                Response.Redirect("MainPage.aspx");
-            }
-            LoadAvailableSales();
         }
         private void LoadAvailableSales ()
         {
             allAvailableSales = ((User)Session["User"]).AllAvailableSales();
+            Session["allAvailableSales"] = allAvailableSales;
             if (allAvailableSales == null)
             {
                 gvAvailableSales.Visible = false;
@@ -40,14 +45,21 @@ namespace UI
                 gvAvailableSales.DataSource = allAvailableSales;
                 gvAvailableSales.DataBind();
             }
-          
+            if (Session["saleBeingBought"] != null)
+            {
+                saleBeingBought = (Sale)Session["saleBeingBought"];
+                salesBought = (int)Session["salesBought"];
+                lblSaleBought.Text = $"Last sale bought was: {saleBeingBought}. {salesBought} stocks were bought.";
+            }
         }
 
         protected void gvAvailableSales_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             pnlAvailableSales.Visible = false;
             pnlOrderSale.Visible = true;
-            saleBeingBought = allAvailableSales[gvAvailableSales.SelectedIndex];
+            allAvailableSales = (List<Sale>)Session["allAvailableSales"];
+            saleBeingBought = allAvailableSales[int.Parse(e.CommandArgument.ToString())];
+            Session["saleBeingBought"] = saleBeingBought;
             lblSaleDetails.Text = saleBeingBought.ToString();
             CreateMonthsDDL();
             CreateYearsDDL();
@@ -95,11 +107,22 @@ namespace UI
         {
             if (true) //placeholder for thec credit card check
             {
-                int userID = ((User)Session["User"]).UserID;
-                int salesBought = int.Parse(ddlStockBought.SelectedValue);
-                if (!saleBeingBought.CreateNewOrder(userID,salesBought))
+                if (Session["saleBeingBought"] != null) 
                 {
-                    lblOrderFailed.Visible = true;
+                    saleBeingBought = (Sale)Session["saleBeingBought"];
+                    int userID = ((User)Session["User"]).UserID;                    
+                    salesBought = int.Parse(ddlStockBought.SelectedValue);
+                    Session["salesBought"] = salesBought;
+                    if (!saleBeingBought.CreateNewOrder(userID, salesBought)) 
+                    {
+                        lblOrderFailed.Visible = true;                    
+                    }
+                    else
+                    {
+                        pnlAvailableSales.Visible = true;
+                        pnlOrderSale.Visible = false;
+                        LoadAvailableSales();
+                    }
                 }
             }
         }

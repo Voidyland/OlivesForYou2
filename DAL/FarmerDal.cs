@@ -25,7 +25,7 @@ namespace DAL
             try
             {
                 string sql = $"INSERT INTO Sales (FarmerID, OliveID,  SaleWeight, SalePrice, InStock, DateSaleAdded)" +
-                    $" VALUES ({farmerID}, {oliveID}, {saleWeight}, {salePrice}, {inStock}, {DateSaleAdded});";
+                    $" VALUES ({farmerID}, {oliveID}, {saleWeight}, {salePrice}, {inStock}, '{DateSaleAdded}');";
                 DBHelper db = new DBHelper();
                 int id = db.InsertWithAutoNumKey(sql);
                 return id;
