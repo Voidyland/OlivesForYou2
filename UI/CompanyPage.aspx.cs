@@ -91,7 +91,15 @@ namespace UI
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
-
+            if (true) //placeholder for thec credit card check
+            {
+                int userID = ((User)Session["User"]).UserID;
+                int salesBought = int.Parse(ddlStockBought.SelectedValue);
+                if (!saleBeingBought.CreateNewOrder(userID,salesBought))
+                {
+                    lblOrderFailed.Visible = true;
+                }
+            }
         }
     }
 }
