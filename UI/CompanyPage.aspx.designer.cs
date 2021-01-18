@@ -15,13 +15,31 @@ namespace UI
     {
 
         /// <summary>
-        /// lblAvailableSales control.
+        /// pnlOptions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAvailableSales;
+        protected global::System.Web.UI.WebControls.Panel pnlOptions;
+
+        /// <summary>
+        /// btnAvailableSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAvailableSales;
+
+        /// <summary>
+        /// btnPreviousOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPreviousOrders;
 
         /// <summary>
         /// pnlAvailableSales control.
@@ -31,6 +49,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAvailableSales;
+
+        /// <summary>
+        /// lblAvailableSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAvailableSales;
 
         /// <summary>
         /// lblNoAvailaleSales control.
@@ -58,6 +85,24 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlPreviousOrders;
+
+        /// <summary>
+        /// lblPreviousOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPreviousOrders;
+
+        /// <summary>
+        /// lblNoPrevOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoPrevOrders;
 
         /// <summary>
         /// gvPreviousOrders control.

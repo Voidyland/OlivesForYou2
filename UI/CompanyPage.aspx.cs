@@ -29,12 +29,14 @@ namespace UI
             if (allAvailableSales == null)
             {
                 gvAvailableSales.Visible = false;
+                lblAvailableSales.Visible = false;
                 lblNoAvailaleSales.Visible = true;
             }
             else
             {
                 lblNoAvailaleSales.Visible = false;
                 gvAvailableSales.Visible = true;
+                lblAvailableSales.Visible = true;
                 gvAvailableSales.DataSource = allAvailableSales;
                 gvAvailableSales.DataBind();
             }
@@ -88,10 +90,7 @@ namespace UI
             ddlStockBought.DataSource = stocks;
             ddlStockBought.DataBind();
         }
-        private void CreatePreviousOrders ()
-        {
-            List<OrderOrdered> previousOrders = new List<OrderOrdered>();
-        }
+        
         protected void btnOrder_Click(object sender, EventArgs e)
         {
             if (true) //placeholder for thec credit card check
@@ -102,6 +101,45 @@ namespace UI
                 {
                     lblOrderFailed.Visible = true;
                 }
+            }
+        }
+        private void LoadPreviousOrders ()
+        {
+            User user = (User)Session["User"];
+            List<OrderOrdered> allPreviousOrders = user.AllOrdersOrdered();
+            if (allPreviousOrders == null)
+            {
+                gvPreviousOrders.Visible = false;
+                lblPreviousOrders.Visible = false;
+                lblNoPrevOrders.Visible = true;
+            }
+            else
+            {
+                gvPreviousOrders.DataSource = allPreviousOrders;
+                gvPreviousOrders.DataBind();
+                gvPreviousOrders.Visible = true;
+                lblPreviousOrders.Visible = true;
+                lblNoPrevOrders.Visible = false;
+            }
+            
+        }
+        protected void btnChangePNL_Click(object sender, EventArgs e)
+        {
+            string comArg = ((Button)sender).CommandArgument;
+            switch (comArg)
+            {
+                case "availSales":
+                    pnlAvailableSales.Visible = true;
+                    LoadAvailableSales();
+                    pnlOrderSale.Visible = false;
+                    pnlPreviousOrders.Visible = false;
+                    break;
+                case "prevOrd":
+                    pnlAvailableSales.Visible = false;
+                    pnlOrderSale.Visible = false;
+                    pnlPreviousOrders.Visible = true;
+                    LoadPreviousOrders();
+                    break;
             }
         }
     }

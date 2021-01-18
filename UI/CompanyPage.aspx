@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/OliveOverlord.Master" AutoEventWireup="true" CodeBehind="CompanyPage.aspx.cs" Inherits="UI.CompanyPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="lblAvailableSales" runat="server" Text="View all available sales"></asp:Label>
-    <br />
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">    
+    <asp:Panel ID="pnlOptions" runat="server">
+        <asp:Button ID="btnAvailableSales" runat="server" Text="View available sales" OnClick="btnChangePNL_Click" CommandArgument="availSales" />
+        <asp:Button ID="btnPreviousOrders" runat="server" Text="View all previous orders" OnClick="btnChangePNL_Click" CommandArgument="prevOrd" />
+    </asp:Panel>
     <asp:Panel ID="pnlAvailableSales" runat="server">
+        <asp:Label ID="lblAvailableSales" runat="server" Text="View all available sales"></asp:Label>
+        <br />
         <asp:Label ID="lblNoAvailaleSales" runat="server" Text="It seems there are no available sales for you right now" Visible="false"></asp:Label>
         <asp:GridView ID="gvAvailableSales" runat="server" AutoGenerateColumns="false" OnRowCommand="gvAvailableSales_RowCommand">
             <Columns>
@@ -19,6 +23,9 @@
         </asp:GridView>
     </asp:Panel>
     <asp:Panel ID="pnlPreviousOrders" runat="server">
+        <asp:Label ID="lblPreviousOrders" runat="server" Text="Here are all the orders you have ordered untill now."></asp:Label>
+        <br />
+        <asp:Label ID="lblNoPrevOrders" runat="server" Text="Either an error has accoured or you simply never ordered anything." Visible="false"></asp:Label>
         <asp:GridView ID="gvPreviousOrders" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="sellers name" />
