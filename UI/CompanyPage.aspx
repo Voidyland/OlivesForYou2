@@ -26,9 +26,8 @@
     <asp:Panel ID="pnlPreviousOrders" runat="server">
         <asp:Label ID="lblPreviousOrders" runat="server" Text="Here are all the orders you have ordered untill now."></asp:Label>
         <br />
-        <asp:Label ID="lblNoPrevOrders" runat="server" Text="Either an error has accoured or you simply never ordered anything." Visible="false"></asp:Label>
-        
-        <asp:GridView ID="gvPreviousOrders" runat="server" AutoGenerateColumns="false">
+        <asp:Label ID="lblNoPrevOrders" runat="server" Text="Either an error has accoured or you simply never ordered anything." Visible="false"></asp:Label>   
+        <asp:GridView ID="gvPreviousOrders" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvPreviousOrders_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="sellers name" />
                 <asp:BoundField DataField="OliveName" HeaderText="olive type" />
@@ -37,6 +36,7 @@
                 <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
                 <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
                 <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />                
+                <asp:ButtonField HeaderText="confirm order arrived" ButtonType="Button" />
             </Columns>
         </asp:GridView>
     </asp:Panel>

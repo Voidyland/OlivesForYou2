@@ -129,7 +129,7 @@ namespace UI
         private void LoadPreviousOrders ()
         {
             User user = (User)Session["User"];
-            List<OrderOrdered> allPreviousOrders = user.AllOrdersOrdered();
+            List<OrderOrdered> allPreviousOrders = user.AllPreviousOrders();
             if (allPreviousOrders == null)
             {
                 gvPreviousOrders.Visible = false;
@@ -165,5 +165,44 @@ namespace UI
                     break;
             }
         }
+        protected void gvPreviousOrders_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex > -1)
+            {
+                OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
+                if (orderOrdered.DateOrderSent == DateTime.MinValue)
+                {
+                    e.Row.Cells[5].Text = "Not sent";
+                    e.Row.Cells[6].Text = "Not sent or arrived";
+                    e.Row.Cells[7].Text = "Order was not sent, no way it arrived.";
+                }
+                else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
+                {
+                    e.Row.Cells[6].Text = "Not arrived";
+                }
+                else
+                {
+                    e.Row.Cells[7].Text = "Order arrived, no need to confirm";
+                }
+            }
+        }
     }
 }
+//if (e.Row.RowIndex > -1)
+//{
+//    OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
+//    if (orderOrdered.DateOrderSent == DateTime.MinValue)
+//    {
+//        e.Row.Cells[5].Text = "Not sent.";
+//        e.Row.Cells[6].Text = "Not sent or arrived.";
+//    }
+//    else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
+//    {
+//        e.Row.Cells[6].Text = "Not arrived.";
+//        e.Row.Cells[7].Text = "Order sent succesfully!";
+//    }
+//    else
+//    {
+//        e.Row.Cells[7].Text = "Order sent succesfully!";
+//    }
+//}
