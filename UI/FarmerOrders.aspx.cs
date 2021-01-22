@@ -14,17 +14,17 @@ namespace UI
         private List<OrderOrdered> allOrdersOrdered = null;
 
         private List<OrderOrdered> allOrdersByBuyer = null;
-        
+
         private int ddlOliveID = 0;
 
-        
+
         /// <summary>
         /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
         /// aka olives available for new sales.
         /// </summary>
         /// <param name="allFarmerSales"></param>
         /// <returns></returns>
-        public List<ListItem> allAvailableOliveTypes (List<Sale> allFarmerSales)
+        public List<ListItem> allAvailableOliveTypes(List<Sale> allFarmerSales)
         {
             List<Olive> allOliveTypes = BL.General.AllOlives();
             List<ListItem> allListItems = new List<ListItem>();
@@ -43,7 +43,7 @@ namespace UI
                 if (!inSale)
                 {
                     allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
-                }  
+                }
             }
             return allListItems;
         }
@@ -57,21 +57,21 @@ namespace UI
             {
                 Response.Redirect("MainPage.aspx");
             }
-          
-                List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
-                if (allFarmerSales != null)
-                {
-                    BindSales(allFarmerSales);
-                }
-                else
-                {
-                    lblSales.Visible = false;
-                    Sales.Visible = false;
-                    noSale.Visible = true;
-                }
-            
+
+            List<Sale> allFarmerSales = ((User)Session["User"]).AllSales(false);
+            if (allFarmerSales != null)
+            {
+                BindSales(allFarmerSales);
+            }
+            else
+            {
+                lblSales.Visible = false;
+                Sales.Visible = false;
+                noSale.Visible = true;
+            }
+
             int saleID = -1;
-            if (int.TryParse(Request.QueryString["SI"], out saleID)) 
+            if (int.TryParse(Request.QueryString["SI"], out saleID))
             {
                 lblSales.Visible = false;
                 Sales.Visible = false;
@@ -88,13 +88,11 @@ namespace UI
                 }
                 //Make the update panle visible and the order panel invisible.
                 pnlAddOrder.Visible = false;
-                lblAddSale.Visible = true;
-                btnAddSalePanel.Visible = true;
                 pnlUpdateOrder.Visible = true;
                 //Add the olive type of the sale that needs updating to the olive types.
                 //Places the olive at the start of the dropdown to make it the defult value.
                 lblSaleToUpdate.Text = saleToUpdate.ToString();
-                allListItems.Insert(0,new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
+                allListItems.Insert(0, new ListItem(saleToUpdate.OliveName, saleToUpdate.OliveID.ToString()));
                 if (txtUpdatePrice.Text != "" && txtUpdateWeight.Text != "" && txtUpdateStock.Text != "")
                 {
                     ddlOliveID = int.Parse(ddlUpdateOliveTypes.SelectedValue);
@@ -105,21 +103,21 @@ namespace UI
                 ddlUpdateOliveTypes.DataValueField = "Value";
                 ddlUpdateOliveTypes.DataTextField = "Text";
                 ddlUpdateOliveTypes.DataBind();
-                
+
                 //Make the defult values the previus values, unless an update has accured.
                 if (txtUpdateWeight.Text == "")
-                txtUpdateWeight.Text = saleToUpdate.SaleWeight.ToString();
+                    txtUpdateWeight.Text = saleToUpdate.SaleWeight.ToString();
                 if (txtUpdatePrice.Text == "")
-                txtUpdatePrice.Text = saleToUpdate.SalePrice.ToString();                
+                    txtUpdatePrice.Text = saleToUpdate.SalePrice.ToString();
                 if (txtUpdateStock.Text == "")
-                txtUpdateStock.Text = saleToUpdate.InStock.ToString();
+                    txtUpdateStock.Text = saleToUpdate.InStock.ToString();
 
 
             }
-            else 
+            else
             {
                 List<ListItem> allListItems = allAvailableOliveTypes(allFarmerSales);
-                if (txtPrice.Text != "" && txtWeight.Text != "" && txtStock.Text != "") 
+                if (txtPrice.Text != "" && txtWeight.Text != "" && txtStock.Text != "")
                 {
                     ddlOliveID = int.Parse(ddlOliveTypes.SelectedValue);
                     int indexToRemove = ddlOliveTypes.SelectedIndex;
@@ -129,16 +127,12 @@ namespace UI
                 ddlOliveTypes.DataValueField = "Value";
                 ddlOliveTypes.DataTextField = "Text";
                 ddlOliveTypes.DataBind();
-                lblError.Text = Request.QueryString["error"];                
+                lblError.Text = Request.QueryString["error"];
                 pnlUpdateOrder.Visible = false;
-                if (gvOrdersOrdered.Visible) 
+                if (gvOrdersOrdered.Visible)
                 {
-                    lblViewOrdersOrdered.Visible = false;
-                    btnViewOrdersOrdered.Visible = false;                    
                     lblOrdersOrdered.Visible = true;
                     pnlAddOrder.Visible = false;
-                    lblAddSale.Visible = true;
-                    btnAddSalePanel.Visible = true;
                     lblSales.Visible = false;
                     Sales.Visible = false;
                     noSale.Visible = false; //Error messege only relevent when trying to present the sales gridview.
@@ -153,14 +147,14 @@ namespace UI
                     }
                     gvOrdersOrdered.DataBind();
                 }
-                
+
             }
-            
+
         }
-        
+
         protected void btnNewSale_Click(object sender, EventArgs e)
         {
-            Sale newSale =  ((User)Session["User"]).NewSale(ddlOliveID, ddlOliveTypes.Text, 
+            Sale newSale = ((User)Session["User"]).NewSale(ddlOliveID, ddlOliveTypes.Text,
                 double.Parse(txtWeight.Text), double.Parse(txtPrice.Text), int.Parse(txtStock.Text), DateTime.UtcNow);
             if (newSale == null) Response.Redirect("FarmerOrders.aspx?error=Something went wrong...");
             else Response.Redirect("FarmerOrders.aspx?error=Success!");
@@ -248,12 +242,6 @@ namespace UI
                 Sales.Visible = false;
                 pnlOrderMethod.Visible = false;
                 pnlAddOrder.Visible = true;
-                lblAddSale.Visible = false;
-                btnAddSalePanel.Visible = false;
-                lblViewSales.Visible = true;
-                btnViewSales.Visible = true;
-                lblViewOrdersOrdered.Visible = true;
-                btnViewOrdersOrdered.Visible = true;
             }
             else if (commandArgument == btnViewOrdersOrdered.CommandArgument)
             {
@@ -263,13 +251,9 @@ namespace UI
                 Sales.Visible = false;
                 pnlOrderMethod.Visible = true;
                 pnlAddOrder.Visible = false;
-                lblAddSale.Visible = true;
-                btnAddSalePanel.Visible = true;
-                lblViewSales.Visible = true;
-                btnViewSales.Visible = true;
-                lblViewOrdersOrdered.Visible = false;
-                btnViewOrdersOrdered.Visible = false;
-                allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                Session["allOrdersOrdered"] = ((User)Session["User"]).AllOrdersOrdered();
+                allOrdersOrdered = (List<OrderOrdered>)Session["allOrdersOrdered"];
+                DDLNamesDataBind();
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
             }
@@ -282,12 +266,6 @@ namespace UI
                 Sales.Visible = true;
                 pnlOrderMethod.Visible = false;
                 pnlAddOrder.Visible = false;
-                lblAddSale.Visible = true;
-                btnAddSalePanel.Visible = true;
-                lblViewSales.Visible = false;
-                btnViewSales.Visible = false;
-                lblViewOrdersOrdered.Visible = true;
-                btnViewOrdersOrdered.Visible = true;
                 BindSales(((User)Session["User"]).AllSales(false));
             }
         }
@@ -338,7 +316,7 @@ namespace UI
                 dataSource = allOrdersByBuyer;
             OrderOrdered orderOrdered = dataSource[index];
             if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
-            else 
+            else
             {
                 ConfirmSentError.Visible = false;
                 if (allOrdersByBuyer == null)
@@ -361,26 +339,22 @@ namespace UI
             {
                 List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
                 //List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
+                string name = ddlFindOrdersFromName.SelectedValue;
                 foreach (OrderOrdered orderOrdered in allOrdersOrdered)
                 {
-                    if (orderOrdered.CompanyName == txtOrderByName.Text) orderedByCompanyX.Add(orderOrdered);
+                    if (orderOrdered.CompanyName == name) orderedByCompanyX.Add(orderOrdered);
                     //else notOrderedByCompanyX.Add(orderOrdered);
                 }
-                if (orderedByCompanyX.Count == 0)
-                    lblNameNotFound.Visible = true;
-                else
-                {
-                    orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                    //notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                    //foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
-                    //{
-                    //    orderedByCompanyX.Add(orderOrdered);
-                    //}
-                    allOrdersByBuyer = orderedByCompanyX;
-                    gvOrdersOrdered.DataSource = allOrdersByBuyer;
-                    gvOrdersOrdered.DataBind();
-                    lblNameNotFound.Visible = false;
-                }
+                orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+                //notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+                //foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
+                //{
+                //    orderedByCompanyX.Add(orderOrdered);
+                //}
+                allOrdersByBuyer = orderedByCompanyX;
+                gvOrdersOrdered.DataSource = allOrdersByBuyer;
+                gvOrdersOrdered.DataBind();
+                lblNameNotFound.Visible = false;                
             }
             else
             {
@@ -420,7 +394,21 @@ namespace UI
                 allOrdersByBuyer = null;
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
-            }            
+            }
+        }
+        /// <summary>
+        /// Adds the datasource for the DropDownList used for finding a certain company.
+        /// </summary>
+        private void DDLNamesDataBind()
+        {
+            allOrdersOrdered = (List<OrderOrdered>)Session["allOrdersOrdered"];
+            List<string> allCompanyNames = new List<string>();
+            foreach (OrderOrdered oo in allOrdersOrdered)
+            {
+                allCompanyNames.Add(oo.CompanyName);
+            }
+            ddlFindOrdersFromName.DataSource = allCompanyNames;
+            ddlFindOrdersFromName.DataBind();
         }
     }
 }

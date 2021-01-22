@@ -2,6 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Panel ID="pnlViewStuff" runat="server">        
+        <asp:Button ID="btnViewSales" runat="server" Text="View your sales" OnClick="btnPastOrPresent_Click" CommandArgument="viewSales" CausesValidation="false" />
+        <asp:Button ID="btnViewOrdersOrdered" runat="server" Text="View orders ordered from you" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
+        <asp:Button ID="btnAddSalePanel" runat="server" Text="Create a new sale" OnClick="btnPastOrPresent_Click" CommandArgument="newSale" CausesValidation="false" />
+    </asp:Panel>
     <asp:Label ID="noSale" runat="server" Text="It seems you dont have any orders. You can add one just below!"></asp:Label>
     <asp:Label ID="lblSales" runat="server" Text="Here is a table of all the sales you are offering!"></asp:Label>
     <br />
@@ -44,6 +49,9 @@
        <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>      
        <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
        <br />
+        <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
+        <br />
+
         <asp:Label ID="lblOrderByNameSuccess" runat="server" Text="To view all orders once again, simply choose one of the other ordering methods"></asp:Label>
         <br />
        <asp:Button ID="btnOrderByName" runat="server" Text="Button" ValidationGroup="vldOrderByName" 
@@ -129,18 +137,7 @@
         <asp:Label ID="lblReturnToSales" runat="server" Text="Please note that pressing the 'Update the sale' button will return you to the sales grid."></asp:Label>
         <br />
     </asp:Panel>
-     <br />
-    <asp:Label ID="lblViewSales" runat="server" Text="Would you like to view your sales?" Visible="false"></asp:Label>
-    <br />
-    <asp:Button ID="btnViewSales" runat="server" Text="Watch sales" OnClick="btnPastOrPresent_Click" CommandArgument="viewSales" Visible="false"/>
-    <br />
-    <asp:Label ID="lblViewOrdersOrdered" runat="server" Text="Would you like to view all orders ordered?"></asp:Label>
-    <br />
-    <asp:Button ID="btnViewOrdersOrdered" runat="server" Text="Watch orders ordered" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
-    <br />    
-    <asp:Label ID="lblAddSale" runat="server" Text="Would you like to add a new sale?"></asp:Label>
-    <br />
-    <asp:Button ID="btnAddSalePanel" runat="server" Text="Create a new sale" OnClick="btnPastOrPresent_Click" CommandArgument="newSale" />
+     <br />    
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
 </asp:Content>
  
