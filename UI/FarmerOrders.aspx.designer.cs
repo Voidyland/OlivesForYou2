@@ -141,15 +141,6 @@ namespace UI
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredOrderByName;
 
         /// <summary>
-        /// ddlFindOrdersFromName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFindOrdersFromName;
-
-        /// <summary>
         /// lblOrderByNameSuccess control.
         /// </summary>
         /// <remarks>
@@ -571,5 +562,50 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
+        /// pnlFindOne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFindOne;
+
+        /// <summary>
+        /// lblSearchByX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchByX;
+
+        /// <summary>
+        /// lblFindOrdersFromName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFindOrdersFromName;
+
+        /// <summary>
+        /// ddlFindOrdersFromName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFindOrdersFromName;
+
+        /// <summary>
+        /// pnlOrginize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlOrginize;
     }
 }

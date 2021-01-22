@@ -15,6 +15,8 @@ namespace BL
         private string companyName;
         private int farmerID;
         private string farmerName;
+        private int countryID;
+        private string countryName; // country to ship to
         private int oliveID;
         private string oliveName;
         private double orderWeight;
@@ -29,6 +31,8 @@ namespace BL
             companyName = "";
             farmerID = int.Parse(orderOrdered["FarmerID"].ToString());
             farmerName = "";
+            countryID = -1;
+            countryName = "";
             oliveID = int.Parse(orderOrdered["OliveID"].ToString());
             oliveName = "";
             orderWeight = double.Parse(orderOrdered["Weight"].ToString());
@@ -62,7 +66,12 @@ namespace BL
             get
             {
                 if (companyName == "")
-                    companyName = DAL.UserDAL.FindUserByID(companyID)["UserName"].ToString();
+                {
+                    DataRow company = DAL.UserDAL.FindUserByID(companyID);
+                    companyName = company["UserName"].ToString();
+                    if (countryID == -1) // Doing this because might as well, adds 2 lines of code but could save alot down the line.
+                        countryID = int.Parse(company["CountryNumber"].ToString());
+                }
                 return companyName;
             }
         }
@@ -80,6 +89,22 @@ namespace BL
                 if (farmerName == "") 
                     farmerName =  DAL.UserDAL.FindUserByID(farmerID)["UserName"].ToString();
                 return farmerName;
+            }
+        }
+        public string CountryName
+        {
+            get
+            {
+                if (countryName != "") return countryName;
+                if (countryID == -1)
+                {
+                    DataRow company = DAL.UserDAL.FindUserByID(companyID);                                       
+                    countryID = int.Parse(company["CountryNumber"].ToString());
+                    if (companyName == "") // Doing this because might as well, adds 2 lines of code but could save alot down the line.
+                        companyName = company["UserName"].ToString();
+                }
+                countryName = General.CountryToString(countryID);
+                return countryName;
             }
         }
         public int OliveID

@@ -49,7 +49,7 @@
        <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>      
        <asp:RequiredFieldValidator ID="requiredOrderByName" ControlToValidate="txtOrderByName" ValidationGroup="vldOrderByName" runat="server" ErrorMessage="You must enter a name."></asp:RequiredFieldValidator>
        <br />
-        <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
+        
         <br />
 
         <asp:Label ID="lblOrderByNameSuccess" runat="server" Text="To view all orders once again, simply choose one of the other ordering methods"></asp:Label>
@@ -139,6 +139,17 @@
     </asp:Panel>
      <br />    
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
+    <asp:Panel ID="pnlFindOne" runat="server">
+        <asp:Label ID="lblSearchByX" runat="server" Text="Search by:"></asp:Label>
+        <br />
+        <asp:Label ID="lblFindOrdersFromName" runat="server" Text="name"></asp:Label>
+        <br />
+        <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
+        <br />
+    </asp:Panel>
+    <asp:Panel ID="pnlOrginize" runat="server">
+
+    </asp:Panel>
 </asp:Content>
  
 
