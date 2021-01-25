@@ -146,6 +146,7 @@
         <br />
         <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
         <br />
+        <asp:Button ID="btnFindOrdersFromName" runat="server" Text="search" OnClick="btnFindOrdersFromName_Click" />
     </asp:Panel>
     <asp:Panel ID="pnlOrginize" runat="server">
 
