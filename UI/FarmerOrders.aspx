@@ -42,8 +42,10 @@
         </Columns>
     </asp:GridView>
     <asp:Panel ID="pnlConfirmOrDeny" runat="server" Visible="false">
+        <asp:Label ID="lblOrderToConfirmOrDeny" runat="server" Text=""></asp:Label>
         <asp:Button ID="btnConfirmSent" runat="server" Text="Confirm order was sent." OnClick="btnConfirmOrDeny_Click" CommandArgument="confirm" />
         <asp:Button ID="btnDenySending" runat="server" Text="Deny sending the order to the company. This will cancel the order." OnClick="btnConfirmOrDeny_Click" CommandArgument="deny" />
+        <asp:Label ID="lblConfirmOrDenyEnd" runat="server" Text=""></asp:Label>
     </asp:Panel>
     <br />
     <asp:Label ID="ConfirmSentError" runat="server" Text="An error has accoured" Visible = "false"></asp:Label>

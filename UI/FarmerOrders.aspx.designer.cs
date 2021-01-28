@@ -105,6 +105,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.Panel pnlConfirmOrDeny;
 
         /// <summary>
+        /// lblOrderToConfirmOrDeny control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderToConfirmOrDeny;
+
+        /// <summary>
         /// btnConfirmSent control.
         /// </summary>
         /// <remarks>
@@ -121,6 +130,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDenySending;
+
+        /// <summary>
+        /// lblConfirmOrDenyEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConfirmOrDenyEnd;
 
         /// <summary>
         /// ConfirmSentError control.

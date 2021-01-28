@@ -9,6 +9,7 @@ namespace UI
 {
     public partial class FarmerOrders : System.Web.UI.Page
     {
+        //All of those are just for convinience. They repet in diffrent methods so just for consistensy I gave them a permenet name.
         public Sale saleToUpdate = null;
 
         private List<OrderOrdered> allOrdersOrdered = null;
@@ -17,6 +18,7 @@ namespace UI
 
         private int ddlOliveID = 0;
 
+        private OrderOrdered orderToConfirmOrDeny = null;
 
         /// <summary>
         /// Gets a list of all of the farmers sales and returns a list of all of the olives NOT in any sale, 
@@ -318,22 +320,25 @@ namespace UI
                 dataSource = (List<OrderOrdered>)Session["allOrdersOrdered"];
             else
                 dataSource = ordersFromGivenCompany;
-            OrderOrdered orderOrdered = dataSource[index];
-            if (!orderOrdered.ConfirmOrder()) ConfirmSentError.Visible = true;
-            else
-            {
-                ConfirmSentError.Visible = false;
-                if (ordersFromGivenCompany == null)
-                {
-                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
-                    gvOrdersOrdered.DataSource = allOrdersOrdered;
-                }
-                else
-                {
-                    gvOrdersOrdered.DataSource = ordersFromGivenCompany;
-                }
-                gvOrdersOrdered.DataBind();
-            }
+            orderToConfirmOrDeny = dataSource[index];
+            Session["OrderToConfirmOrDeny"] = orderToConfirmOrDeny;
+            pnlConfirmOrDeny.Visible = true;
+            lblOrderToConfirmOrDeny.Text = orderToConfirmOrDeny.ToString();
+            //if (!orderToConfirmOrDeny.ConfirmOrder()) ConfirmSentError.Visible = true;
+            //else
+            //{
+            //    ConfirmSentError.Visible = false;
+            //    if (ordersFromGivenCompany == null)
+            //    {
+            //        allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+            //        gvOrdersOrdered.DataSource = allOrdersOrdered;
+            //    }
+            //    else
+            //    {
+            //        gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+            //    }
+            //    gvOrdersOrdered.DataBind();
+            //}
         }
 
         protected void btnReorder_Click(object sender, EventArgs e)
@@ -436,7 +441,18 @@ namespace UI
 
         protected void btnConfirmOrDeny_Click(object sender, EventArgs e)
         {
-
+            orderToConfirmOrDeny = (OrderOrdered)Session["OrderToConfirmOrDeny"];
+            if (orderToConfirmOrDeny == null)
+            {
+                lblConfirmOrDenyEnd.Text = "An error has accoured. Perhaps you waited to long to click the button? Try pressing the button in the gridview again.";
+                btnConfirmSent.Visible = false;
+                btnDenySending.Visible = false;
+            }
+            else
+            {
+                btnConfirmSent.Visible = true;
+                btnDenySending.Visible = false;
+            }
         }
     }
 }
