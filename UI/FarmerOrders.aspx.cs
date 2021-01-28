@@ -433,5 +433,10 @@ namespace UI
             gvOrdersOrdered.DataSource = ordersFromGivenCompany;
             gvOrdersOrdered.DataBind();
         }
+
+        protected void btnConfirmOrDeny_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

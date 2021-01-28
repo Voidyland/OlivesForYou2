@@ -96,6 +96,33 @@ namespace UI
         protected global::System.Web.UI.WebControls.GridView gvOrdersOrdered;
 
         /// <summary>
+        /// pnlConfirmOrDeny control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlConfirmOrDeny;
+
+        /// <summary>
+        /// btnConfirmSent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmSent;
+
+        /// <summary>
+        /// btnDenySending control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDenySending;
+
+        /// <summary>
         /// ConfirmSentError control.
         /// </summary>
         /// <remarks>

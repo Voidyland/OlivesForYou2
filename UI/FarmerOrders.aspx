@@ -18,8 +18,8 @@
             <asp:BoundField DataField="SalePrice" HeaderText="price in dolar per 1 in stock" />
             <asp:BoundField DataField="InStock" HeaderText="in stock" />    
             <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
-            <asp:ButtonField HeaderText="Update Sale" CausesValidation="false" CommandName="change" ButtonType="Button"/>
-            <asp:ButtonField HeaderText="Delete Sale" CausesValidation="false" CommandName="remove" ButtonType="Button" />
+            <asp:ButtonField HeaderText="Update Sale" Text="update" CausesValidation="false" CommandName="change" ButtonType="Button"/>
+            <asp:ButtonField HeaderText="Delete Sale" Text="delete" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblOrdersOrdered" runat="server" Text="Here is a table of all orders ordered from you!" Visible="false"></asp:Label>
@@ -37,10 +37,14 @@
             <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
             <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
             <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />
-            <asp:ButtonField ButtonType="Button" Text="Press me to confirm the order was sent" 
+            <asp:ButtonField ButtonType="Button" Text="press" 
                 HeaderText="confrim or unconfirm the sending of an order" />
         </Columns>
     </asp:GridView>
+    <asp:Panel ID="pnlConfirmOrDeny" runat="server" Visible="false">
+        <asp:Button ID="btnConfirmSent" runat="server" Text="Confirm order was sent." OnClick="btnConfirmOrDeny_Click" CommandArgument="confirm" />
+        <asp:Button ID="btnDenySending" runat="server" Text="Deny sending the order to the company. This will cancel the order." OnClick="btnConfirmOrDeny_Click" CommandArgument="deny" />
+    </asp:Panel>
     <br />
     <asp:Label ID="ConfirmSentError" runat="server" Text="An error has accoured" Visible = "false"></asp:Label>
     <br />
