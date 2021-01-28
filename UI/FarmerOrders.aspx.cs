@@ -441,6 +441,7 @@ namespace UI
 
         protected void btnConfirmOrDeny_Click(object sender, EventArgs e)
         {
+            string commandArgument = ((Button)sender).CommandArgument;
             orderToConfirmOrDeny = (OrderOrdered)Session["OrderToConfirmOrDeny"];
             if (orderToConfirmOrDeny == null)
             {
@@ -448,10 +449,32 @@ namespace UI
                 btnConfirmSent.Visible = false;
                 btnDenySending.Visible = false;
             }
-            else
+            else if (commandArgument == btnConfirmSent.CommandArgument)
             {
-                btnConfirmSent.Visible = true;
-                btnDenySending.Visible = false;
+                bool flag = orderToConfirmOrDeny.ConfirmOrder();
+                if (!flag) 
+                { 
+                    lblError.Text = "An error has accoured. Please try again at a later time.";
+                    lblGeneralSuccess.Text = "";
+                }
+                else
+                {
+                    lblGeneralSuccess.Text = "Confirmed order was sent successfully!";
+                    lblError.Text = "";
+                }
+            }
+            else //if (commandArgument == btnDenySending.CommandArgument) commented because currently unessesery, if I were to add more buttons then it would be neccesery.
+            {
+                if (!orderToConfirmOrDeny.DeleteOrder())
+                {
+                    lblError.Text = "An error has accoured. Please try again at a later date.";
+                    lblGeneralSuccess.Text = "";
+                }
+                else
+                {
+                    lblGeneralSuccess.Text = "Order deleted succussfully!";
+                    lblError.Text = ""                    
+                }                
             }
         }
     }

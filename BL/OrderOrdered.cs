@@ -234,5 +234,9 @@ namespace BL
             if (DAL.FarmerDal.ConfirmOrderSent(this.orderID) != DAL.DALHelper.WRITEDATA_ERROR) return true;
             return false;
         } 
+        public bool DeleteOrder ()
+        {
+            return DAL.UserDAL.DeleteOrderOrderer(this.orderID);
+        }
     }
 }

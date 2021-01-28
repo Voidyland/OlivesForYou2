@@ -147,6 +147,7 @@
     </asp:Panel>
      <br />    
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
+    <asp:Label ID="lblGeneralSuccess" runat="server" Text=""></asp:Label>
     <asp:Panel ID="pnlFindOne" runat="server">
         <asp:Label ID="lblSearchByX" runat="server" Text="Search by:"></asp:Label>
         <br />

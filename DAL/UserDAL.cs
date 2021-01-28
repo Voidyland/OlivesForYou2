@@ -66,5 +66,19 @@ namespace DAL
             }
             return dt.Rows[0];
         }
+        /// <summary>
+        /// At the time of writing this method is ment for farmer only but it could very well be used for company so I'm putting it in the users class. 
+        /// Also the method deletes a given order what a supprise.
+        /// </summary>
+        /// <param name="orderID">The orders ID</param>
+        /// <returns>false if error, otherwise true.</returns>
+        public static bool DeleteOrderOrderer (int orderID)
+        {
+            string sql = $"DELETE FROM OrdersOrdered WHERE OrderID = {orderID}";
+            DBHelper db = new DBHelper();
+            int result = db.WriteData(sql);
+            if (result == DBHelper.WRITEDATA_ERROR) return false;
+            return true;
+        } 
     }
 }

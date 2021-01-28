@@ -609,6 +609,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
+        /// lblGeneralSuccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGeneralSuccess;
+
+        /// <summary>
         /// pnlFindOne control.
         /// </summary>
         /// <remarks>
