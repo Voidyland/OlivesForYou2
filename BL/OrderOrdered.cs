@@ -10,6 +10,7 @@ namespace BL
 {
     public class OrderOrdered
     {
+        private const int MISSING_INT = -1;
         private int orderID;
         private int companyID;
         private string companyName;
@@ -31,7 +32,7 @@ namespace BL
             companyName = "";
             farmerID = int.Parse(orderOrdered["FarmerID"].ToString());
             farmerName = "";
-            countryID = -1;
+            countryID = MISSING_INT;
             countryName = "";
             oliveID = int.Parse(orderOrdered["OliveID"].ToString());
             oliveName = "";
@@ -69,7 +70,7 @@ namespace BL
                 {
                     DataRow company = DAL.UserDAL.FindUserByID(companyID);
                     companyName = company["UserName"].ToString();
-                    if (countryID == -1) // Doing this because might as well, adds 2 lines of code but could save alot down the line.
+                    if (countryID == MISSING_INT) // Doing this because might as well, adds 2 lines of code but could save alot down the line.
                         countryID = int.Parse(company["CountryNumber"].ToString());
                 }
                 return companyName;
@@ -91,12 +92,26 @@ namespace BL
                 return farmerName;
             }
         }
+        public int CountryID
+        {
+            get
+            {
+                if (countryID == MISSING_INT)
+                {
+                    DataRow company = DAL.UserDAL.FindUserByID(companyID);
+                    countryID = int.Parse(company["CountryNumber"].ToString());
+                    if (companyName == "")
+                        companyName = company["UserName"].ToString();
+                }
+                return countryID;
+            }
+        }
         public string CountryName
         {
             get
             {
                 if (countryName != "") return countryName;
-                if (countryID == -1)
+                if (countryID == MISSING_INT)
                 {
                     DataRow company = DAL.UserDAL.FindUserByID(companyID);                                       
                     countryID = int.Parse(company["CountryNumber"].ToString());
