@@ -14,6 +14,7 @@ namespace BL
         private int orderID;
         private int companyID;
         private string companyName;
+        private string companyEmail;
         private int farmerID;
         private string farmerName;
         private int countryID;
@@ -30,6 +31,7 @@ namespace BL
             orderID = int.Parse(orderOrdered["OrderID"].ToString());
             companyID = int.Parse(orderOrdered["CompanyID"].ToString());
             companyName = "";
+            companyEmail = "";
             farmerID = int.Parse(orderOrdered["FarmerID"].ToString());
             farmerName = "";
             countryID = MISSING_INT;
@@ -70,10 +72,28 @@ namespace BL
                 {
                     DataRow company = DAL.UserDAL.FindUserByID(companyID);
                     companyName = company["UserName"].ToString();
-                    if (countryID == MISSING_INT) // Doing this because might as well, adds 2 lines of code but could save alot down the line.
+                    if (countryID == MISSING_INT) // Doing this because might as well, adds 2 lines of code but could save alot down the line. All three of these details come from the same user after all.
                         countryID = int.Parse(company["CountryNumber"].ToString());
+                    if (companyEmail == "") //Same here, costs little but can bennefit alot.
+                        companyEmail = company["Email"].ToString();
                 }
                 return companyName;
+            }
+        }
+        public string CompanyEmail
+        {
+            get
+            {
+                if (companyEmail == "")
+                {
+                    DataRow company = DAL.UserDAL.FindUserByID(companyID);
+                    companyEmail = company["Email"].ToString();
+                    if (countryID == MISSING_INT)// Doing this because might as well, adds 2 lines of code but could save alot down the line. All three of these details come from the same user after all.
+                        countryID = int.Parse(company["CountryNumber"].ToString());
+                    if (companyName == "") //Same here, costs little but can bennefit alot.
+                        companyName = company["UserName"].ToString();
+                }
+                return companyEmail;
             }
         }
         public int FarmerID
@@ -100,8 +120,10 @@ namespace BL
                 {
                     DataRow company = DAL.UserDAL.FindUserByID(companyID);
                     countryID = int.Parse(company["CountryNumber"].ToString());
-                    if (companyName == "")
+                    if (companyName == "") // Doing this because might as well, adds 2 lines of code but could save alot down the line. All three of these details come from the same user after all.
                         companyName = company["UserName"].ToString();
+                    if (companyEmail == "") //Same here, costs little but can bennefit alot.
+                        companyEmail = company["Email"].ToString();
                 }
                 return countryID;
             }
@@ -115,8 +137,10 @@ namespace BL
                 {
                     DataRow company = DAL.UserDAL.FindUserByID(companyID);                                       
                     countryID = int.Parse(company["CountryNumber"].ToString());
-                    if (companyName == "") // Doing this because might as well, adds 2 lines of code but could save alot down the line.
+                    if (companyName == "") // Doing this because might as well, adds 2 lines of code but could save alot down the line. All three of these details come from the same user after all.
                         companyName = company["UserName"].ToString();
+                    if (companyEmail == "") //Same here, costs little but can bennefit alot.
+                        companyEmail = company["Email"].ToString();
                 }
                 countryName = General.CountryToString(countryID);
                 return countryName;

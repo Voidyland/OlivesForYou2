@@ -29,10 +29,11 @@
         OnRowCommand="gvOrdersOrdered_RowCommand" AutoGenerateColumns="false" EnableViewState="true">
         <Columns>
             <asp:BoundField DataField="CompanyName" HeaderText="buyer" /> 
+            <asp:BoundField DataField="CompanyEmail" HeaderText="buyers email" />
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="OrderWeight" HeaderText="total weight" />
             <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
-            <asp:BoundField DataField="CountryName" HeaderText="country" />
+            <asp:BoundField DataField="CountryName" HeaderText="country" />            
             <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
             <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
             <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />
