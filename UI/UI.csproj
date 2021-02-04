@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="App_Data\OlivesDB.accdb" />
     <Content Include="App_Data\OlivesDBNew.accdb" />
+    <Content Include="companyCart.aspx" />
     <Content Include="CompanyPage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
@@ -78,6 +79,13 @@
     <Content Include="MainPage.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="companyCart.aspx.cs">
+      <DependentUpon>companyCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="companyCart.aspx.designer.cs">
+      <DependentUpon>companyCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CompanyPage.aspx.cs">
       <DependentUpon>CompanyPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

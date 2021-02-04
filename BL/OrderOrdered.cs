@@ -50,6 +50,9 @@ namespace BL
             else
                 dateOrderArrived = DateTime.MinValue;
         }
+
+        
+
         public int OrderID
         {
             get

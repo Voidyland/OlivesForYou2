@@ -473,7 +473,7 @@ namespace UI
                 else
                 {
                     lblGeneralSuccess.Text = "Order deleted succussfully!";
-                    lblError.Text = ""                    
+                    lblError.Text = "";                    
                 }                
             }
         }

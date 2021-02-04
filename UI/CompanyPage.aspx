@@ -63,5 +63,5 @@
         <asp:Button ID="btnOrder" runat="server" Text="Order" OnClick="btnOrder_Click" />
         <br />
         <asp:Label ID="lblOrderFailed" runat="server" Text="Something went wrong! are you sure your credit details are correct?" Visible="false"></asp:Label>
-    </asp:Panel>
+    </asp:Panel>    
 </asp:Content>
