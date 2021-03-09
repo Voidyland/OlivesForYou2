@@ -257,19 +257,28 @@ namespace UI
             }
             else if (commandArgument == btnViewOrdersOrdered.CommandArgument)
             {
-                lblOrdersOrdered.Visible = true;
-                gvOrdersOrdered.Visible = true;
+                
                 lblSales.Visible = false;
                 Sales.Visible = false;
                 pnlOrderMethod.Visible = true;
                 pnlFindOne.Visible = true;
                 pnlAddOrder.Visible = false;
                 Session["ordersFromGivenCompany"] = null;
-                Session["allOrdersOrdered"] = ((User)Session["User"]).AllOrdersOrdered();
-                allOrdersOrdered = (List<OrderOrdered>)Session["allOrdersOrdered"];
-                DDLNamesDataBind();
-                gvOrdersOrdered.DataSource = allOrdersOrdered;
-                gvOrdersOrdered.DataBind();
+                allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                if (allOrdersOrdered == null || allOrdersOrdered.Count == 0)
+                {
+                    lblError.Text = "It seems you have no orders ordered from you.";
+                }
+                else
+                {
+                    lblError.Text = "";
+                    lblOrdersOrdered.Visible = true;
+                    gvOrdersOrdered.Visible = true;
+                    Session["allOrdersOrdered"] = allOrdersOrdered;
+                    DDLNamesDataBind();
+                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    gvOrdersOrdered.DataBind();
+                }                              
             }
             else
             {

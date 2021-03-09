@@ -23,7 +23,7 @@
             <asp:ButtonField HeaderText="Delete Sale" Text="delete" CausesValidation="false" CommandName="remove" ButtonType="Button" />
         </Columns>
     </asp:GridView>
-    <asp:Label ID="lblOrdersOrdered" runat="server" Text="Here is a table of all orders ordered from you!" Visible="false"></asp:Label>
+    <asp:Label ID="lblOrdersOrdered" runat="server" Text="Here is a table of all orders ordered from you!" Visible="false"></asp:Label>    
     <br />
     <asp:GridView ID="gvOrdersOrdered" runat="server"   OnRowDataBound="gvOrdersOrdered_RowDataBound"
          AllowPaging="true" PageSize="10" Visible="false" OnPageIndexChanging="gvOrdersOrdered_PageIndexChanging"
