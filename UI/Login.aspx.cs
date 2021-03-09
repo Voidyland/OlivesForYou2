@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using BL;
 namespace UI
 {
     public partial class Login : System.Web.UI.Page
@@ -18,9 +18,10 @@ namespace UI
         {
             string email = txtEmail.Text;
             string pass = txtPass.Text;
-            Session["User"] = BL.General.Login(email, pass);
-            if (Session["User"] != null)
+            User user = BL.General.Login(email, pass);            
+            if (user != null)
             {
+                Session["User"] = user;
                 Response.Redirect("MainPage.aspx");
             }
             lblError.Visible = true;
