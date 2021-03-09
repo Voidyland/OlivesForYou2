@@ -31,6 +31,14 @@ namespace UI
             List<Olive> allOliveTypes = BL.General.AllOlives();
             List<ListItem> allListItems = new List<ListItem>();
             bool inSale = false;
+            if (allFarmerSales == null || allFarmerSales.Count == 0)
+            {
+                foreach (Olive olive in allOliveTypes)
+                {
+                    allListItems.Add(new ListItem(olive.OliveName, olive.OliveID.ToString()));
+                }
+                return allListItems;
+            }
             foreach (Olive olive in allOliveTypes)
             {
                 foreach (Sale sale in allFarmerSales)
