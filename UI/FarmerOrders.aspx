@@ -92,7 +92,7 @@
 
         <%--<asp:Label ID="lblOrderByDateOrdered" runat="server" Text="date ordered?"></asp:Label>
         <br />--%>
-        <asp:Button ID="btnOrderByDateOrdered" runat="server" Text="date ordered" CommandArgument="whenOrdered" />
+        <asp:Button ID="btnOrderByDateOrdered" runat="server" Text="date ordered" CommandArgument="whenOrdered" OnClick="btnReorder_Click" />
         <br />
         <%--<asp:Label ID="lblOrderByUnhandled" runat="server" Text="Would you like to order by orders that were not sent yet?"></asp:Label>
         <br />--%>

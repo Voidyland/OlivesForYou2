@@ -284,17 +284,17 @@ namespace UI
                 OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
                 if (orderOrdered.DateOrderSent == DateTime.MinValue)
                 {
-                    e.Row.Cells[5].Text = "Not sent.";
-                    e.Row.Cells[6].Text = "Not sent or arrived.";
+                    e.Row.Cells[7].Text = "Not sent.";
+                    e.Row.Cells[8].Text = "Not sent or arrived.";
                 }
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
-                    e.Row.Cells[6].Text = "Not arrived.";
-                    e.Row.Cells[7].Text = "Order sent succesfully!";
+                    e.Row.Cells[8].Text = "Not arrived.";
+                    e.Row.Cells[9].Text = "Order sent succesfully!";
                 }
                 else
                 {
-                    e.Row.Cells[7].Text = "Order sent succesfully!";
+                    e.Row.Cells[9].Text = "Order sent succesfully!";
                 }
             }
         }
