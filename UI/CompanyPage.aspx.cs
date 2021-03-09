@@ -55,15 +55,25 @@ namespace UI
 
         protected void gvAvailableSales_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            string commandArgument = ((Button)sender).CommandArgument;
             pnlAvailableSales.Visible = false;
-            pnlOrderSale.Visible = true;
             allAvailableSales = (List<Sale>)Session["allAvailableSales"];
             saleBeingBought = allAvailableSales[int.Parse(e.CommandArgument.ToString())];
             Session["saleBeingBought"] = saleBeingBought;
-            lblSaleDetails.Text = saleBeingBought.ToString();
-            CreateMonthsDDL();
-            CreateYearsDDL();
-            CreateStocksDDL(saleBeingBought.InStock);
+            if (commandArgument == "orderNow")   //Command argument for the order now button in the available sales grid view.
+            {                
+                pnlOrderSale.Visible = true;                
+                lblSaleDetails.Text = saleBeingBought.ToString();
+                CreateMonthsDDL();
+                CreateYearsDDL();
+                CreateStocksDDL(saleBeingBought.InStock);
+            }
+            else
+            {
+                pnlAddToCart.Visible = true;
+                lblCartSaleDetails.Text = saleBeingBought.ToString();
+                CreateCartStocksBeingBoughtDDL(saleBeingBought.InStock);
+            }
         }
 
         private void CreateMonthsDDL ()
@@ -102,7 +112,17 @@ namespace UI
             ddlStockBought.DataSource = stocks;
             ddlStockBought.DataBind();
         }
-        
+        private void CreateCartStocksBeingBoughtDDL(int stockNumber) //might want to merge this and CreateStocksDDL
+        {
+            List<int> stocks = new List<int>();
+            for (int i = 1; i <= stockNumber; i++)
+            {
+                stocks.Add(i);
+            }
+            ddlCartStocksBeingBought.DataSource = stocks;
+            ddlCartStocksBeingBought.DataBind();
+        }
+
         protected void btnOrder_Click(object sender, EventArgs e)
         {
             if (true) //placeholder for thec credit card check
@@ -162,9 +182,10 @@ namespace UI
                     pnlOrderSale.Visible = false;
                     pnlPreviousOrders.Visible = true;
                     LoadPreviousOrders();
-                    break;
+                    break;                    
             }
         }
+        
         protected void gvPreviousOrders_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowIndex > -1)
@@ -185,6 +206,17 @@ namespace UI
                     e.Row.Cells[7].Text = "Order arrived, no need to confirm";
                 }
             }
+        }
+
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            List<Sale> cart = (List<Sale>)Session["cart"];
+            if (cart == null) cart = new List<Sale>();
+            Sale addToCart = new Sale((Sale)Session["saleBeingBought"]);
+            addToCart.InStock = int.Parse(ddlCartStocksBeingBought.SelectedValue);
+            cart.Add(addToCart);
+            Session["saleBeingBought"] = addToCart;
+            lblInfo.Visible = true;
         }
     }
 }

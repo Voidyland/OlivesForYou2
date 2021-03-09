@@ -42,6 +42,18 @@ namespace BL
             this.inStock = (int)dr["InStock"];
             this.dateSaleAdded = (DateTime)dr["DateSaleAdded"];
         }
+        public Sale (Sale sale)
+        {
+            this.saleID = sale.saleID;
+            this.farmerID = sale.farmerID;
+            this.farmerName = sale.farmerName;
+            this.oliveID = sale.oliveID;
+            this.oliveName = sale.oliveName;
+            this.saleWeight = sale.saleWeight;
+            this.salePrice = sale.salePrice;
+            this.inStock = sale.inStock;
+            this.dateSaleAdded = sale.dateSaleAdded;
+        }
         public int SaleID
         {
             get

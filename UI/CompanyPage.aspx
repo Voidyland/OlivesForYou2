@@ -19,7 +19,8 @@
                 <asp:BoundField DataField="SalePrice" HeaderText="price in dolar per 1 in stock" />
                 <asp:BoundField DataField="InStock" HeaderText="in stock" />    
                 <asp:BoundField DataField="DateSaleAdded" HeaderText="date added" />
-                <asp:ButtonField HeaderText="order sale" ButtonType="Button"/>
+                <asp:ButtonField HeaderText="order now" ButtonType="Button" CommandName="orderNow"/>
+                <asp:ButtonField HeaderText="Add to cart" ButtonType="Button" CommandName="addToCart" />
             </Columns>
         </asp:GridView>
     </asp:Panel>
@@ -35,7 +36,7 @@
                 <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
                 <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
                 <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
-                <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />                
+                <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />
                 <asp:ButtonField HeaderText="confirm order arrived" ButtonType="Button" />
             </Columns>
         </asp:GridView>
@@ -43,12 +44,12 @@
     <asp:Panel ID="pnlOrderSale" runat="server" Visible="false">
         <asp:Label ID="lblSaleDetails" runat="server" Text=""></asp:Label>
         <br />
-        <asp:Label ID="lblCreditNumber" runat="server" Text="Enter your credit card number."></asp:Label>
+        <asp:Label ID="lblCreditNumber" runat="server" Text="credit card number."></asp:Label>
         <br />
         <asp:TextBox ID="txtCreditNumber" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="requiredCreditNumber" ControlToValidate="txtCreditNumber" runat="server" ErrorMessage="You must enter a credit card number"></asp:RequiredFieldValidator>
         <br /> 
-        <asp:Label ID="lblExpirationDate" runat="server" Text="Enter your credit card's expiration date and security code."></asp:Label>
+        <asp:Label ID="lblExpirationDate" runat="server" Text="credit card expiration date and security code."></asp:Label>
         <br />
         <asp:DropDownList ID="ddlMonths" runat="server"></asp:DropDownList>
         <asp:DropDownList ID="ddlYears" runat="server"></asp:DropDownList>
@@ -56,7 +57,7 @@
         <asp:RequiredFieldValidator ID="requiredCode" ControlToValidate="txtCode" runat="server" ErrorMessage="You must enter a sequrity code."></asp:RequiredFieldValidator>
         <asp:RangeValidator ID="rangeCode" ControlToValidate="txtCode" MinimumValue="100" MaximumValue="999" runat="server" ErrorMessage="Your security code is a number between 100-999 on the back of the card."></asp:RangeValidator>
         <br />
-        <asp:Label ID="lblStockBought" runat="server" Text="Please choose how many stocks you would like to buy"></asp:Label>
+        <asp:Label ID="lblStockBought" runat="server" Text="how many stocks would you like to buy"></asp:Label>
         <br />
         <asp:DropDownList ID="ddlStockBought" runat="server"></asp:DropDownList>
         <br />
@@ -64,4 +65,17 @@
         <br />
         <asp:Label ID="lblOrderFailed" runat="server" Text="Something went wrong! are you sure your credit details are correct?" Visible="false"></asp:Label>
     </asp:Panel>    
+
+    <asp:Panel ID="pnlAddToCart" runat="server" Visible="false">
+        <asp:Label ID="lblCartSaleDetails" runat="server" Text=""></asp:Label>
+        <br />
+        <asp:Label ID="lblCartStocksBeingBought" runat="server" Text="how many stocks would you like add to cart"></asp:Label>
+        <br />
+        <asp:DropDownList ID="ddlCartStocksBeingBought" runat="server"></asp:DropDownList>
+        <br />
+        <asp:Button ID="btnAddToCart" runat="server" Text="add to cart" OnClick="btnAddToCart_Click" />
+        <br />
+        <asp:Label ID="lblInfo" runat="server" EnableViewState="false" Text="Added to cart! Please notice your cart is temporary and will be lost if you remain inactive for a while or close this site." Visible="false"></asp:Label>
+        <br />
+    </asp:Panel>
 </asp:Content>
