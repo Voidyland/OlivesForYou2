@@ -23,7 +23,7 @@
             </Columns>
         </asp:GridView>
     </asp:Panel>
-    <asp:Panel ID="pnlPreviousOrders" runat="server">
+    <asp:Panel ID="pnlPreviousOrders" runat="server" Visible="false">
         <asp:Label ID="lblPreviousOrders" runat="server" Text="Here are all the orders you have ordered untill now."></asp:Label>
         <br />
         <asp:Label ID="lblNoPrevOrders" runat="server" Text="Either an error has accoured or you simply never ordered anything." Visible="false"></asp:Label>   

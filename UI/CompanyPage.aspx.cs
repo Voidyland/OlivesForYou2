@@ -173,8 +173,8 @@ namespace UI
                 if (orderOrdered.DateOrderSent == DateTime.MinValue)
                 {
                     e.Row.Cells[5].Text = "Not sent";
-                    e.Row.Cells[6].Text = "Not sent or arrived";
-                    e.Row.Cells[7].Text = "Order was not sent, no way it arrived.";
+                    e.Row.Cells[6].Text = "Not arrived";
+                    e.Row.Cells[7].Text = "not arrived.";
                 }
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
