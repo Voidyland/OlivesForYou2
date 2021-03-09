@@ -33,5 +33,11 @@ namespace DAL
             DBHelper db = new DBHelper();
             return db.GetDataTable(sql);
         }
+        public static DataTable GetAllUsers ()
+        {
+            string sql = "SELECT * FROM Users;";
+            DBHelper db = new DBHelper();
+            return db.GetDataTable(sql);
+        }
     }
 }

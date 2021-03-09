@@ -81,5 +81,25 @@ namespace BL
             DataTable dt = DAL.GeneralDAL.GetCountrys();
             return dt.Rows[countryNumber - 1]["countryName"].ToString();
         }
+        public static List<string> AllCountrys ()
+        {
+            List<string> countrys = new List<string>();
+            DataTable dt = DAL.GeneralDAL.GetCountrys();
+            foreach (DataRow dr in dt.Rows)
+            {
+                countrys.Add(dr["countryName"].ToString());
+            }
+            return countrys;
+        }
+        public static List<User> AllUsers ()
+        {
+            List<User> users = new List<User>();
+            DataTable dt = DAL.GeneralDAL.GetAllUsers();
+            foreach (DataRow dr in dt.Rows)
+            {
+                users.Add(new User(dr));
+            }
+            return users;
+        }
     }
 }

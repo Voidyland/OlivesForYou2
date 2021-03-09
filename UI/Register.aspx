@@ -26,8 +26,10 @@
     <br />
     <asp:Label ID="lblCountry" runat="server" Text="Country"></asp:Label>    
     <br />
-    <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+    <%--<asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="requiredCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="You must enter a country"></asp:RequiredFieldValidator>
+    <br />--%>
+    <asp:DropDownList ID="ddlCountrys" runat="server"></asp:DropDownList>
     <br />
     <asp:Label ID="lblPhoneNumber" runat="server" Text="PhoneNumber"></asp:Label>
     <br />
