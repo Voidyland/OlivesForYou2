@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
     <asp:Panel ID="pnlViewStuff" runat="server">        
         <asp:Button ID="btnViewSales" runat="server" Text="View your sales" OnClick="btnPastOrPresent_Click" CommandArgument="viewSales" CausesValidation="false" />
         <asp:Button ID="btnViewOrdersOrdered" runat="server" Text="View orders ordered from you" OnClick="btnPastOrPresent_Click" CausesValidation="false" />
@@ -50,8 +51,28 @@
     <br />
     <asp:Label ID="ConfirmSentError" runat="server" Text="An error has accoured" Visible = "false"></asp:Label>
     <br />
+    <asp:Panel ID="pnlFindOne" runat="server" Visible="false">
+        <asp:Label ID="lblSearchByX" runat="server" Text="Search by:"></asp:Label>
+        <br />
+        <asp:Label ID="lblFindOrdersFromName" runat="server" Text="name"></asp:Label>
+        <br />
+        <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
+        <br />
+        <asp:Button ID="btnFindOrdersFromName" runat="server" Text="search" OnClick="btnFindOrders_Click" CommandArgument="findName" />
+        <br />
+        <asp:Label ID="lblFindUnsentOrders" runat="server" Text="unsent orders"></asp:Label>
+        <br />
+        <asp:Button ID="btnFindUnsentOrders" runat="server" Text="search" OnClick="btnFindOrders_Click" CommandArgument="findUnsent" />
+        <br />
+        <asp:Label ID="lblFindUnrecivedOrders" runat="server" Text="unrecived orders"></asp:Label>
+        <br />
+        <asp:Button ID="btnFindUnrecivedOrders" runat="server" Text="search" OnClick="btnFindOrders_Click" CommandArgument="findUnrecived" />
+        <br />
+
+    </asp:Panel>
+    <br />
     <asp:Panel ID="pnlOrderMethod" runat="server" Visible="false">
-       <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to view a buyer, 
+      <%-- <asp:Label ID="lblOrderByName" runat="server" Text="If you would like to view a buyer, 
           enter their name then press the button bellow."></asp:Label>
        <br />
        <asp:TextBox ID="txtOrderByName" runat="server"></asp:TextBox>      
@@ -66,26 +87,28 @@
            OnClick="btnReorder_Click" CommandArgument="name" />
        <br />
         <asp:Label ID="lblNameNotFound" runat="server" Visible="false" Text="I'm afraid no such company exist's. Are you sure you entered the right username? remember, capital letters and spaces matter."></asp:Label>
+        <br />--%>
+        <asp:Label ID="lblOrderByWhat" runat="server" Text="Order by:"></asp:Label>
+
+        <%--<asp:Label ID="lblOrderByDateOrdered" runat="server" Text="date ordered?"></asp:Label>
+        <br />--%>
+        <asp:Button ID="btnOrderByDateOrdered" runat="server" Text="date ordered" CommandArgument="whenOrdered" />
         <br />
-        <asp:Label ID="lblOrderByDateOrdered" runat="server" Text="Would you like to order by when the order was ordered?"></asp:Label>
-        <br />
-        <asp:Button ID="btnOrderByDateOrdered" runat="server" Text="Order by when ordered" CommandArgument="whenOrdered" />
-        <br />
-        <asp:Label ID="lblOrderByUnhandled" runat="server" Text="Would you like to order by orders that were not sent yet?"></asp:Label>
-        <br />
-        <asp:Button ID="btnOrderByUnhandled" runat="server" Text="Order by not sent." OnClick="btnReorder_Click"
+        <%--<asp:Label ID="lblOrderByUnhandled" runat="server" Text="Would you like to order by orders that were not sent yet?"></asp:Label>
+        <br />--%>
+        <%--<asp:Button ID="btnOrderByUnhandled" runat="server" Text="unsent orders" OnClick="btnReorder_Click"
             CommandArgument="handled" />
         <br />
-        <asp:Label ID="lblOrderByDateRecived" runat="server" Text="Would you like to order by orders that were not recived yet?"></asp:Label>
+        <%--<asp:Label ID="lblOrderByDateRecived" runat="server" Text="Would you like to order by orders that were not recived yet?"></asp:Label>
         <br />
-        <asp:Button ID="btnOrderByDateRecived" runat="server" Text="Order by not recived" CommandArgument="whenRecived" />
-        <br />
+        <asp:Button ID="btnOrderByDateRecived" runat="server" Text="unrecived orders" CommandArgument="whenRecived" />
+        <br />--%>
         <asp:Label ID="lblOrderOfOrdering" runat="server" Text="Choose the ordering of first to last 
             (only relevent to the previous three storting methods)"></asp:Label>
         <br />
         <asp:RadioButtonList ID="rblOrderOfOrdering" runat="server">
-            <asp:ListItem Selected="True">Unhandled first, then oldest to youngest</asp:ListItem>
-            <asp:ListItem>Youngest to oldest first, then unhandled</asp:ListItem>
+            <asp:ListItem Selected="True">oldest to youngest</asp:ListItem>
+            <asp:ListItem>youngest to oldest</asp:ListItem>
         </asp:RadioButtonList>
     </asp:Panel>
     <asp:Label ID="increaseOrDelete" runat="server" Text=""></asp:Label>
@@ -148,15 +171,7 @@
      <br />    
     <asp:Label ID="lblError" runat="server" Text="" ></asp:Label>
     <asp:Label ID="lblGeneralSuccess" runat="server" Text=""></asp:Label>
-    <asp:Panel ID="pnlFindOne" runat="server">
-        <asp:Label ID="lblSearchByX" runat="server" Text="Search by:"></asp:Label>
-        <br />
-        <asp:Label ID="lblFindOrdersFromName" runat="server" Text="name"></asp:Label>
-        <br />
-        <asp:DropDownList ID="ddlFindOrdersFromName" runat="server"></asp:DropDownList>
-        <br />
-        <asp:Button ID="btnFindOrdersFromName" runat="server" Text="search" OnClick="btnFindOrdersFromName_Click" />
-    </asp:Panel>
+    
     <asp:Panel ID="pnlOrginize" runat="server">
 
     </asp:Panel>

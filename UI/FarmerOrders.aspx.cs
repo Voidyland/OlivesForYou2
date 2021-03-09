@@ -14,7 +14,7 @@ namespace UI
 
         private List<OrderOrdered> allOrdersOrdered = null;
 
-        private List<OrderOrdered> ordersFromGivenCompany = null;
+        private List<OrderOrdered> ordersToView = null;
 
         private int ddlOliveID = 0;
 
@@ -138,15 +138,15 @@ namespace UI
                     lblSales.Visible = false;
                     Sales.Visible = false;
                     noSale.Visible = false; //Error messege only relevent when trying to present the sales gridview.
-                    ordersFromGivenCompany = (List<OrderOrdered>)Session["ordersFromGivenCompany"];
-                    if (ordersFromGivenCompany == null)
+                    ordersToView = (List<OrderOrdered>)Session["ordersToView"];
+                    if (ordersToView == null)
                     {
                         allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
                         gvOrdersOrdered.DataSource = allOrdersOrdered;
                     }
                     else
                     {
-                        gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+                        gvOrdersOrdered.DataSource = ordersToView;
                     }
                     gvOrdersOrdered.DataBind();
                 }
@@ -245,6 +245,7 @@ namespace UI
                 Sales.Visible = false;
                 pnlOrderMethod.Visible = false;
                 pnlAddOrder.Visible = true;
+                pnlFindOne.Visible = false;
             }
             else if (commandArgument == btnViewOrdersOrdered.CommandArgument)
             {
@@ -253,6 +254,7 @@ namespace UI
                 lblSales.Visible = false;
                 Sales.Visible = false;
                 pnlOrderMethod.Visible = true;
+                pnlFindOne.Visible = true;
                 pnlAddOrder.Visible = false;
                 Session["ordersFromGivenCompany"] = null;
                 Session["allOrdersOrdered"] = ((User)Session["User"]).AllOrdersOrdered();
@@ -270,6 +272,7 @@ namespace UI
                 Sales.Visible = true;
                 pnlOrderMethod.Visible = false;
                 pnlAddOrder.Visible = false;
+                pnlFindOne.Visible = false;
                 BindSales(((User)Session["User"]).AllSales(false));
             }
         }
@@ -298,11 +301,11 @@ namespace UI
         protected void gvOrdersOrdered_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvOrdersOrdered.PageIndex = e.NewPageIndex;
-            ordersFromGivenCompany = (List<OrderOrdered>)Session["ordersFromGivenCompany"];
-            if (ordersFromGivenCompany == null)
-                gvOrdersOrdered.DataSource = allOrdersOrdered;
+            ordersToView = (List<OrderOrdered>)Session["ordersToView"];
+            if (ordersToView == null)
+                gvOrdersOrdered.DataSource = (List<OrderOrdered>)Session["allOrdersOrdered"];
             else
-                gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+                gvOrdersOrdered.DataSource = ordersToView;
             gvOrdersOrdered.DataBind();
         }
         /// <summary>
@@ -315,11 +318,11 @@ namespace UI
             int rowNum = int.Parse(e.CommandArgument.ToString());
             int index = rowNum + gvOrdersOrdered.PageSize * gvOrdersOrdered.PageIndex;
             List<OrderOrdered> dataSource = null;
-            ordersFromGivenCompany = (List<OrderOrdered>)Session["ordersFromGivenCompany"];
-            if (ordersFromGivenCompany == null)
+            ordersToView = (List<OrderOrdered>)Session["ordersToView"];
+            if (ordersToView == null)
                 dataSource = (List<OrderOrdered>)Session["allOrdersOrdered"];
             else
-                dataSource = ordersFromGivenCompany;
+                dataSource = ordersToView;
             orderToConfirmOrDeny = dataSource[index];
             Session["OrderToConfirmOrDeny"] = orderToConfirmOrDeny;
             pnlConfirmOrDeny.Visible = true;
@@ -344,42 +347,43 @@ namespace UI
         protected void btnReorder_Click(object sender, EventArgs e)
         {
             string commandArgument = ((Button)sender).CommandArgument;
-            if (commandArgument == btnOrderByName.CommandArgument)
-            {
-                List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
-                //List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
-                string name = ddlFindOrdersFromName.SelectedValue;
-                foreach (OrderOrdered orderOrdered in allOrdersOrdered)
-                {
-                    if (orderOrdered.CompanyName == name) orderedByCompanyX.Add(orderOrdered);
-                    //else notOrderedByCompanyX.Add(orderOrdered);
-                }
-                orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                //notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
-                //foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
+            allOrdersOrdered = (List<OrderOrdered>)Session["allOrdersOrdered"];
+            //if (commandArgument == btnOrderByName.CommandArgument)
+            //{
+            //    List<OrderOrdered> orderedByCompanyX = new List<OrderOrdered>();
+            //    //List<OrderOrdered> notOrderedByCompanyX = new List<OrderOrdered>();
+            //    string name = ddlFindOrdersFromName.SelectedValue;
+            //    foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+            //    {
+            //        if (orderOrdered.CompanyName == name) orderedByCompanyX.Add(orderOrdered);
+            //        //else notOrderedByCompanyX.Add(orderOrdered);
+            //    }
+            //    orderedByCompanyX = orderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+            //    //notOrderedByCompanyX = notOrderedByCompanyX.OrderByDescending(o => o.DateOrderSent).ToList();
+            //    //foreach (OrderOrdered orderOrdered in notOrderedByCompanyX)
+            //    //{
+            //    //    orderedByCompanyX.Add(orderOrdered);
+            //    //}
+            //    ordersFromGivenCompany = orderedByCompanyX;
+            //    Session["ordersFromGivenCompany"] = ordersFromGivenCompany;
+            //    gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+            //    gvOrdersOrdered.DataBind();
+            //    lblNameNotFound.Visible = false;                
+            //}
+            //else
+            //{
+                //if (commandArgument == btnOrderByUnhandled.CommandArgument)
                 //{
-                //    orderedByCompanyX.Add(orderOrdered);
+                //    if (rblOrderOfOrdering.SelectedIndex == 0)
+                //    {
+                //        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderSent).ToList();
+                //    }
+                //    else
+                //    {
+                //        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderSent).ToList();
+                //    }
                 //}
-                ordersFromGivenCompany = orderedByCompanyX;
-                Session["ordersFromGivenCompany"] = ordersFromGivenCompany;
-                gvOrdersOrdered.DataSource = ordersFromGivenCompany;
-                gvOrdersOrdered.DataBind();
-                lblNameNotFound.Visible = false;                
-            }
-            else
-            {
-                if (commandArgument == btnOrderByUnhandled.CommandArgument)
-                {
-                    if (rblOrderOfOrdering.SelectedIndex == 0)
-                    {
-                        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderSent).ToList();
-                    }
-                    else
-                    {
-                        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderSent).ToList();
-                    }
-                }
-                else if (commandArgument == btnOrderByDateOrdered.CommandArgument)
+                if (commandArgument == btnOrderByDateOrdered.CommandArgument)
                 {
                     if (rblOrderOfOrdering.SelectedIndex == 0)
                     {
@@ -390,22 +394,23 @@ namespace UI
                         allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderOrdered).ToList();
                     }
                 }
-                else if (commandArgument == btnOrderByDateRecived.CommandArgument)
-                {
-                    if (rblOrderOfOrdering.SelectedIndex == 0)
-                    {
-                        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderArrived).ToList();
-                    }
-                    else
-                    {
-                        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderArrived).ToList();
-                    }
-                }
-                ordersFromGivenCompany = null;
-                Session["ordersFromGivenCompany"] = null;
+                //else if (commandArgument == btnOrderByDateRecived.CommandArgument)
+                //{
+                //    if (rblOrderOfOrdering.SelectedIndex == 0)
+                //    {
+                //        allOrdersOrdered = allOrdersOrdered.OrderByDescending(o => o.DateOrderArrived).ToList();
+                //    }
+                //    else
+                //    {
+                //        allOrdersOrdered = allOrdersOrdered.OrderBy(o => o.DateOrderArrived).ToList();
+                //    }
+                //}
+                ordersToView = null;
+                Session["ordersToView"] = null;
+                Session["allOrdersOrdered"] = allOrdersOrdered;
                 gvOrdersOrdered.DataSource = allOrdersOrdered;
                 gvOrdersOrdered.DataBind();
-            }
+            //}
         }
         /// <summary>
         /// Adds the datasource for the DropDownList used for finding a certain company.
@@ -424,18 +429,39 @@ namespace UI
             
         }
 
-        protected void btnFindOrdersFromName_Click(object sender, EventArgs e)
+        protected void btnFindOrders_Click(object sender, EventArgs e)
         {
-            string companyName = ddlFindOrdersFromName.SelectedValue;
+            string commandArgument = ((Button)sender).CommandArgument;
             allOrdersOrdered = (List<OrderOrdered>)Session["allOrdersOrdered"];
-            ordersFromGivenCompany = new List<OrderOrdered>(); 
-            foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+            ordersToView = new List<OrderOrdered>();
+            if (commandArgument == btnFindOrdersFromName.CommandArgument)
             {
-                if (orderOrdered.CompanyName == companyName) ordersFromGivenCompany.Add(orderOrdered);
+                string companyName = ddlFindOrdersFromName.SelectedValue;                
+                foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+                {
+                    if (orderOrdered.CompanyName == companyName) ordersToView.Add(orderOrdered);
+                }
+                //ordersFromGivenCompany = ordersFromGivenCompany.OrderByDescending(o => o.DateOrderSent).ToList(); 
+                //Session["ordersFromGivenCompany"] = ordersFromGivenCompany;
+                //gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+                //gvOrdersOrdered.DataBind();
             }
-            //ordersFromGivenCompany = ordersFromGivenCompany.OrderByDescending(o => o.DateOrderSent).ToList(); 
-            Session["ordersFromGivenCompany"] = ordersFromGivenCompany;        
-            gvOrdersOrdered.DataSource = ordersFromGivenCompany;
+            else if (commandArgument == btnFindUnsentOrders.CommandArgument)
+            {
+                foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+                {
+                    if (orderOrdered.DateOrderSent == DateTime.MinValue) ordersToView.Add(orderOrdered);
+                }                
+            }
+            else
+            {
+                foreach (OrderOrdered orderOrdered in allOrdersOrdered)
+                {
+                    if (orderOrdered.DateOrderArrived == DateTime.MinValue) ordersToView.Add(orderOrdered);
+                }
+            }
+            Session["ordersToView"] = ordersToView;
+            gvOrdersOrdered.DataSource = ordersToView;
             gvOrdersOrdered.DataBind();
         }
 
@@ -445,7 +471,8 @@ namespace UI
             orderToConfirmOrDeny = (OrderOrdered)Session["OrderToConfirmOrDeny"];
             if (orderToConfirmOrDeny == null)
             {
-                lblConfirmOrDenyEnd.Text = "An error has accoured. Perhaps you waited to long to click the button? Try pressing the button in the gridview again.";
+                lblError.Text = "An error has accoured. Perhaps you waited to long to click the button? Try pressing the button in the gridview again.";
+                lblGeneralSuccess.Text = "";
                 btnConfirmSent.Visible = false;
                 btnDenySending.Visible = false;
             }

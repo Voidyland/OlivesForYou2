@@ -150,6 +150,87 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label ConfirmSentError;
 
         /// <summary>
+        /// pnlFindOne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFindOne;
+
+        /// <summary>
+        /// lblSearchByX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSearchByX;
+
+        /// <summary>
+        /// lblFindOrdersFromName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFindOrdersFromName;
+
+        /// <summary>
+        /// ddlFindOrdersFromName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFindOrdersFromName;
+
+        /// <summary>
+        /// btnFindOrdersFromName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFindOrdersFromName;
+
+        /// <summary>
+        /// lblFindUnsentOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFindUnsentOrders;
+
+        /// <summary>
+        /// btnFindUnsentOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFindUnsentOrders;
+
+        /// <summary>
+        /// lblFindUnrecivedOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFindUnrecivedOrders;
+
+        /// <summary>
+        /// btnFindUnrecivedOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFindUnrecivedOrders;
+
+        /// <summary>
         /// pnlOrderMethod control.
         /// </summary>
         /// <remarks>
@@ -159,67 +240,13 @@ namespace UI
         protected global::System.Web.UI.WebControls.Panel pnlOrderMethod;
 
         /// <summary>
-        /// lblOrderByName control.
+        /// lblOrderByWhat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderByName;
-
-        /// <summary>
-        /// txtOrderByName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrderByName;
-
-        /// <summary>
-        /// requiredOrderByName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredOrderByName;
-
-        /// <summary>
-        /// lblOrderByNameSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderByNameSuccess;
-
-        /// <summary>
-        /// btnOrderByName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrderByName;
-
-        /// <summary>
-        /// lblNameNotFound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNameNotFound;
-
-        /// <summary>
-        /// lblOrderByDateOrdered control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderByDateOrdered;
+        protected global::System.Web.UI.WebControls.Label lblOrderByWhat;
 
         /// <summary>
         /// btnOrderByDateOrdered control.
@@ -229,42 +256,6 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnOrderByDateOrdered;
-
-        /// <summary>
-        /// lblOrderByUnhandled control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderByUnhandled;
-
-        /// <summary>
-        /// btnOrderByUnhandled control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrderByUnhandled;
-
-        /// <summary>
-        /// lblOrderByDateRecived control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderByDateRecived;
-
-        /// <summary>
-        /// btnOrderByDateRecived control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnOrderByDateRecived;
 
         /// <summary>
         /// lblOrderOfOrdering control.
@@ -616,51 +607,6 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblGeneralSuccess;
-
-        /// <summary>
-        /// pnlFindOne control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFindOne;
-
-        /// <summary>
-        /// lblSearchByX control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSearchByX;
-
-        /// <summary>
-        /// lblFindOrdersFromName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFindOrdersFromName;
-
-        /// <summary>
-        /// ddlFindOrdersFromName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFindOrdersFromName;
-
-        /// <summary>
-        /// btnFindOrdersFromName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFindOrdersFromName;
 
         /// <summary>
         /// pnlOrginize control.
