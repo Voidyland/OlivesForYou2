@@ -35,6 +35,7 @@ namespace UI
                 {
                     Error.Text = "It seems you entered identifying details that belong to another user. Identifying details are username, email and phone number.";
                     Error.Visible = true;
+                    return;
                 }
             }
             try

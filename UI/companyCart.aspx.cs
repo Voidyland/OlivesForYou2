@@ -22,7 +22,27 @@ namespace UI
                 {
                     Response.Redirect("MainPage.aspx");
                 }
+                LoadCart();
             }
+        }
+        private void LoadCart ()
+        {
+            List<Sale> cart = (List<Sale>)Session["saleBeingBought"];
+            if (cart != null)
+            {
+                gvCart.DataSource = cart;
+                gvCart.DataBind();
+                lblCart.Visible = false;
+                gvCart.Visible = true;
+            }
+            else
+            {
+                lblCart.Visible = true;
+                gvCart.Visible = false;
+            }
+        }
+        protected void gvCart_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
 
         }
     }
