@@ -14,6 +14,10 @@ namespace UI
         private int salesBought = -1;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.Page.Request.QueryString["cart"] == "All cart orderd")
+            {
+                pnlFromCart.Visible = true;
+            }
             if (!Page.IsPostBack)
             {
                 if (Session["User"] == null)

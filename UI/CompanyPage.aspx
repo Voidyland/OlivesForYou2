@@ -1,7 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/OliveOverlord.Master" AutoEventWireup="true" CodeBehind="CompanyPage.aspx.cs" Inherits="UI.CompanyPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">    
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">  
+    <asp:Panel ID="pnlFromCart" runat="server" Visible="false" EnableViewState="false">
+        <asp:Label ID="lblFromCart" runat="server" Text="Ordered all of cart! you were redirected to the main comapny page."></asp:Label> <%--consider making this bigger in css--%>
+        <br />
+        <br />
+        <br />
+        <br />
+    </asp:Panel>
+    
     <asp:Panel ID="pnlOptions" runat="server">
         <asp:Button ID="btnAvailableSales" runat="server" Text="View available sales" OnClick="btnChangePNL_Click" CommandArgument="availSales" />
         <asp:Button ID="btnPreviousOrders" runat="server" Text="View all previous orders" OnClick="btnChangePNL_Click" CommandArgument="prevOrd" />
@@ -77,5 +85,5 @@
         <br />
         <asp:Label ID="lblInfo" runat="server" EnableViewState="false" Text="Added to cart! Please notice your cart is temporary and will be lost if you remain inactive for a while or close this site." Visible="false"></asp:Label>
         <br />
-    </asp:Panel>
+    </asp:Panel>        
 </asp:Content>

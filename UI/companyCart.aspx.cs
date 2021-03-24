@@ -93,13 +93,14 @@ namespace UI
                             lblOrderFailed.Visible = true;
                             lblOrderFailed.Text = "Oh oh! Something went wrong... Its possible that some of your purchuses were successfull and others not." +
                                 " Return to your company page to see if any new orders apear. You will only be charged for orders that successfully went through.";
+                            return;
                         }
                         else
                         {
                             //charge em
                         }
                     }
-
+                    Response.Redirect("CompanyPage?cart=All cart ordered");
                 }
             }
             catch (Exception exeption)
