@@ -27,23 +27,85 @@ namespace UI
         }
         private void LoadCart ()
         {
-            List<Sale> cart = (List<Sale>)Session["saleBeingBought"];
+            List<Sale> cart = (List<Sale>)Session["saleBeingBought"];            
             if (cart != null)
             {
                 gvCart.DataSource = cart;
                 gvCart.DataBind();
                 lblCart.Visible = false;
                 gvCart.Visible = true;
+                btnPaymant.Visible = true;
             }
             else
             {
                 lblCart.Visible = true;
                 gvCart.Visible = false;
+                btnPaymant.Visible = false;
             }
         }
         protected void gvCart_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            try
+            {
+                if (e.CommandName == "delete")
+                {
+                    int index = int.Parse(e.CommandArgument.ToString());
+                    List<Sale> cart = (List<Sale>)Session["saleBeingBought"];
+                    cart.RemoveAt(index);
+                    gvCart.DeleteRow(index);
+                    LoadCart();
+                }
+            }
+            catch (Exception exeption)
+            {
 
+            }
+        }
+
+        protected void gvCart_RowDeleted(object sender, GridViewDeletedEventArgs e)
+        {
+
+        }
+
+        protected void gvCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void btnPaymant_Click(object sender, EventArgs e)
+        {
+            pnlCart.Visible = false;
+            pnlPayment.Visible = true;
+        }
+
+        protected void btnOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (true) // placeholder for the webservies
+                {
+                    List<Sale> cart = (List<Sale>)Session["saleBeingBought"];
+                    int companyID = ((User)Session["User"]).UserID;
+                    foreach (Sale sale in cart)
+                    {
+                        if (!sale.CreateNewOrder(companyID, sale.InStock)) //In this senario, InStock represents the amout of stocks being bought and not the amout of stocks available.
+                        { //Remember, only charge if order was successfull! Charge somewhere here, in this if.
+                            lblOrderFailed.Visible = true;
+                            lblOrderFailed.Text = "Oh oh! Something went wrong... Its possible that some of your purchuses were successfull and others not." +
+                                " Return to your company page to see if any new orders apear. You will only be charged for orders that successfully went through.";
+                        }
+                        else
+                        {
+                            //charge em
+                        }
+                    }
+
+                }
+            }
+            catch (Exception exeption)
+            {
+                lblOrderFailed.Visible = true;
+            }
         }
     }
 }

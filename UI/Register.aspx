@@ -30,8 +30,10 @@
     <asp:RequiredFieldValidator ID="requiredCountry" runat="server" ControlToValidate="txtCountry" ErrorMessage="You must enter a country"></asp:RequiredFieldValidator>
     <br />--%>
     <asp:DropDownList ID="ddlCountrys" runat="server"></asp:DropDownList>
-    <br />
+    <br />        
     <asp:Label ID="lblPhoneNumber" runat="server" Text="PhoneNumber"></asp:Label>
+    <%--<br />
+    <asp:DropDownList ID="ddlPhoneNumberFirstDigits" runat="server"></asp:DropDownList>--%>
     <br />
     <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
     <asp:RegularExpressionValidator ID="RegularNumber" runat="server" ControlToValidate="txtPhoneNumber" ValidationExpression="^[0-9]{1,15}$" ErrorMessage="You must only use numbers, and the phone number must be at best 15 characters long."></asp:RegularExpressionValidator>

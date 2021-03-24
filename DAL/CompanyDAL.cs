@@ -40,7 +40,7 @@ namespace DAL
         {
             string insertSQL = $"INSERT INTO OrdersOrdered (CompanyID, FarmerID, OliveID, Weight, Price, DateOrderOrdered)" +
                 $" VALUES ({companyID}, {farmerID}, {oliveID}, {weight}, {price}, '{DateTime.UtcNow}');";
-            string changeStockSQL = $"UPDATE Sales SET InStock = {newStock} WHERE SaleID = {saleID};";
+            string changeStockSQL = $"UPDATE Sales SET InStock = InStock - {newStock} WHERE SaleID = {saleID};"; // changed this, dunno if it works to do InStock = InStock - new stock but hey lets hope.
             DBHelper db = new DBHelper();
             int newOrderID = db.InsertWithAutoNumKey(insertSQL);
             int didStockChange = db.WriteData(changeStockSQL);

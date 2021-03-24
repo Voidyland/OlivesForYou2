@@ -178,7 +178,7 @@ namespace BL
         }
         public bool CreateNewOrder (int companyID, int stocksBought)
         {
-            int succsessOrFail = DAL.CompanyDAL.OrderSale(this.saleID, companyID, this.farmerID, this.oliveID, this.saleWeight, this.SalePrice, this.inStock - stocksBought);
+            int succsessOrFail = DAL.CompanyDAL.OrderSale(this.saleID, companyID, this.farmerID, this.oliveID, this.saleWeight, this.SalePrice, stocksBought);
             if (succsessOrFail == -1) return false;
             this.inStock -= stocksBought;
             return true;
