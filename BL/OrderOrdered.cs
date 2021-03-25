@@ -23,6 +23,7 @@ namespace BL
         private string oliveName;
         private double orderWeight;
         private double orderPrice;
+        private int stocks;
         private DateTime dateOrderOrdered;
         private DateTime dateOrderSent;
         private DateTime dateOrderArrived;
@@ -40,6 +41,7 @@ namespace BL
             oliveName = "";
             orderWeight = double.Parse(orderOrdered["Weight"].ToString());
             orderPrice = double.Parse(orderOrdered["Price"].ToString());
+            stocks = int.Parse(orderOrdered["Stocks"].ToString());
             dateOrderOrdered = (DateTime)orderOrdered["DateOrderOrdered"];
             if (!orderOrdered.IsNull("DateOrderSent"))
                 dateOrderSent = (DateTime)orderOrdered["DateOrderSent"];
@@ -197,6 +199,17 @@ namespace BL
             set
             {
                 orderPrice = value;
+            }
+        }
+        public int Stocks
+        {
+            get
+            {
+                return stocks;
+            }
+            set
+            {
+                stocks = value;
             }
         }
         public DateTime DateOrderOrdered

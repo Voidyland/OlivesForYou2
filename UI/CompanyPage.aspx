@@ -40,8 +40,9 @@
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="sellers name" />
                 <asp:BoundField DataField="OliveName" HeaderText="olive type" />
-                <asp:BoundField DataField="OrderWeight" HeaderText="total weight" />
-                <asp:BoundField DataField="OrderPrice" HeaderText="total price" />
+                <asp:BoundField DataField="OrderWeight" HeaderText="weight per stock" />
+                <asp:BoundField DataField="OrderPrice" HeaderText="price per stock" />
+                <asp:BoundField DataField="Stocks" HeaderText="stocks bought" />
                 <asp:BoundField DataField="DateOrderOrdered" HeaderText="date ordered" />
                 <asp:BoundField DataField="DateOrderSent" HeaderText="sent status" />
                 <asp:BoundField DataField="DateOrderArrived" HeaderText="arrived status" />
