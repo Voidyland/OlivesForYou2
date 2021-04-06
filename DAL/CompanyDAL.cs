@@ -36,6 +36,17 @@ namespace DAL
             if (dt.Rows.Count < 1) return null;
             return dt;
         }
+        /// <summary>
+        /// Orders a number of stocks from a sale.
+        /// </summary>
+        /// <param name="saleID">the sales ID</param>
+        /// <param name="companyID">the company ordering</param>
+        /// <param name="farmerID">the farmer who owns the sale</param>   
+        /// <param name="oliveID">the olives type of the sale</param>
+        /// <param name="weight">the weight per stock</param>
+        /// <param name="price">the price per stock</param>
+        /// <param name="newStock">the amout of stocks</param>
+        /// <returns>the ID of the new order. returns -1 if an error has accoured</returns>
         public static int OrderSale (int saleID, int companyID,int farmerID, int oliveID, double weight, double price, int newStock)
         {
             string insertSQL = $"INSERT INTO OrdersOrdered (CompanyID, FarmerID, OliveID, Weight, Price, Stocks, DateOrderOrdered)" +
@@ -47,6 +58,11 @@ namespace DAL
             if (newOrderID == DBHelper.WRITEDATA_ERROR || didStockChange != 1) return DBHelper.WRITEDATA_ERROR;
             return newOrderID;
         }
+        /// <summary>
+        /// Returns all orders ordered by a company
+        /// </summary>
+        /// <param name="companyID">the company's ID</param>
+        /// <returns>all the previus orders</returns>
         public static DataTable AllPreviousOrders (int companyID)
         {
             string sql = $"SELECT * FROM OrdersOrdered WHERE CompanyID = {companyID};";

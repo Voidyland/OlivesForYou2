@@ -11,5 +11,6 @@
         </asp:DropDownList>
         <asp:TextBox ID="txtFindBy" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="requiredFindBy" runat="server" ControlToValidate="txtFindBy" ErrorMessage="You must enter something"></asp:RequiredFieldValidator>
+        <asp:Button ID="btnFindBy" runat="server" Text="Find user" OnClick="btnFindBy_Click" />
     </asp:Panel>
 </asp:Content>
