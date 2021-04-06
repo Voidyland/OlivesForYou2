@@ -195,19 +195,23 @@ namespace UI
             if (e.Row.RowIndex > -1)
             {
                 OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
+                e.Row.Cells[5].Text = orderOrdered.DateOrderOrdered.ToShortDateString();
                 if (orderOrdered.DateOrderSent == DateTime.MinValue)
                 {
-                    e.Row.Cells[5].Text = "Not sent";
-                    e.Row.Cells[6].Text = "Not arrived";
-                    e.Row.Cells[7].Text = "not arrived.";
+                    e.Row.Cells[6].Text = "Not sent";
+                    e.Row.Cells[7].Text = "Not arrived";
+                    e.Row.Cells[8].Text = "not arrived.";                    
                 }
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
-                    e.Row.Cells[6].Text = "Not arrived";
+                    e.Row.Cells[6].Text = orderOrdered.DateOrderSent.ToShortDateString();
+                    e.Row.Cells[7].Text = "Not arrived";
                 }
                 else
                 {
-                    e.Row.Cells[7].Text = "Order arrived, no need to confirm";
+                    e.Row.Cells[6].Text = orderOrdered.DateOrderSent.ToShortDateString();
+                    e.Row.Cells[7].Text = orderOrdered.DateOrderArrived.ToShortDateString();
+                    e.Row.Cells[8].Text = "Order arrived, no need to confirm";
                 }
             }
         }
@@ -223,7 +227,7 @@ namespace UI
             lblInfo.Visible = true;
         }
         /// <summary>
-        /// change the datetime to only show the date not the time.
+        /// change the date to only show the date not the time.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
