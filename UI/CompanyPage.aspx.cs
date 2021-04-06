@@ -233,8 +233,11 @@ namespace UI
         /// <param name="e"></param>
         protected void gvAvailableSales_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Sale sale = (Sale)e.Row.DataItem;
-            e.Row.Cells[5].Text = sale.DateSaleAdded.ToShortDateString();
+            if (e.Row.RowIndex > -1)
+            {
+                Sale sale = (Sale)e.Row.DataItem;
+                e.Row.Cells[5].Text = sale.DateSaleAdded.ToShortDateString();
+            }
         }
     }
 }

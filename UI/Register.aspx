@@ -17,6 +17,8 @@
     <br />
     <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="requiredPass" runat="server" ControlToValidate="txtPass" ErrorMessage="You must enter a password"></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ID="regularPass" runat="server" ControlToValidate="txtPass" ValidationExpression="^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$"
+        ErrorMessage="Password must contain atleast one uppercase, lower case, number and special charater. Password must be between 8 and 15 characters long."></asp:RegularExpressionValidator>
     <br />
     <asp:Label ID="lblUserType" runat="server" Text="User Type"></asp:Label>
     <br />
