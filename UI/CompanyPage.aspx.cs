@@ -222,6 +222,16 @@ namespace UI
             Session["saleBeingBought"] = addToCart;
             lblInfo.Visible = true;
         }
+        /// <summary>
+        /// change the datetime to only show the date not the time.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvAvailableSales_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Sale sale = (Sale)e.Row.DataItem;
+            e.Row.Cells[5].Text = sale.DateSaleAdded.ToShortDateString();
+        }
     }
 }
 //if (e.Row.RowIndex > -1)

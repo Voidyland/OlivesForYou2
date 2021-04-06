@@ -294,24 +294,41 @@ namespace UI
             }
         }
 
+        protected void Sales_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex > -1)
+            {
+                Sale sale = (Sale)e.Row.DataItem;
+                e.Row.Cells[4].Text = sale.DateSaleAdded.ToShortDateString();
+            }
+        }
+        /// <summary>
+        /// Add's specifing text based on whether the order was just ordered, sent or arrived.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvOrdersOrdered_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowIndex > -1)
             {
                 OrderOrdered orderOrdered = (OrderOrdered)e.Row.DataItem;
+                e.Row.Cells[7].Text = orderOrdered.DateOrderOrdered.ToShortDateString();
                 if (orderOrdered.DateOrderSent == DateTime.MinValue)
                 {
-                    e.Row.Cells[7].Text = "Not sent.";
-                    e.Row.Cells[8].Text = "Not sent or arrived.";
+                    e.Row.Cells[8].Text = "Not sent.";
+                    e.Row.Cells[9].Text = "Not sent or arrived.";
                 }
                 else if (orderOrdered.DateOrderArrived == DateTime.MinValue)
                 {
-                    e.Row.Cells[8].Text = "Not arrived.";
-                    e.Row.Cells[9].Text = "Order sent succesfully!";
+                    e.Row.Cells[8].Text = orderOrdered.DateOrderSent.ToShortDateString();
+                    e.Row.Cells[9].Text = "Not arrived.";
+                    e.Row.Cells[10].Text = "Order sent succesfully!";
                 }
                 else
                 {
-                    e.Row.Cells[9].Text = "Order sent succesfully!";
+                    e.Row.Cells[8].Text = orderOrdered.DateOrderSent.ToShortDateString();
+                    e.Row.Cells[9].Text = orderOrdered.DateOrderArrived.ToShortDateString();
+                    e.Row.Cells[10].Text = "Order sent succesfully!";
                 }
             }
         }
@@ -521,5 +538,7 @@ namespace UI
                 }                
             }
         }
+
+        
     }
 }

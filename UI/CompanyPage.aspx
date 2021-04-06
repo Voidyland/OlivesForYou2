@@ -19,7 +19,7 @@
         <asp:Label ID="lblNoAvailaleSales" runat="server" Text="It seems there are no available sales for you right now" Visible="false"></asp:Label>
         <br />
         <asp:Label ID="lblSaleBought" runat="server" Text="" Visible="false"></asp:Label>
-        <asp:GridView ID="gvAvailableSales" runat="server" AutoGenerateColumns="false" OnRowCommand="gvAvailableSales_RowCommand" EnableViewState="true">
+        <asp:GridView ID="gvAvailableSales" runat="server" AutoGenerateColumns="false" OnRowCommand="gvAvailableSales_RowCommand" EnableViewState="true" OnRowDataBound="gvAvailableSales_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="FarmerName" HeaderText="farmers user name" />
                 <asp:BoundField DataField="OliveName" HeaderText="olive type" />

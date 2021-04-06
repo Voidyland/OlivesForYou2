@@ -12,7 +12,7 @@
     <asp:Label ID="lblSales" runat="server" Text="Here is a table of all the sales you are offering!"></asp:Label>
     <br />
     <asp:GridView ID="Sales" runat="server" OnRowCommand="ordersForSale_RowCommand" AutoGenerateColumns="false"
-         OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" Visible="true" >
+         OnRowDeleting="Sales_RowDeleting" OnRowDeleted="Sales_RowDeleted" Visible="true" OnRowDataBound="Sales_RowDataBound">
         <Columns>
             <asp:BoundField DataField="OliveName" HeaderText="olive type" />
             <asp:BoundField DataField="SaleWeight" HeaderText="weight in kg per 1 in stock" />
