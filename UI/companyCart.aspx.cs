@@ -25,6 +25,9 @@ namespace UI
                 LoadCart();
             }
         }
+        /// <summary>
+        /// Loads the details of the cart.
+        /// </summary>
         private void LoadCart ()
         {
             List<Sale> cart = (List<Sale>)Session["saleBeingBought"];            
@@ -43,6 +46,11 @@ namespace UI
                 btnPaymant.Visible = false;
             }
         }
+        /// <summary>
+        /// deletes a selected row and removes it from the cart
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvCart_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try

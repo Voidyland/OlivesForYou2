@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminPage.aspx" />
     <Content Include="App_Data\OlivesDB.accdb" />
     <Content Include="App_Data\OlivesDBNew.accdb" />
     <Content Include="companyCart.aspx" />
@@ -77,6 +78,13 @@
     <Content Include="MainPage.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPage.aspx.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPage.aspx.designer.cs">
+      <DependentUpon>AdminPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="companyCart.aspx.cs">
       <DependentUpon>companyCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

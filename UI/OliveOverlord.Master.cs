@@ -25,7 +25,7 @@ namespace UI
                 switch (((User)Session["User"]).UserType)
                 {
                     case 1:
-
+                        AddButton("View statistics, create articles", "AdminPage.aspx");
                         break;
                     case 2:
                         AddButton("View and create sales, view orders", "FarmerOrders.aspx");
