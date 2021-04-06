@@ -57,6 +57,10 @@ namespace BL
             int id = DAL.UserDAL.Register(userName, pass, email, userType, countryNumber, phoneNumber);
             return new User(id, userName, pass, email, userType, country, phoneNumber);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<Olive> AllOlives ()
         {
             List<Olive> olives = new List<Olive>();

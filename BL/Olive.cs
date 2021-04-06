@@ -13,6 +13,10 @@ namespace BL
         private string oliveName;
         private string description;
         private string image;
+        /// <summary>
+        /// Constructor for Olive. Recives its parameters from datarow.
+        /// </summary>
+        /// <param name="dr"></param>
         public Olive (DataRow dr)
         {
             oliveID = (int)dr["OliveID"];

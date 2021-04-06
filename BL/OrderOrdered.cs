@@ -27,6 +27,10 @@ namespace BL
         private DateTime dateOrderOrdered;
         private DateTime dateOrderSent;
         private DateTime dateOrderArrived;
+        /// <summary>
+        /// Constructor for OrderOrdered. Recives parameters from datarow.
+        /// </summary>
+        /// <param name="orderOrdered"></param>
         public OrderOrdered (DataRow orderOrdered)
         {
             orderID = int.Parse(orderOrdered["OrderID"].ToString());
