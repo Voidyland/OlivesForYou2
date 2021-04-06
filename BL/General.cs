@@ -58,7 +58,7 @@ namespace BL
             return new User(id, userName, pass, email, userType, country, phoneNumber);
         }
         /// <summary>
-        /// 
+        /// Returns all possible olives.
         /// </summary>
         /// <returns></returns>
         public static List<Olive> AllOlives ()
@@ -71,6 +71,11 @@ namespace BL
             }
             return olives;
         }
+        /// <summary>
+        /// Convert a contry to an int. The int is the ID of the contry in the database.
+        /// </summary>
+        /// <param name="country">The countrys name</param>
+        /// <returns></returns>
         public static int ConvertCountryToInt (string country)
         {
             DataTable dt = DAL.GeneralDAL.GetCountrys();
@@ -80,6 +85,11 @@ namespace BL
             }
             return -1;
         }
+        /// <summary>
+        /// Converts a country to string. The string is the countrys name
+        /// </summary>
+        /// <param name="countryNumber">the countrys ID</param>
+        /// <returns></returns>
         public static string CountryToString (int countryNumber)
         {
             DataTable dt = DAL.GeneralDAL.GetCountrys();
