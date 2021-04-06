@@ -18,6 +18,17 @@ namespace BL
         private double salePrice;
         private int inStock;
         private DateTime dateSaleAdded;
+        /// <summary>
+        /// Constructor for Sale. Recives all details individualy.
+        /// </summary>
+        /// <param name="saleID">the sales ID</param>
+        /// <param name="farmerID">the farmer who owns the sale</param>
+        /// <param name="oliveID">the ID of the olives type of the sale</param>
+        /// <param name="oliveName">the name of the olives tpye</param>
+        /// <param name="saleWeight">the weight per stock</param>
+        /// <param name="salePrice">the price per stock</param>
+        /// <param name="inStock">the amout of stocks</param>
+        /// <param name="dateSaleAdded">the date the sale was created</param>
         public Sale(int saleID, int farmerID, int oliveID, string oliveName, double saleWeight, double salePrice, int inStock, DateTime dateSaleAdded)
         {
             this.saleID = saleID;
@@ -30,6 +41,10 @@ namespace BL
             this.inStock = inStock;
             this.dateSaleAdded = dateSaleAdded;
         }
+        /// <summary>
+        /// Constructor for Sale. Recives all details in a datarow.
+        /// </summary>
+        /// <param name="dr"></param>
         public Sale (DataRow dr)
         {
             this.saleID = (int)dr["SaleID"];
@@ -42,6 +57,10 @@ namespace BL
             this.inStock = (int)dr["InStock"];
             this.dateSaleAdded = (DateTime)dr["DateSaleAdded"];
         }
+        /// <summary>
+        /// Cloning constructor for Sale. Clones the given sale.
+        /// </summary>
+        /// <param name="sale"></param>
         public Sale (Sale sale)
         {
             this.saleID = sale.saleID;
@@ -157,11 +176,24 @@ namespace BL
                 dateSaleAdded = value;
             }
         }
+        /// <summary>
+        /// Deletes this sale.
+        /// </summary>
+        /// <returns></returns>
         public int DeleteThis ()
         {
             DAL.FarmerDal.DeleteSale(this.saleID);
             return saleID;
         }
+        /// <summary>
+        /// Updates this sale with the given details.
+        /// </summary>
+        /// <param name="oliveID">the new olives ID</param>
+        /// <param name="oliveName">the new olive name</param>
+        /// <param name="saleWeight">the new weight per stock</param>
+        /// <param name="salePrice">the new price per stock</param>
+        /// <param name="inStock">the new stocks available</param>
+        /// <returns>The ID of the updated sale (this sale)</returns>
         public int UpdateThis (int oliveID, string oliveName, double saleWeight, double salePrice, int inStock)
         {
             if (DAL.FarmerDal.UpdateSale(this.saleID, oliveID, saleWeight, salePrice, inStock) == -1) return -1;
@@ -172,10 +204,20 @@ namespace BL
             this.inStock = inStock;
             return this.saleID;
         }
+        /// <summary>
+        /// Convets the sale to string.
+        /// </summary>
+        /// <returns>The string version of the sale</returns>
         public override string ToString()
         {
             return $"Olive type: {this.OliveName}, sale weight: {this.saleWeight}kg, sale price: {this.salePrice}$, items in stock: {this.inStock}, date the sale was added: {this.dateSaleAdded}.";
         }
+        /// <summary>
+        /// Orders a part of this sale.
+        /// </summary>
+        /// <param name="companyID">the company making the order</param>
+        /// <param name="stocksBought">the amout of stocks being bought</param>
+        /// <returns>Whether or not the order was successfull</returns>
         public bool CreateNewOrder (int companyID, int stocksBought)
         {
             int succsessOrFail = DAL.CompanyDAL.OrderSale(this.saleID, companyID, this.farmerID, this.oliveID, this.saleWeight, this.SalePrice, stocksBought);

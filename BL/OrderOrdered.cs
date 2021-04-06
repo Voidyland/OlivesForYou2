@@ -245,11 +245,19 @@ namespace BL
                 dateOrderArrived = value;
             }
         }
+        /// <summary>
+        /// Confirms this order was sent to the company.
+        /// </summary>
+        /// <returns>Whether or not the confirmation succeded or not</returns>
         public bool ConfirmOrder ()
         {
             if (DAL.FarmerDal.ConfirmOrderSent(this.orderID) != DAL.DALHelper.WRITEDATA_ERROR) return true;
             return false;
         } 
+        /// <summary>
+        /// Deletes this order from the database
+        /// </summary>
+        /// <returns>Whether the process was a success of not</returns>
         public bool DeleteOrder ()
         {
             return DAL.UserDAL.DeleteOrderOrderer(this.orderID);

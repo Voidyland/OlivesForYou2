@@ -67,7 +67,7 @@ namespace BL
                 pass = value;
             }
         }
-        public int UserType
+        public int UserType //manager = 1, farmer = 2, company = 3
         {
             get
             {
@@ -139,7 +139,16 @@ namespace BL
             this.profileDescription = dr["ProfileDescription"].ToString();
             this.profilePicture = dr["ProfilePicture"].ToString();
         }
-
+        /// <summary>
+        /// Constructor for the user class. Recives all user details individualy.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="pass"></param>
+        /// <param name="userType"></param>
+        /// <param name="country"></param>
+        /// <param name="phoneNumber"></param>
         public User(int userID, string userName, string email, string pass, int userType, string country, string phoneNumber)
         {
             this.userID = userID;
@@ -231,8 +240,13 @@ namespace BL
             if (sales.Count < 1) return null;
             return sales;
         }
+        /// <summary>
+        /// Returns all available sales the user has, and orginizes them by placing favorites first. Can only be used by a farmer.
+        /// </summary>
+        /// <returns></returns>
         public List<Sale> AllAvailableSales ()
         {
+            if (this.userType != 2) return null;
             List<Sale> allAvailableSales = AllAvailableSalesUnorginized();
             if (allAvailableSales == null) return null;
             DataTable favorites = DAL.CompanyDAL.AllFavoriteFarmers(this.userID);
@@ -260,8 +274,13 @@ namespace BL
             }
             return allAvailableSales;
         }
+        /// <summary>
+        /// Finds and returns all previus orders by the user. Can only be used by a company.
+        /// </summary>
+        /// <returns></returns>
         public List<OrderOrdered> AllPreviousOrders ()
         {
+            if (this.userType != 3) return null;
             DataTable dt = DAL.CompanyDAL.AllPreviousOrders(this.userID);
             if (dt == null) return null;
             List<OrderOrdered> allPreviousOrders = new List<OrderOrdered>();
