@@ -241,12 +241,11 @@ namespace BL
             return sales;
         }
         /// <summary>
-        /// Returns all available sales the user has, and orginizes them by placing favorites first. Can only be used by a farmer.
+        /// Returns all available sales the user has, and orginizes them by placing favorites first.
         /// </summary>
         /// <returns></returns>
         public List<Sale> AllAvailableSales ()
-        {
-            if (this.userType != 2) return null;
+        {         
             List<Sale> allAvailableSales = AllAvailableSalesUnorginized();
             if (allAvailableSales == null) return null;
             DataTable favorites = DAL.CompanyDAL.AllFavoriteFarmers(this.userID);
@@ -275,12 +274,11 @@ namespace BL
             return allAvailableSales;
         }
         /// <summary>
-        /// Finds and returns all previus orders by the user. Can only be used by a company.
+        /// Finds and returns all previus orders by the user.
         /// </summary>
         /// <returns></returns>
         public List<OrderOrdered> AllPreviousOrders ()
         {
-            if (this.userType != 3) return null;
             DataTable dt = DAL.CompanyDAL.AllPreviousOrders(this.userID);
             if (dt == null) return null;
             List<OrderOrdered> allPreviousOrders = new List<OrderOrdered>();

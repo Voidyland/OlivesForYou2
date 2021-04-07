@@ -7,8 +7,10 @@
         <asp:Label ID="lblFindBy" runat="server" Text="find user by:"></asp:Label>
         <asp:DropDownList ID="ddlFindBy" runat="server">
             <asp:ListItem Value="1">user name</asp:ListItem>
-            <asp:ListItem Value="2">email</asp:ListItem>            
+            <asp:ListItem Value="2">email</asp:ListItem>   
+            <asp:ListItem Value="3">drop down list</asp:ListItem>
         </asp:DropDownList>
+        <asp:DropDownList ID="ddlAllUsers" runat="server"></asp:DropDownList>
         <asp:TextBox ID="txtFindBy" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="requiredFindBy" runat="server" ControlToValidate="txtFindBy" ErrorMessage="You must enter something"></asp:RequiredFieldValidator>
         <asp:Button ID="btnFindBy" runat="server" Text="Find user" OnClick="btnFindBy_Click" />

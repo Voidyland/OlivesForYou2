@@ -115,5 +115,15 @@ namespace BL
             }
             return users;
         }
+        public static List<User> AllNonAdmins ()
+        {
+            List<User> allUsers = AllUsers();
+            List<User> allNonAdmins = new List<User>();
+            foreach(User user in allUsers)
+            {
+                if (user.UserType != 1) allNonAdmins.Add(user);
+            }
+            return allNonAdmins;
+        }
     }
 }

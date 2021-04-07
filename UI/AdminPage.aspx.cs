@@ -26,7 +26,10 @@ namespace UI
                 lblHello.Text = "Hello " + ((User)Session["User"]).UserName + "! Welcome back.";
             }
         }
+        private void loadAllUsersDDL ()
+        {
 
+        }
         protected void btnFindBy_Click(object sender, EventArgs e)
         {
 
