@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BL;
+
 namespace UI
 {
     public partial class adminPage : System.Web.UI.Page
@@ -24,15 +25,29 @@ namespace UI
                     return;
                 }
                 lblHello.Text = "Hello " + ((User)Session["User"]).UserName + "! Welcome back.";
+                loadAllUsersDDL();
             }
         }
         private void loadAllUsersDDL ()
         {
-
+            List<User> allNonAdmins = BL.General.AllNonAdmins();
+            ddlAllUsers.DataSource = allNonAdmins;//Admin cannot search for an admin.
+            ddlAllUsers.DataBind();
         }
         protected void btnFindBy_Click(object sender, EventArgs e)
         {
-
+            string userNameOrEmail = txtFindBy.Text;
+            switch (int.Parse(ddlFindBy.SelectedValue))
+            {
+                case 1:
+                    if (userNameOrEmail == "")
+                    {
+                        lblFindingError.Text = "It seems you did not enter a userName.";
+                        return;
+                    }
+                    User userForDetail = BL.General.FindUserByUserName(userNameOrEmail);
+                    break;
+            }
         }
     }
 }

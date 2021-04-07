@@ -67,6 +67,38 @@ namespace DAL
             return dt.Rows[0];
         }
         /// <summary>
+        /// Finds and returns a user, using his userName to search.
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns>The user if he exists, null if there was an error\he does not exist</returns>
+        public static DataRow FindUserByName (string userName)
+        {
+            string sql = $"SELECT * FROM Users WHERE UserName = {userName}";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null || dt.Rows.Count != 1)
+            {
+                return null;
+            }
+            return dt.Rows[0];
+        }
+        /// <summary>
+        /// Finds and returns a user, using his email to search.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>The user if he exists, null if there was an error\he does not exist</returns>
+        public static DataRow FindUserByEmail (string email)
+        {
+            string sql = $"SELECT * FROM Users WHERE Email = {email}";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null || dt.Rows.Count != 1)
+            {
+                return null;
+            }
+            return dt.Rows[0];
+        }
+        /// <summary>
         /// At the time of writing this method is ment for farmer only but it could very well be used for company so I'm putting it in the users class. 
         /// Also the method deletes a given order what a supprise.
         /// </summary>

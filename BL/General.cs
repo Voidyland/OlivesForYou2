@@ -95,6 +95,10 @@ namespace BL
             DataTable dt = DAL.GeneralDAL.GetCountrys();
             return dt.Rows[countryNumber - 1]["countryName"].ToString();
         }
+        /// <summary>
+        /// Finds all countrys (in the database), and returns them in a list.
+        /// </summary>
+        /// <returns>All countrys (in the database)</returns>
         public static List<string> AllCountrys ()
         {
             List<string> countrys = new List<string>();
@@ -105,6 +109,10 @@ namespace BL
             }
             return countrys;
         }
+        /// <summary>
+        /// Finds all users, and returns them in a list.
+        /// </summary>
+        /// <returns>All users</returns>
         public static List<User> AllUsers ()
         {
             List<User> users = new List<User>();
@@ -115,15 +123,41 @@ namespace BL
             }
             return users;
         }
+        /// <summary>
+        /// Finds all non admin users, and returns them in a list. 
+        /// </summary>
+        /// <returns>All non admin users</returns>
         public static List<User> AllNonAdmins ()
         {
             List<User> allUsers = AllUsers();
             List<User> allNonAdmins = new List<User>();
             foreach(User user in allUsers)
             {
-                if (user.UserType != 1) allNonAdmins.Add(user);
+                if (user.UserType != 1) allNonAdmins.Add(user); //An admins user type is 1.
             }
             return allNonAdmins;
         }
+        /// <summary>
+        /// Finds a user by their userName
+        /// </summary>
+        /// <param name="userName">the users username</param>
+        /// <returns>The user</returns>
+        public static User FindUserByUserName(string userName)
+        {
+            DataRow dr = DAL.UserDAL.FindUserByName(userName);
+            if (dr == null) return null;
+            return new User(dr);
+        }
+        /// <summary>
+        /// Finds a user by his email.
+        /// </summary>
+        /// <param name="email">the users email</param>
+        /// <returns>The user</returns>
+        public static User FindUserByEmail (string email)
+        {
+            DataRow dr = DAL.UserDAL.FindUserByEmail(email);
+            if (dr == null) return null;
+            return new User(dr);
+        }        
     }
 }

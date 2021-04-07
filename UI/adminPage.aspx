@@ -14,5 +14,9 @@
         <asp:TextBox ID="txtFindBy" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="requiredFindBy" runat="server" ControlToValidate="txtFindBy" ErrorMessage="You must enter something"></asp:RequiredFieldValidator>
         <asp:Button ID="btnFindBy" runat="server" Text="Find user" OnClick="btnFindBy_Click" />
+        <asp:Label ID="lblFindingError" runat="server" Text="" EnableViewState="false"></asp:Label>
+    </asp:Panel>
+    <asp:Panel ID="pnlUserStats" runat="server">
+
     </asp:Panel>
 </asp:Content>
