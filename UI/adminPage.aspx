@@ -33,12 +33,11 @@
         <br />
         <asp:Label ID="lblUserBasicDetails" runat="server" Text=""></asp:Label>
         <br />
-        <asp:Label ID="lblStocksBoughtOrFullySold" runat="server" Text=""></asp:Label>
+        <asp:Label ID="lblStocksBoughtOrSold" runat="server" Text=""></asp:Label>
         <br />
-        <asp:GridView ID="gvInProgress" runat="server" AutoGenerateColumns="true">
-
-        </asp:GridView>
-
+        <asp:Label ID="lblMoneyEarnedOrSpent" runat="server" Text=""></asp:Label>
+        <br />
+        <asp:Label ID="lblAvgMoneyPerStock" runat="server" Text=""></asp:Label>
     </asp:Panel>
    
 </asp:Content>

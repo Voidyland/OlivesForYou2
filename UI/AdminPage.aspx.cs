@@ -12,6 +12,7 @@ namespace UI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
                 if (Session["User"] == null) 
@@ -27,6 +28,45 @@ namespace UI
                 lblHello.Text = "Hello " + ((User)Session["User"]).UserName + "! Welcome back.";
                 loadAllUsersDDL();
             }
+            else
+            {
+                User userForDetails = (User)Session["userForDetails"];
+                if (userForDetails != null)
+                {
+                    lblUserBasicDetails.Text = userForDetails.ToString();
+                    switch (userForDetails.UserType)
+                    {
+                        case 2:
+                            List<OrderOrdered> orderedFromFarmer = userForDetails.AllOrdersOrdered();
+                            int stocksSold = 0;
+                            double moneyEarned = 0;                            
+                            foreach (OrderOrdered oo in orderedFromFarmer)
+                            {
+                                stocksSold += oo.Stocks;
+                                moneyEarned += oo.OrderPrice * oo.Stocks;
+                            }
+                            lblStocksBoughtOrSold.Text = $"This farmer has sold {stocksSold} total stocks over all its sales.";
+                            lblMoneyEarnedOrSpent.Text = $"This farmer has earned {moneyEarned}$.";
+                            lblAvgMoneyPerStock.Text = $"This farmer has earned an avrage of {moneyEarned / stocksSold}$ per stock.";
+                            break;
+                        case 3:
+                            List<OrderOrdered> ordersOrderedByCompany = userForDetails.AllPreviousOrders();
+                            int stocksBought = 0;
+                            double moneySpent = 0;
+                            foreach (OrderOrdered oo in ordersOrderedByCompany)
+                            {
+                                stocksBought += oo.Stocks;
+                                moneySpent += oo.OrderPrice * oo.Stocks;
+                            }
+                            lblStocksBoughtOrSold.Text = $"This company has bought {stocksBought} total stocks over all its orders.";
+                            lblMoneyEarnedOrSpent.Text = $"This company has spent {moneySpent}$.";
+                            lblAvgMoneyPerStock.Text = $"This farmer has spent an avrage of {moneySpent / stocksBought}$ per stock.";
+                            break;
+                    }
+                }
+            }
+
+            
         }
         /// <summary>
         /// Loads all non admin users into the drop down list of all searchable users.
@@ -80,6 +120,7 @@ namespace UI
             }
             Session["userForDetail"] = userForDetail;
             pnlUserStats.Visible = true;
+            pnlGeneralStatistics.Visible = false;
             findUser.Visible = false;
         }
     }

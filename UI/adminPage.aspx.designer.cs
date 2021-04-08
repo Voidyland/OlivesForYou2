@@ -123,21 +123,30 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblUserBasicDetails;
 
         /// <summary>
-        /// lblStocksBoughtOrFullySold control.
+        /// lblStocksBoughtOrSold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStocksBoughtOrFullySold;
+        protected global::System.Web.UI.WebControls.Label lblStocksBoughtOrSold;
 
         /// <summary>
-        /// gvInProgress control.
+        /// lblMoneyEarnedOrSpent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvInProgress;
+        protected global::System.Web.UI.WebControls.Label lblMoneyEarnedOrSpent;
+
+        /// <summary>
+        /// lblAvgMoneyPerStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAvgMoneyPerStock;
     }
 }

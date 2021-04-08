@@ -67,18 +67,30 @@ namespace BL
                 pass = value;
             }
         }
-        public int UserType //manager = 1, farmer = 2, company = 3
+        public int UserType //admin = 1, farmer = 2, company = 3
         {
             get
             {
                 return userType;
-            }
-            set
+            }            
+        }
+       public string UserTypeString
+        {
+            get
             {
-                userType = value;
+                switch (userType)
+                {
+                    case 1:
+                        return "Admin";
+                    case 2:
+                        return "Farmer";
+                    case 3:
+                        return "Company";
+                    default:
+                        return "";
+                }
             }
         }
-       
         public string Country
         {
             get
@@ -274,7 +286,7 @@ namespace BL
             return allAvailableSales;
         }
         /// <summary>
-        /// Finds and returns all previus orders by the user.
+        /// Finds and returns all previus orders by the company.
         /// </summary>
         /// <returns></returns>
         public List<OrderOrdered> AllPreviousOrders ()
@@ -287,6 +299,14 @@ namespace BL
                 allPreviousOrders.Add(new OrderOrdered(dr));
             }
             return allPreviousOrders;
+        }
+        /// <summary>
+        /// ToString method.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"User name: {this.userName}, User type: {this.UserTypeString},  Email: {this.email}, Country: {this.country}, Phone number: {this.phoneNumber}. ";
         }
     }
 }
