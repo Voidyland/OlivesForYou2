@@ -24,6 +24,15 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblHello;
 
         /// <summary>
+        /// pnlGeneralStatistics control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlGeneralStatistics;
+
+        /// <summary>
         /// findUser control.
         /// </summary>
         /// <remarks>
@@ -103,5 +112,32 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlUserStats;
+
+        /// <summary>
+        /// lblUserBasicDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserBasicDetails;
+
+        /// <summary>
+        /// lblStocksBoughtOrFullySold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStocksBoughtOrFullySold;
+
+        /// <summary>
+        /// gvInProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvInProgress;
     }
 }

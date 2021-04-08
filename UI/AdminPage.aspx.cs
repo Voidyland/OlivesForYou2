@@ -28,15 +28,24 @@ namespace UI
                 loadAllUsersDDL();
             }
         }
+        /// <summary>
+        /// Loads all non admin users into the drop down list of all searchable users.
+        /// </summary>
         private void loadAllUsersDDL ()
         {
-            List<User> allNonAdmins = BL.General.AllNonAdmins();
-            ddlAllUsers.DataSource = allNonAdmins;//Admin cannot search for an admin.
+            List<User> allNonAdmins = BL.General.AllNonAdmins();//Admin cannot search for an admin.
+            List<ListItem> allUserNames = new List<ListItem>();
+            foreach (User user in allNonAdmins) //Show only names
+            {
+                allUserNames.Add(new ListItem(user.UserName, user.UserName));
+            }
+            ddlAllUsers.DataSource = allUserNames;
             ddlAllUsers.DataBind();
         }
         protected void btnFindBy_Click(object sender, EventArgs e)
         {
             string userNameOrEmail = txtFindBy.Text;
+            User userForDetail = null;
             switch (int.Parse(ddlFindBy.SelectedValue))
             {
                 case 1:
@@ -45,9 +54,33 @@ namespace UI
                         lblFindingError.Text = "It seems you did not enter a userName.";
                         return;
                     }
-                    User userForDetail = BL.General.FindUserByUserName(userNameOrEmail);
+                    lblFindingError.Text = "";
+                    userForDetail = BL.General.FindUserByUserName(userNameOrEmail);
                     break;
+                case 2:
+                    if (userNameOrEmail == "")
+                    {
+                        lblFindingError.Text = "It seems you did not enter an email.";
+                        return;
+                    }
+                    lblFindingError.Text = "";
+                    userForDetail = BL.General.FindUserByEmail(userNameOrEmail);
+                    break;
+                case 3:
+                    userForDetail = BL.General.FindUserByUserName(ddlAllUsers.SelectedValue);
+                    break;
+                default:
+                    lblFindingError.Text = "It seems something went wrong...";
+                    return;                    
             }
+            if (userForDetail == null)
+            {
+                lblFindingError.Text = "It seems something went wrong, the user might not exist. Are you sure you entered the right details?";
+                return;
+            }
+            Session["userForDetail"] = userForDetail;
+            pnlUserStats.Visible = true;
+            findUser.Visible = false;
         }
     }
 }
