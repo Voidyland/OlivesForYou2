@@ -266,5 +266,12 @@ namespace BL
         {
             return DAL.UserDAL.DeleteOrderOrderer(this.orderID);
         }
+        public override string ToString()
+        {
+            return $"Ordered by: {this.companyName} from: {this.farmerName} at a weight of: {this.orderWeight}kg and a price of: {this.orderPrice}$ per stock, with:" +
+                $" {this.stocks} ordered. Olive type: {this.oliveName}. Destination: {this.countryName}. Ordered on: {this.dateOrderOrdered.Date}. " +
+                $"Sent: {(this.dateOrderSent == DateTime.MinValue ? "no" : $"on {this.dateOrderSent.Date}")}. " +
+                $"Arrived: {(this.dateOrderArrived == DateTime.MinValue ? "no" : $"on {this.dateOrderArrived.Date}")}";
+        }
     }
 }

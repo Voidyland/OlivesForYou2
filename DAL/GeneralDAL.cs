@@ -21,7 +21,10 @@ namespace DAL
         {
             string sql = "SELECT * FROM Olives;";
             DBHelper db = new DBHelper();
-            return db.GetDataTable(sql);
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
         }
         /// <summary>
         /// Returns all countrys in the datebase.
@@ -31,7 +34,10 @@ namespace DAL
         {
             string sql =  "SELECT * FROM Countrys;";
             DBHelper db = new DBHelper();
-            return db.GetDataTable(sql);
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
         }
         /// <summary>
         /// Returns all users in the database.
@@ -41,7 +47,10 @@ namespace DAL
         {
             string sql = "SELECT * FROM Users;";
             DBHelper db = new DBHelper();
-            return db.GetDataTable(sql);
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
         }
         /// <summary>
         /// Returns all orders ordered in the database.
@@ -51,7 +60,10 @@ namespace DAL
         {
             string sql = "SELECT * FROM OrdersOrdered";
             DBHelper db = new DBHelper();
-            return db.GetDataTable(sql);
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
         }
     }
 }

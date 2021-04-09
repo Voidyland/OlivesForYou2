@@ -174,6 +174,63 @@ namespace BL
             }
             return sum;
         }
-        
+        /// <summary>
+        /// Returns all orders ordered.
+        /// </summary>
+        /// <returns></returns>
+        public static List<OrderOrdered> AllOrdersOrdered ()
+        {
+            DataTable dt = DAL.GeneralDAL.GetAllOrdersOrdered();
+            if (dt == null) return null;
+            List<OrderOrdered> allOrdersOrdered = new List<OrderOrdered>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                allOrdersOrdered.Add(new OrderOrdered(dr));
+            }
+            return allOrdersOrdered;
+        }
+        /// <summary>
+        /// Returns the amout of money payed/earned in a given amount of orders.
+        /// </summary>
+        /// <param name="ordersOrdered"></param>
+        /// <returns></returns>
+        public static double MoneyExchangedInOrdersOrdered (List<OrderOrdered> ordersOrdered)
+        {
+            double sum = 0;
+            foreach (OrderOrdered oo in ordersOrdered)
+            {                
+                sum += oo.OrderPrice * oo.Stocks;
+            }
+            return sum;
+        }
+        /// <summary>
+        /// Returns the number of orders that were sent but have not arrived in the given list.
+        /// </summary>
+        /// <param name="ordersOrdered"></param>
+        /// <returns></returns>
+        public static int NumOfOrdersOnTheirWayInOrdersOrdered (List<OrderOrdered> ordersOrdered)
+        {
+            int count = 0;
+            foreach (OrderOrdered oo in ordersOrdered)
+            {
+                if (oo.DateOrderSent != DateTime.MinValue && oo.DateOrderArrived == DateTime.MinValue) count++;
+            }
+            return count;
+        }
+        /// <summary>
+        /// Returns the most recentley ordered order in the given list.
+        /// </summary>
+        /// <param name="ordersOrdered"></param>
+        /// <returns></returns>
+        public static OrderOrdered LatestOrderInOrdersOrdered (List<OrderOrdered> ordersOrdered)
+        {
+            if (ordersOrdered == null) return null;
+            OrderOrdered latestOrder = ordersOrdered[0];
+            foreach (OrderOrdered oo in ordersOrdered)
+            {
+                if (oo.DateOrderOrdered.CompareTo(latestOrder.DateOrderOrdered) > 0) latestOrder = oo;
+            }
+            return latestOrder;
+        }
     }
 }

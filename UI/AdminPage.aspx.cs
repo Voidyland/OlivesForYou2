@@ -60,7 +60,13 @@ namespace UI
             numOfFarmers = BL.General.NumOfUserType(allNonAdmins, 2);//A farmers user type is 2.
             numOfCompanys = allNonAdmins.Count - numOfFarmers;
             lblNumOfUsers.Text = $"There are currently {numOfFarmers} registered farmers and {numOfCompanys} registered companys.";
-
+            List<OrderOrdered> allOrdersOrdered = BL.General.AllOrdersOrdered();
+            double moneyExchanged = BL.General.MoneyExchangedInOrdersOrdered(allOrdersOrdered);
+            int ordersSentNotArrived = BL.General.NumOfOrdersOnTheirWayInOrdersOrdered(allOrdersOrdered);
+            OrderOrdered latestOrderOrdered = BL.General.LatestOrderInOrdersOrdered(allOrdersOrdered);
+            lblMoneyExchanged.Text = $"{allOrdersOrdered}$ have been exchanged so far between farmers and companys.";
+            lblNumOfOrdersOnTheirWay.Text = $"{ordersSentNotArrived} orders have been sent but have not yet arrived.";
+            lblLatestOrder.Text = $"The latest order to be ordered is: {latestOrderOrdered.ToString()}";
         }
 
         private void LoadPNLUserStats (User userForDetails)
