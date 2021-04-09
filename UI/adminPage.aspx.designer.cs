@@ -33,6 +33,33 @@ namespace UI
         protected global::System.Web.UI.WebControls.Panel pnlGeneralStatistics;
 
         /// <summary>
+        /// lblNumOfUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNumOfUsers;
+
+        /// <summary>
+        /// lblMoneyExchanged control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMoneyExchanged;
+
+        /// <summary>
+        /// lblOrdersOnTheirWay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrdersOnTheirWay;
+
+        /// <summary>
         /// findUser control.
         /// </summary>
         /// <remarks>

@@ -5,9 +5,15 @@
     <asp:Label ID="lblHello" runat="server" Text="" EnableViewState="true"></asp:Label>
     
      <asp:Panel ID="pnlGeneralStatistics" runat="server">
-        <br />  
+         <br />  
+         <asp:Label ID="lblNumOfUsers" runat="server" Text=""></asp:Label>
+         <br />
+         <asp:Label ID="lblMoneyExchanged" runat="server" Text=""></asp:Label>
+         <br />
+         <asp:Label ID="lblOrdersOnTheirWay" runat="server" Text=""></asp:Label>
+         <br />
 
-        <br />
+         <br />
     </asp:Panel>
    
     <asp:Panel ID="findUser" runat="server">
