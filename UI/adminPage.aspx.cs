@@ -26,54 +26,88 @@ namespace UI
                     return;
                 }
                 lblHello.Text = "Hello " + ((User)Session["User"]).UserName + "! Welcome back.";
-                loadAllUsersDDL();
+                List<User> allNonAdmins = BL.General.AllNonAdmins();
+                LoadPNLGeneralStatistics(allNonAdmins);
+                LoadAllUsersDDL(allNonAdmins);
             }
             else
             {
                 User userForDetails = (User)Session["userForDetails"];
                 if (userForDetails != null)
                 {
-                    lblUserBasicDetails.Text = userForDetails.ToString();
-                    switch (userForDetails.UserType)
-                    {
-                        case 2:
-                            List<OrderOrdered> orderedFromFarmer = userForDetails.AllOrdersOrdered();
-                            int stocksSold = 0;
-                            double moneyEarned = 0;                            
-                            foreach (OrderOrdered oo in orderedFromFarmer)
-                            {
-                                stocksSold += oo.Stocks;
-                                moneyEarned += oo.OrderPrice * oo.Stocks;
-                            }
-                            lblStocksBoughtOrSold.Text = $"This farmer has sold {stocksSold} total stocks over all its sales.";
-                            lblMoneyEarnedOrSpent.Text = $"This farmer has earned {moneyEarned}$.";
-                            lblAvgMoneyPerStock.Text = $"This farmer has earned an avrage of {moneyEarned / stocksSold}$ per stock.";
-                            break;
-                        case 3:
-                            List<OrderOrdered> ordersOrderedByCompany = userForDetails.AllPreviousOrders();
-                            int stocksBought = 0;
-                            double moneySpent = 0;
-                            foreach (OrderOrdered oo in ordersOrderedByCompany)
-                            {
-                                stocksBought += oo.Stocks;
-                                moneySpent += oo.OrderPrice * oo.Stocks;
-                            }
-                            lblStocksBoughtOrSold.Text = $"This company has bought {stocksBought} total stocks over all its orders.";
-                            lblMoneyEarnedOrSpent.Text = $"This company has spent {moneySpent}$.";
-                            lblAvgMoneyPerStock.Text = $"This farmer has spent an avrage of {moneySpent / stocksBought}$ per stock.";
-                            break;
-                    }
+                    pnlUserStats.Visible = true;
+                    pnlGeneralStatistics.Visible = false;
+                    findUser.Visible = false;
+                    LoadPNLUserStats(userForDetails);
+                }
+                else
+                {
+                    pnlUserStats.Visible = false;
+                    pnlGeneralStatistics.Visible = true;
+                    findUser.Visible = true;
+                    List<User> allNonAdmins = BL.General.AllNonAdmins();
+                    LoadPNLGeneralStatistics(allNonAdmins);
+                    LoadAllUsersDDL(allNonAdmins);
                 }
             }
 
             
         }
+
+        private void LoadPNLGeneralStatistics (List<User> allNonAdmins)
+        {            
+            int numOfFarmers, numOfCompanys;
+            numOfFarmers = BL.General.NumOfUserType(allNonAdmins, 2);//A farmers user type is 2.
+            numOfCompanys = allNonAdmins.Count - numOfFarmers;
+            lblNumOfUsers.Text = $"There are currently {numOfFarmers} registered farmers and {numOfCompanys} registered companys.";
+            List<OrderOrdered> allOrdersOrdered = BL.General.AllOrdersOrdered();
+            double moneyExchanged = BL.General.MoneyExchangedInOrdersOrdered(allOrdersOrdered);
+            int ordersSentNotArrived = BL.General.NumOfOrdersOnTheirWayInOrdersOrdered(allOrdersOrdered);
+            OrderOrdered latestOrderOrdered = BL.General.LatestOrderInOrdersOrdered(allOrdersOrdered);
+            lblMoneyExchanged.Text = $"{allOrdersOrdered}$ have been exchanged so far between farmers and companys.";
+            lblNumOfOrdersOnTheirWay.Text = $"{ordersSentNotArrived} orders have been sent but have not yet arrived.";
+            lblLatestOrder.Text = $"The latest order to be ordered is: {latestOrderOrdered.ToString()}";
+        }
+
+        private void LoadPNLUserStats (User userForDetails)
+        {
+            lblUserBasicDetails.Text = userForDetails.ToString();
+            switch (userForDetails.UserType)
+            {
+                case 2:
+                    List<OrderOrdered> orderedFromFarmer = userForDetails.AllOrdersOrdered();
+                    int stocksSold = 0;
+                    double moneyEarned = 0;
+                    foreach (OrderOrdered oo in orderedFromFarmer)
+                    {
+                        stocksSold += oo.Stocks;
+                        moneyEarned += oo.OrderPrice * oo.Stocks;
+                    }
+                    lblStocksBoughtOrSold.Text = $"This farmer has sold {stocksSold} total stocks over all its sales.";
+                    lblMoneyEarnedOrSpent.Text = $"This farmer has earned {moneyEarned}$.";
+                    lblAvgMoneyPerStock.Text = $"This farmer has earned an avrage of {moneyEarned / stocksSold}$ per stock.";
+                    break;
+                case 3:
+                    List<OrderOrdered> ordersOrderedByCompany = userForDetails.AllPreviousOrders();
+                    int stocksBought = 0;
+                    double moneySpent = 0;
+                    foreach (OrderOrdered oo in ordersOrderedByCompany)
+                    {
+                        stocksBought += oo.Stocks;
+                        moneySpent += oo.OrderPrice * oo.Stocks;
+                    }
+                    lblStocksBoughtOrSold.Text = $"This company has bought {stocksBought} total stocks over all its orders.";
+                    lblMoneyEarnedOrSpent.Text = $"This company has spent {moneySpent}$.";
+                    lblAvgMoneyPerStock.Text = $"This farmer has spent an avrage of {moneySpent / stocksBought}$ per stock.";
+                    break;
+            }
+        }
         /// <summary>
         /// Loads all non admin users into the drop down list of all searchable users.
         /// </summary>
-        private void loadAllUsersDDL ()
+        private void LoadAllUsersDDL (List<User> allNonAdmins)
         {
-            List<User> allNonAdmins = BL.General.AllNonAdmins();//Admin cannot search for an admin.
+            
             List<ListItem> allUserNames = new List<ListItem>();
             foreach (User user in allNonAdmins) //Show only names
             {
