@@ -10,9 +10,9 @@
          <br />
          <asp:Label ID="lblMoneyExchanged" runat="server" Text=""></asp:Label>
          <br />
-         <asp:Label ID="lblOrdersOnTheirWay" runat="server" Text=""></asp:Label>
+         <asp:Label ID="lblNumOfOrdersOnTheirWay" runat="server" Text=""></asp:Label>
          <br />
-
+         <asp:Label ID="lblLatestOrder" runat="server" Text=""></asp:Label>
          <br />
     </asp:Panel>
    

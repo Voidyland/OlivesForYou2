@@ -51,13 +51,22 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblMoneyExchanged;
 
         /// <summary>
-        /// lblOrdersOnTheirWay control.
+        /// lblNumOfOrdersOnTheirWay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrdersOnTheirWay;
+        protected global::System.Web.UI.WebControls.Label lblNumOfOrdersOnTheirWay;
+
+        /// <summary>
+        /// lblLatestOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLatestOrder;
 
         /// <summary>
         /// findUser control.

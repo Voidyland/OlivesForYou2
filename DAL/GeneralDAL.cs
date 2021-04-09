@@ -43,5 +43,15 @@ namespace DAL
             DBHelper db = new DBHelper();
             return db.GetDataTable(sql);
         }
+        /// <summary>
+        /// Returns all orders ordered in the database.
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetAllOrdersOrdered ()
+        {
+            string sql = "SELECT * FROM OrdersOrdered";
+            DBHelper db = new DBHelper();
+            return db.GetDataTable(sql);
+        }
     }
 }

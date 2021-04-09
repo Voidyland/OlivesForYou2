@@ -158,6 +158,22 @@ namespace BL
             DataRow dr = DAL.UserDAL.FindUserByEmail(email);
             if (dr == null) return null;
             return new User(dr);
-        }        
+        } 
+        /// <summary>
+        /// Counts the amout of users of a certain type in the list given to it.
+        /// </summary>
+        /// <param name="users">a list of users to check</param>
+        /// <param name="userType">the user type to compare too</param>
+        /// <returns>The amout of users with the chosen type</returns>
+        public static int NumOfUserType (List<User> users, int userType)
+        {
+            int sum = 0;
+            foreach (User user in users)
+            {
+                if (user.UserType == userType) sum++;
+            }
+            return sum;
+        }
+        
     }
 }
