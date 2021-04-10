@@ -8,6 +8,18 @@ namespace CreditCardWS
 {
     public class DAL
     {
+        /// <summary>
+        /// Creates a new credit card in the database.
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <param name="cardCCV"></param>
+        /// <param name="cardExpirationMonth"></param>
+        /// <param name="cardExpirationYear"></param>
+        /// <param name="ownerID"></param>
+        /// <param name="ownerFirstName"></param>
+        /// <param name="ownerLastName"></param>
+        /// <param name="cardBalance"></param>
+        /// <returns>Whether the action was successfull or not</returns>
         public static bool CreateCard (string cardNumber, int cardCCV, int cardExpirationMonth, int cardExpirationYear, int ownerID,
             string ownerFirstName, string ownerLastName, double cardBalance)
         {
@@ -31,6 +43,15 @@ namespace CreditCardWS
             if (dt == null) throw new Exception("There seems to be an error with the database.");
             if (dt.Rows.Count == 0) return false;
             return true;
+        }
+        public static DataTable allTransactionsByCard (string sendingCard)
+        {
+            string sql = $"SELECT * FROM Transaction WHERE SendingCard = '{sendingCard}';";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
         }
     }
     public class DALHelper

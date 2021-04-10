@@ -33,6 +33,12 @@ namespace CreditCardWS
             if (success) return cardNumber;
             return "";
         }
+        [WebMethod]
+        public List<Transaction> allCardTransactionInMonth(string cardNumber, int month)
+        {
+            if (cardNumber.Length != 9 || month < 1 || month > 12) return null;
+
+        }
         private string CreateCardNumber()
         {
             try
