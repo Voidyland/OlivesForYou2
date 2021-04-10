@@ -129,11 +129,12 @@ namespace UI
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
-            string creditNumber = txtCreditNumber.Text;
-            int ccv = int.Parse(txtCode.Text);
-            int month = int.Parse(ddlMonths.SelectedValue);
-            int year = int.Parse(ddlYears.SelectedValue);
-            if (true) //placeholder for thec credit card check
+            //string creditNumber = txtCreditNumber.Text;
+            //int ccv = int.Parse(txtCode.Text);
+            //int month = int.Parse(ddlMonths.SelectedValue);
+            //int year = int.Parse(ddlYears.SelectedValue);
+            //MyProxy.WebService1 ws = new MyProxy.WebService1();
+            if (true) //placeholder for ws 
             {
                 if (Session["saleBeingBought"] != null) 
                 {
@@ -146,13 +147,17 @@ namespace UI
                         lblOrderFailed.Visible = true;                    
                     }
                     else
-                    {
+                    {                        
                         pnlAvailableSales.Visible = true;
                         pnlOrderSale.Visible = false;
                         LoadAvailableSales();
                     }
                 }
             }
+            //else
+            //{
+            //    lblOrderFailed.Visible = true;
+            //}
         }
         private void LoadPreviousOrders ()
         {

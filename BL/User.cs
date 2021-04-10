@@ -21,8 +21,8 @@ namespace BL
         private int userType; //Manager = 1, Farmer = 2, Company = 3.
         private string country;
         private string phoneNumber;
-        private string profileDescription;
-        private string profilePicture;
+        //private string profileDescription;
+        //private string profilePicture;
         public int UserID
         {
             get
@@ -113,28 +113,28 @@ namespace BL
                 phoneNumber = value;
             }
         }
-        public string ProfileDescription
-        {
-            get
-            {
-                return profileDescription;
-            }
-            set
-            {
-                profileDescription = value;
-            }
-        }
-        public string ProfilePicture
-        {
-            get
-            {
-                return profilePicture;
-            }
-            set
-            {
-                profilePicture = value;
-            }
-        }
+        //public string ProfileDescription
+        //{
+        //    get
+        //    {
+        //        return profileDescription;
+        //    }
+        //    set
+        //    {
+        //        profileDescription = value;
+        //    }
+        //}
+        //public string ProfilePicture
+        //{
+        //    get
+        //    {
+        //        return profilePicture;
+        //    }
+        //    set
+        //    {
+        //        profilePicture = value;
+        //    }
+        //}
         /// <summary>
         /// Constructor for the user class. Recives the users details from a datarow.
         /// </summary>
@@ -148,8 +148,8 @@ namespace BL
             this.userType = (int)dr["UserType"];
             this.country = General.CountryToString((int)dr["CountryNumber"]);
             this.phoneNumber = dr["PhoneNumber"].ToString();
-            this.profileDescription = dr["ProfileDescription"].ToString();
-            this.profilePicture = dr["ProfilePicture"].ToString();
+            //this.profileDescription = dr["ProfileDescription"].ToString();
+            //this.profilePicture = dr["ProfilePicture"].ToString();
         }
         /// <summary>
         /// Constructor for the user class. Recives all user details individualy.
