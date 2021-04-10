@@ -13,6 +13,7 @@ namespace CreditCardWS
         private string recivingCard;
         private double transactionAmount;
         private DateTime transactionDate;
+        
         public Transaction ()
         {
 
@@ -24,6 +25,7 @@ namespace CreditCardWS
             this.recivingCard = recivingCard;
             this.transactionAmount = transactionAmount;
             this.transactionDate = transactionDate;
+            
         }
         public Transaction (DataRow dr)
         {
@@ -32,13 +34,13 @@ namespace CreditCardWS
             this.recivingCard = dr["RecivingCard"].ToString();
             this.transactionAmount = double.Parse(dr["TransactionAmount"].ToString());
             this.transactionDate = (DateTime)dr["TransactionDate"];
+            
         }
         public int TransactionID { get => transactionID;}
         public string SendingCard { get => sendingCard;}
         public string RecivingCard { get => recivingCard;}
         public double TransactionAmount { get => transactionAmount;}
         public DateTime TransactionDate { get => transactionDate;}
-        
         
     }
 }

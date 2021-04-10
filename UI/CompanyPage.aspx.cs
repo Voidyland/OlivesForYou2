@@ -82,22 +82,22 @@ namespace UI
 
         private void CreateMonthsDDL ()
         {
-            List<int> months = new List<int>();
+            List<ListItem> months = new List<ListItem>();
             for (int i = 1; i <=12; i++)
             {
-                months.Add(i);
+                months.Add(new ListItem(i.ToString(), i.ToString()));
             }
             ddlMonths.DataSource = months;
             ddlMonths.DataBind();
         }
         private void CreateYearsDDL ()
         {
-            List<int> years = new List<int>();
+            List<ListItem> years = new List<ListItem>();
             const int YEARS_AHEAD = 30;
             int thisYear = DateTime.Now.Year;
             for (int i = thisYear; i <= thisYear + YEARS_AHEAD; i++)
             {
-                years.Add(i);
+                years.Add(new ListItem(i.ToString(),i.ToString()));
             }
             ddlYears.DataSource = years;
             ddlYears.DataBind();
@@ -129,6 +129,10 @@ namespace UI
 
         protected void btnOrder_Click(object sender, EventArgs e)
         {
+            string creditNumber = txtCreditNumber.Text;
+            int ccv = int.Parse(txtCode.Text);
+            int month = int.Parse(ddlMonths.SelectedValue);
+            int year = int.Parse(ddlYears.SelectedValue);
             if (true) //placeholder for thec credit card check
             {
                 if (Session["saleBeingBought"] != null) 

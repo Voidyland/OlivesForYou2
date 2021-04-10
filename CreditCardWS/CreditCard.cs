@@ -12,7 +12,7 @@ namespace CreditCardWS
         private int cardCCV;
         private int cardExpirationMonth;
         private int cardExpirationYear;
-        private int ownerID;
+        private string ownerEmail;
         private string ownerFirstName;
         private string ownerLastName;
         private double cardBalance;
@@ -23,18 +23,18 @@ namespace CreditCardWS
             this.cardCCV = -1;
             this.cardExpirationMonth = -1;
             this.cardExpirationYear = -1;
-            this.ownerID = -1;
+            this.ownerEmail = "";
             this.ownerFirstName = "";
             this.ownerLastName = "";
             this.cardBalance = -1;
         }
-        public CreditCard(string cardNumber, int cardCCV, int cardExpirationMonth, int cardExpirationYear, int ownerID, string ownerFirstName, string ownerLastName, double cardBalance)
+        public CreditCard(string cardNumber, int cardCCV, int cardExpirationMonth, int cardExpirationYear, string ownerEmail, string ownerFirstName, string ownerLastName, double cardBalance)
         {
             this.cardNumber = cardNumber;
             this.cardCCV = cardCCV;
             this.cardExpirationMonth = cardExpirationMonth;
             this.cardExpirationYear = cardExpirationYear;
-            this.ownerID = ownerID;
+            this.ownerEmail = ownerEmail;
             this.ownerFirstName = ownerFirstName;
             this.ownerLastName = ownerLastName;
             this.cardBalance = cardBalance;
@@ -45,7 +45,7 @@ namespace CreditCardWS
             this.cardCCV = int.Parse(dr["CardCCV"].ToString());
             this.cardExpirationMonth = int.Parse(dr["CardExpirationMonth"].ToString());
             this.cardExpirationYear = int.Parse(dr["CardExpirationYear"].ToString());
-            this.ownerID = int.Parse(dr["OwnerID"].ToString());
+            this.ownerEmail = dr["OwnerEmail"].ToString();
             this.ownerFirstName = dr["OwnerFirstName"].ToString();
             this.ownerLastName = dr["OwnerLastName"].ToString();
             this.cardBalance = int.Parse(dr["CardBalance"].ToString());
@@ -78,11 +78,11 @@ namespace CreditCardWS
                 return cardExpirationYear;
             }
         }
-        public int OwnerID
+        public string OwnerEmail
         {
             get
             {
-                return ownerID;
+                return ownerEmail;
             }
         }
         public string OwnerFirstName

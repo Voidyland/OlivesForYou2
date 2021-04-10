@@ -20,12 +20,12 @@ namespace CreditCardWS
         /// <param name="ownerLastName"></param>
         /// <param name="cardBalance"></param>
         /// <returns>Whether the action was successfull or not</returns>
-        public static bool CreateCard (string cardNumber, int cardCCV, int cardExpirationMonth, int cardExpirationYear, int ownerID,
+        public static bool CreateCard (string cardNumber, int cardCCV, int cardExpirationMonth, int cardExpirationYear, string ownerEmail,
             string ownerFirstName, string ownerLastName, double cardBalance)
         {
             string sql = $"INSERT INTO CreditCard (CardNumber, CardCCV, CardExpirationMonth, CardExpirationYear, " +
-                $"OwnerID, OwnerFirstName, OwnerLastName, CardBalance) VALUES ('{cardNumber}', {cardCCV}, {cardExpirationMonth}," +
-                $" {cardExpirationYear}, {ownerID}, '{ownerFirstName}', '{ownerLastName}', {cardBalance});";
+                $"OwnerEmail, OwnerFirstName, OwnerLastName, CardBalance) VALUES ('{cardNumber}', {cardCCV}, {cardExpirationMonth}," +
+                $" {cardExpirationYear}, '{ownerEmail}', '{ownerFirstName}', '{ownerLastName}', {cardBalance});";
             DBHelper db = new DBHelper();
             if (db.WriteData(sql) == DBHelper.WRITEDATA_ERROR) return false;
             return true;
@@ -83,9 +83,13 @@ namespace CreditCardWS
         {
             string sql = $"INSERT INTO Transaction (SendingCard, RecivingCard, TransactionAmount, TransactionDate)" +
                 $" VALUES '{payingCard}', '{recivingCard}', {amoutPayed}, '{DateTime.Now}';";
+            string pay = $"UPDATE CreditCard SET CardBalance = CardBalance - {amoutPayed} WHERE CardNumber = {payingCard}";
+            string earn = $"UPDATE CreditCard SET CardBalance = CardBalance + {amoutPayed} WHERE CardNumber = {recivingCard}";
             DBHelper db = new DBHelper();
             int id = db.InsertWithAutoNumKey(sql);
-            if (id == DBHelper.WRITEDATA_ERROR) return null;
+            int payID = db.WriteData(pay);
+            int earnID = db.WriteData(earn);
+            if (id == DBHelper.WRITEDATA_ERROR || payID == DBHelper.WRITEDATA_ERROR || earnID == DBHelper.WRITEDATA_ERROR) return null;
             string select = $"SELECT * FROM Transaction WHERE TransactionID = {id};";
             DataTable dt = db.GetDataTable(select);
             if (dt == null) return null;
