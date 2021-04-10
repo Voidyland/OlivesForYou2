@@ -22,13 +22,13 @@ namespace CreditCardWS
         /// Finds if a card number is taken.
         /// </summary>
         /// <param name="cardNumber"></param>
-        /// <returns></returns>
+        /// <returns>True if the card exists, false otherwise.</returns>
         public static bool IsTaken (string cardNumber)
         {
             string sql = $"SELECT * FROM CreditCard WHERE CardNumber = '{cardNumber}';";
             DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
-            if (dt == null) return false;
+            if (dt == null) throw new Exception("There seems to be an error with the database.");
             if (dt.Rows.Count == 0) return false;
             return true;
         }
