@@ -70,7 +70,7 @@
     <Content Include="App_Data\CreditCompany1.accdb" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
-    <Content Include="CardWS.asmx" />
+    <Content Include="WebService1.asmx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL.cs" />
@@ -79,8 +79,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CardWS.asmx.cs">
-      <DependentUpon>CardWS.asmx</DependentUpon>
+    <Compile Include="WebService1.asmx.cs">
+      <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Transaction.cs" />

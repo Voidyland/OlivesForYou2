@@ -32,7 +32,7 @@ namespace UI
             }
             else
             {
-                User userForDetails = (User)Session["userForDetails"];
+                User userForDetails = (User)Session["userForDetail"];
                 if (userForDetails != null)
                 {
                     pnlUserStats.Visible = true;
@@ -46,8 +46,7 @@ namespace UI
                     pnlGeneralStatistics.Visible = true;
                     findUser.Visible = true;
                     List<User> allNonAdmins = BL.General.AllNonAdmins();
-                    LoadPNLGeneralStatistics(allNonAdmins);
-                    LoadAllUsersDDL(allNonAdmins);
+                    LoadPNLGeneralStatistics(allNonAdmins);                    
                 }
             }
 
@@ -64,7 +63,7 @@ namespace UI
             double moneyExchanged = BL.General.MoneyExchangedInOrdersOrdered(allOrdersOrdered);
             int ordersSentNotArrived = BL.General.NumOfOrdersOnTheirWayInOrdersOrdered(allOrdersOrdered);
             OrderOrdered latestOrderOrdered = BL.General.LatestOrderInOrdersOrdered(allOrdersOrdered);
-            lblMoneyExchanged.Text = $"{allOrdersOrdered}$ have been exchanged so far between farmers and companys.";
+            lblMoneyExchanged.Text = $"{moneyExchanged}$ have been exchanged so far between farmers and companys.";
             lblNumOfOrdersOnTheirWay.Text = $"{ordersSentNotArrived} orders have been sent but have not yet arrived.";
             lblLatestOrder.Text = $"The latest order to be ordered is: {latestOrderOrdered.ToString()}";
         }
@@ -117,36 +116,9 @@ namespace UI
             ddlAllUsers.DataBind();
         }
         protected void btnFindBy_Click(object sender, EventArgs e)
-        {
-            string userNameOrEmail = txtFindBy.Text;
+        {            
             User userForDetail = null;
-            switch (int.Parse(ddlFindBy.SelectedValue))
-            {
-                case 1:
-                    if (userNameOrEmail == "")
-                    {
-                        lblFindingError.Text = "It seems you did not enter a userName.";
-                        return;
-                    }
-                    lblFindingError.Text = "";
-                    userForDetail = BL.General.FindUserByUserName(userNameOrEmail);
-                    break;
-                case 2:
-                    if (userNameOrEmail == "")
-                    {
-                        lblFindingError.Text = "It seems you did not enter an email.";
-                        return;
-                    }
-                    lblFindingError.Text = "";
-                    userForDetail = BL.General.FindUserByEmail(userNameOrEmail);
-                    break;
-                case 3:
-                    userForDetail = BL.General.FindUserByUserName(ddlAllUsers.SelectedValue);
-                    break;
-                default:
-                    lblFindingError.Text = "It seems something went wrong...";
-                    return;                    
-            }
+            userForDetail = BL.General.FindUserByUserName(ddlAllUsers.SelectedValue);
             if (userForDetail == null)
             {
                 lblFindingError.Text = "It seems something went wrong, the user might not exist. Are you sure you entered the right details?";
@@ -156,6 +128,15 @@ namespace UI
             pnlUserStats.Visible = true;
             pnlGeneralStatistics.Visible = false;
             findUser.Visible = false;
+            LoadPNLUserStats(userForDetail);
+        }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            Session["userForDetails"] = null;
+            pnlUserStats.Visible = false;
+            pnlGeneralStatistics.Visible = true;
+            findUser.Visible = true;
         }
     }
 }

@@ -58,6 +58,52 @@ namespace CreditCardWS
             if (dt.Rows.Count == 0) return null;
             return dt;
         }
+        /// <summary>
+        /// Finds and returns a spesific card.
+        /// </summary>
+        /// <param name="cardNumber"></param>
+        /// <returns></returns>
+        public static DataRow FindCard(string cardNumber)
+        {
+            string sql = $"SELECT * FROM CreditCard WHERE CardNumber = '{cardNumber}';";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt.Rows[0];
+        }
+        /// <summary>
+        /// Pays someone and returns the transaction.
+        /// </summary>
+        /// <param name="payingCard"></param>
+        /// <param name="recivingCard"></param>
+        /// <param name="amoutPayed"></param>
+        /// <returns></returns>
+        public static DataRow PaySomeone (string payingCard, string recivingCard, double amoutPayed)
+        {
+            string sql = $"INSERT INTO Transaction (SendingCard, RecivingCard, TransactionAmount, TransactionDate)" +
+                $" VALUES '{payingCard}', '{recivingCard}', {amoutPayed}, '{DateTime.Now}';";
+            DBHelper db = new DBHelper();
+            int id = db.InsertWithAutoNumKey(sql);
+            if (id == DBHelper.WRITEDATA_ERROR) return null;
+            string select = $"SELECT * FROM Transaction WHERE TransactionID = {id};";
+            DataTable dt = db.GetDataTable(select);
+            if (dt == null) return null;
+            return dt.Rows[0];
+        }
+        /// <summary>
+        /// Returns all CreditCards.
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable AllCreditCards ()
+        {
+            string sql = "SELECT * FROM CreditCard";
+            DBHelper db = new DBHelper();
+            DataTable dt = db.GetDataTable(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            return dt;
+        }
     }
     public class DALHelper
     {

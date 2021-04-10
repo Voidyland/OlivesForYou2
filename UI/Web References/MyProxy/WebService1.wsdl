@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateNewCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ownerID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ownerFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ownerLastName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="allCardTransactionInMonth">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="month" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="allCardTransactionInMonthResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="allCardTransactionInMonthResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Transaction" />
+      <s:element name="allCardTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="allCardTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="allCardTransactionResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardCCV" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardExpirationMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardExpirationYear" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyDetailsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaySomeone">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="payingCardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="payingCardCCV" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="payingCardExpirationMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="payingCardExpirationYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="recivingCard" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="payingHowMuch" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaySomeoneResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PaySomeoneResult" type="tns:Transaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AllCreditCards">
+        <s:complexType />
+      </s:element>
+      <s:element name="AllCreditCardsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AllCreditCardsResult" type="tns:ArrayOfCreditCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCreditCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CreditCard" nillable="true" type="tns:CreditCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditCard" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateNewCardSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewCard" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewCardSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="allCardTransactionInMonthSoapIn">
+    <wsdl:part name="parameters" element="tns:allCardTransactionInMonth" />
+  </wsdl:message>
+  <wsdl:message name="allCardTransactionInMonthSoapOut">
+    <wsdl:part name="parameters" element="tns:allCardTransactionInMonthResponse" />
+  </wsdl:message>
+  <wsdl:message name="allCardTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:allCardTransaction" />
+  </wsdl:message>
+  <wsdl:message name="allCardTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:allCardTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyDetails" />
+  </wsdl:message>
+  <wsdl:message name="VerifyDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="PaySomeoneSoapIn">
+    <wsdl:part name="parameters" element="tns:PaySomeone" />
+  </wsdl:message>
+  <wsdl:message name="PaySomeoneSoapOut">
+    <wsdl:part name="parameters" element="tns:PaySomeoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="AllCreditCardsSoapIn">
+    <wsdl:part name="parameters" element="tns:AllCreditCards" />
+  </wsdl:message>
+  <wsdl:message name="AllCreditCardsSoapOut">
+    <wsdl:part name="parameters" element="tns:AllCreditCardsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebService1Soap">
+    <wsdl:operation name="CreateNewCard">
+      <wsdl:input message="tns:CreateNewCardSoapIn" />
+      <wsdl:output message="tns:CreateNewCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransactionInMonth">
+      <wsdl:input message="tns:allCardTransactionInMonthSoapIn" />
+      <wsdl:output message="tns:allCardTransactionInMonthSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransaction">
+      <wsdl:input message="tns:allCardTransactionSoapIn" />
+      <wsdl:output message="tns:allCardTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDetails">
+      <wsdl:input message="tns:VerifyDetailsSoapIn" />
+      <wsdl:output message="tns:VerifyDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaySomeone">
+      <wsdl:input message="tns:PaySomeoneSoapIn" />
+      <wsdl:output message="tns:PaySomeoneSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AllCreditCards">
+      <wsdl:input message="tns:AllCreditCardsSoapIn" />
+      <wsdl:output message="tns:AllCreditCardsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateNewCard">
+      <soap:operation soapAction="http://tempuri.org/CreateNewCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransactionInMonth">
+      <soap:operation soapAction="http://tempuri.org/allCardTransactionInMonth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransaction">
+      <soap:operation soapAction="http://tempuri.org/allCardTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDetails">
+      <soap:operation soapAction="http://tempuri.org/VerifyDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaySomeone">
+      <soap:operation soapAction="http://tempuri.org/PaySomeone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllCreditCards">
+      <soap:operation soapAction="http://tempuri.org/AllCreditCards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateNewCard">
+      <soap12:operation soapAction="http://tempuri.org/CreateNewCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransactionInMonth">
+      <soap12:operation soapAction="http://tempuri.org/allCardTransactionInMonth" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="allCardTransaction">
+      <soap12:operation soapAction="http://tempuri.org/allCardTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDetails">
+      <soap12:operation soapAction="http://tempuri.org/VerifyDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaySomeone">
+      <soap12:operation soapAction="http://tempuri.org/PaySomeone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AllCreditCards">
+      <soap12:operation soapAction="http://tempuri.org/AllCreditCards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebService1">
+    <wsdl:port name="WebService1Soap" binding="tns:WebService1Soap">
+      <soap:address location="https://localhost:44303/WebService1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebService1Soap12" binding="tns:WebService1Soap12">
+      <soap12:address location="https://localhost:44303/WebService1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
