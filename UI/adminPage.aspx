@@ -17,25 +17,26 @@
     </asp:Panel>
    
     <asp:Panel ID="findUser" runat="server">
-        <asp:Label ID="lblFindBy" runat="server" Text="find user by:"></asp:Label>
+        <asp:Label ID="lblFindBy" runat="server" Text="find user:"></asp:Label>
         <br />
-        <asp:DropDownList ID="ddlFindBy" runat="server">
+        <%--<asp:DropDownList ID="ddlFindBy" runat="server">
             <asp:ListItem Value="1">user name</asp:ListItem>
             <asp:ListItem Value="2">email</asp:ListItem>   
             <asp:ListItem Value="3">drop down list</asp:ListItem>
         </asp:DropDownList>
-        <br />
+        <br />--%>
         <asp:DropDownList ID="ddlAllUsers" runat="server"></asp:DropDownList>
         <br />
-        <asp:TextBox ID="txtFindBy" runat="server"></asp:TextBox>
+        <%--<asp:TextBox ID="txtFindBy" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="requiredFindBy" runat="server" ControlToValidate="txtFindBy" ErrorMessage="You must enter something"></asp:RequiredFieldValidator>
-        <br />
+        <br />--%>
         <asp:Button ID="btnFindBy" runat="server" Text="Find user" OnClick="btnFindBy_Click" />
         <br />
         <asp:Label ID="lblFindingError" runat="server" Text="" EnableViewState="false"></asp:Label>
     </asp:Panel>
     
     <asp:Panel ID="pnlUserStats" runat="server">
+        <asp:Button ID="btnReturn" runat="server" Text="View basic details" OnClick="btnReturn_Click" />
         <br />
         <asp:Label ID="lblUserBasicDetails" runat="server" Text=""></asp:Label>
         <br />

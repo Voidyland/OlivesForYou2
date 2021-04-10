@@ -73,7 +73,7 @@ namespace DAL
         /// <returns>The user if he exists, null if there was an error\he does not exist</returns>
         public static DataRow FindUserByName (string userName)
         {
-            string sql = $"SELECT * FROM Users WHERE UserName = {userName}";
+            string sql = $"SELECT * FROM Users WHERE UserName = '{userName}';";
             DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             if (dt == null || dt.Rows.Count != 1)
@@ -89,7 +89,7 @@ namespace DAL
         /// <returns>The user if he exists, null if there was an error\he does not exist</returns>
         public static DataRow FindUserByEmail (string email)
         {
-            string sql = $"SELECT * FROM Users WHERE Email = {email}";
+            string sql = $"SELECT * FROM Users WHERE Email = '{email}';";
             DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             if (dt == null || dt.Rows.Count != 1)

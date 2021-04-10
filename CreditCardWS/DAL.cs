@@ -44,9 +44,14 @@ namespace CreditCardWS
             if (dt.Rows.Count == 0) return false;
             return true;
         }
-        public static DataTable allTransactionsByCard (string sendingCard)
+        /// <summary>
+        /// Returns all transactions.
+        /// </summary>
+        /// <param name="sendingCard"></param>
+        /// <returns>The transactions, null in case of an error or if non exist</returns>
+        public static DataTable allTransactions ()
         {
-            string sql = $"SELECT * FROM Transaction WHERE SendingCard = '{sendingCard}';";
+            string sql = $"SELECT * FROM Transaction;";
             DBHelper db = new DBHelper();
             DataTable dt = db.GetDataTable(sql);
             if (dt == null) return null;

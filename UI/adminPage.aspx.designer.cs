@@ -87,15 +87,6 @@ namespace UI
         protected global::System.Web.UI.WebControls.Label lblFindBy;
 
         /// <summary>
-        /// ddlFindBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFindBy;
-
-        /// <summary>
         /// ddlAllUsers control.
         /// </summary>
         /// <remarks>
@@ -103,24 +94,6 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAllUsers;
-
-        /// <summary>
-        /// txtFindBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFindBy;
-
-        /// <summary>
-        /// requiredFindBy control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFindBy;
 
         /// <summary>
         /// btnFindBy control.
@@ -148,6 +121,15 @@ namespace UI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlUserStats;
+
+        /// <summary>
+        /// btnReturn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReturn;
 
         /// <summary>
         /// lblUserBasicDetails control.
