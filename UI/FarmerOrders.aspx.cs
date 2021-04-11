@@ -521,6 +521,10 @@ namespace UI
                 else
                 {
                     lblGeneralSuccess.Text = "Confirmed order was sent successfully!";
+                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                    Session["allOrdersOrdered"] = allOrdersOrdered;
+                    gvOrdersOrdered.DataSource = allOrdersOrdered;
+                    gvOrdersOrdered.DataBind();
                     lblError.Text = "";
                 }
             }
@@ -534,6 +538,19 @@ namespace UI
                 else
                 {
                     lblGeneralSuccess.Text = "Order deleted succussfully!";
+                    allOrdersOrdered = ((User)Session["User"]).AllOrdersOrdered();
+                    if (allOrdersOrdered != null) 
+                    {
+                        Session["allOrdersOrdered"] = allOrdersOrdered;
+                        gvOrdersOrdered.DataSource = allOrdersOrdered;
+                        gvOrdersOrdered.DataBind();
+                    }
+                    else
+                    {
+                        gvOrdersOrdered.Visible = false;
+                        lblError.Text = "It seems you have no orders ordered from you.";
+                        lblError.Visible = true;
+                    }
                     lblError.Text = "";                    
                 }                
             }

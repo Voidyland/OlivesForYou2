@@ -59,7 +59,7 @@ namespace UI
 
         protected void gvAvailableSales_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string commandArgument = ((Button)sender).CommandArgument;
+            string commandArgument = e.CommandName;
             pnlAvailableSales.Visible = false;
             allAvailableSales = (List<Sale>)Session["allAvailableSales"];
             saleBeingBought = allAvailableSales[int.Parse(e.CommandArgument.ToString())];
